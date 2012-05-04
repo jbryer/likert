@@ -1,0 +1,8 @@
+S3method(plot,likert)
+S3method(print,likert)
+S3method(summary,likert)
+export(likert)
+export(plot.likert.matrix)
+import(ggplot2)
+import(reshape)
+import(tools)

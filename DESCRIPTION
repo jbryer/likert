@@ -1,0 +1,24 @@
+Package: likert
+Type: Package
+Title: Functions to analyze and visualize likert type items
+Version: 1.0
+Date: 2012-05-04
+Author: Jason Bryer <jason@bryer.org>
+Maintainer: Jason Bryer <jason@bryer.org>
+Description: Functions to analyze and visualize likert type itemss
+License: What license is it under?
+LazyLoad: yes
+Depends:
+    ggplot2,
+    xtable,
+    psych,
+    reshape
+Collate:
+    'likert-package.R'
+    'likert.R'
+    'plot.likert.bar.r'
+    'plot.likert.heat.r'
+    'plot.likert.matrix.r'
+    'plot.likert.r'
+    'print.likert.r'
+    'summary.likert.r'
