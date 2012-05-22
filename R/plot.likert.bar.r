@@ -4,7 +4,7 @@
 #' @seealso plot.likert
 plot.likert.bar <- function(likert, low.color='blue', high.color='red', 
 							neutral.color='white', text.size=3, text.color='black',
-							centered=FALSE, ...) {
+							centered=FALSE, ordered=TRUE, ...) {
 	lowrange = 1 : ceiling(likert$nlevels / 2 - likert$nlevels %% 2)
 	highrange = ceiling(likert$nlevels / 2 + 1 ) : likert$nlevels
 	ramp = colorRamp(c(low.color, neutral.color))
@@ -50,6 +50,10 @@ plot.likert.bar <- function(likert, low.color='blue', high.color='red',
 			opts(axis.ticks=theme_blank()) + facet_wrap(~ Item, ncol=1)
 	} else {
 		results = melt(likert$results, id.vars='Item')
+		if(ordered) {
+			order = likert$summary[order(likert$summary$high),'Item']
+			results$Item = factor(results$Item, levels=order)
+		}
 		p = ggplot(results, aes(y=value, x=Item, group=Item))
 		ymin = 0
 		if(centered) {
