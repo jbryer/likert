@@ -1,6 +1,5 @@
 \docType{package}
 \name{likert-package}
-\alias{likert}
 \alias{likert-package}
 \title{Likert Analysis and Visualization}
 \description{

@@ -6,6 +6,8 @@
 }
 \arguments{
   \item{x}{the likert class to summarize.}
+
+  \item{...}{currently unused.}
 }
 \description{
   Prints summary table.

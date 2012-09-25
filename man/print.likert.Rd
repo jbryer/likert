@@ -6,6 +6,8 @@
 }
 \arguments{
   \item{x}{the likert class to print.}
+
+  \item{...}{currently unused.}
 }
 \description{
   Prints results table.

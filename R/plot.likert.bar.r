@@ -1,6 +1,15 @@
 #' Internal method.
+#' 
+#' @param likert object of type likert.
+#' @param low.color color for low values.
+#' @param high.color color for high values.
+#' @param neutral.color color for middle values (if odd number of levels).
+#' @param text.size size of text attributes.
+#' @param text.color color of text attributes.
 #' @param centered if true, the bar plot will be centered around zero such that
 #'        the lower half of levels will be negative.
+#' @param ... currently unused.
+#' @param ordered reorder items from high to low.
 #' @seealso plot.likert
 plot.likert.bar <- function(likert, low.color='blue', high.color='red', 
 							neutral.color='white', text.size=3, text.color='black',
@@ -18,28 +27,51 @@ plot.likert.bar <- function(likert, low.color='blue', high.color='red',
 		cols = c(ramp[1:(length(ramp)-1)], bamp[2:length(bamp)])
 	}
 	
+	p <- NULL
 	if(!is.null(likert$grouping)) {
 		results = melt(likert$results, id=c('Group', 'Item'))
 		ymin = 0
-		p = ggplot(results, aes(y=value, x=Group, group=variable))
+
 		if(centered) {
 			ymin = -100
-			rows = which(results$variable %in% names(likert$results)[
+			rows.low = which(results$variable %in% names(likert$results)[
 				3:( ncol(likert$results) / 2 + 1 )])
-			results[rows, 'value'] = -1 * results[rows, 'value']
-			results.low = results[rows,]
-			results.high = results[-rows,]
+			rows.high = which(results$variable %in% names(likert$results)[
+				( ceiling(ncol(likert$results) / 2 + 2) ):ncol(likert$results)])
+			results[rows.low, 'value'] = -1 * results[rows.low, 'value']
+			results.low = results[rows.low,]
+			results.high = results[rows.high,]
+			if(likert$nlevels %% 2 != 0) {
+				#Odd number of levels, will remove the middle
+				rows.mid = which(results$variable %in% names(likert$results)[
+					( floor(ncol(likert$results) / 2 + 2) )])
+				results[rows.mid, 'value'] = 0
+			}
+			p = ggplot(results, aes(y=value, x=Group, group=variable))
 			p = p + 
 				geom_bar(data=results.low, aes(fill=variable), stat='identity') + 
 				geom_bar(data=results.high, aes(fill=variable), stat='identity') +
 				ylim(c(-100,100))
+			if(likert$nlevels %% 2 != 0) {
+				p = p + scale_fill_manual('Response', 
+							values=cols[-ceiling(length(cols) / 2)], 
+							breaks=levels(results$variable)[-ceiling(length(cols) / 2)],
+							labels=levels(results$variable)[-ceiling(length(cols) / 2)])
+			} else {
+				p = p + scale_fill_manual('Response', values=cols, 
+							breaks=levels(results$variable),
+							labels=levels(results$variable))
+			}
 		} else {
-			p = p + geom_bar(stat='identity', aes(fill=variable)) + ylim(c(-5,105))
+			p = ggplot(results, aes(y=value, x=Group, group=variable))
+			p = p + geom_bar(stat='identity', aes(fill=variable)) + 
+				ylim(c(-5,105)) +
+				scale_fill_manual('Response', 
+							values=cols, 
+							breaks=levels(results$variable),
+							labels=levels(results$variable))
 		}
-		p = p + #ggplot(results, aes(y=value, x=Group, group=variable)) + 
-			scale_fill_manual('Response', values=cols, 
-							  breaks=unique(results$variable),
-							  labels=levels(likert$items[,i])) + 
+		p = p + 
 		  	geom_text(data=likert$summary, y=ymin, aes(x=Group, 
   					label=paste(round(low), '%', sep=''), group=Item), 
 		  			size=text.size, hjust=1) +
@@ -72,8 +104,8 @@ plot.likert.bar <- function(likert, low.color='blue', high.color='red',
 		}
 		p = p + 
 			scale_fill_manual('Response', values=cols, 
-							  breaks=unique(results$variable), 
-							  labels=levels(likert$items[,i])) + 
+							  breaks=levels(results$variable), 
+							  labels=levels(results$variable)) + 
 			geom_text(data=likert$summary, y=ymin, aes(x=Item, 
 				  			label=paste(round(low), '%', sep='')), 
 				  			size=text.size, hjust=1) +

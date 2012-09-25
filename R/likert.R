@@ -85,17 +85,24 @@ likert <- function(items, grouping=NULL, nlevels=length(levels(items[,1]))) {
 			sds[i] = sd(as.numeric(items[,i]), na.rm=TRUE)
 			results = cbind(results, as.data.frame(t)[2])
 			names(results)[ncol(results)] = names(items)[i]
-		}		
+		}
 		results = as.data.frame(t(results))
-		names(results) = as.character(unique(items[!is.na(items[,1]),1]))
+		names(results) = levels(items[,1])
 		results = results[2:nrow(results),]
-		results$Item = row.names(results)
-		row.names(results) = 1:nrow(results)
-		results2 = data.frame(Item=results$Item, 
+		results2 = data.frame(Item=row.names(results),
 							  low=apply(results[,lowrange], 1, sum),
 							  high=apply(results[,highrange], 1, sum),
 							  mean=means, sd=sds)
-		#results = melt(results, id.vars='Item')
+		row.names(results2) = 1:nrow(results2)
+		
+		results = cbind(row.names(results), results)
+		names(results)[1] = 'Item'
+		row.names(results) = 1:nrow(results)
+		
+# 		results2 = cbind(row.names(results2), results2)
+# 		names(results2)[1] = 'Item'
+# 		row.names(results2) = 1:nrow(results2)
+# 		
 	}
 	
 	r = list(results=results, items=items, grouping=grouping, nlevels=nlevels, 

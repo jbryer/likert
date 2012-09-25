@@ -22,3 +22,5 @@ Collate:
     'plot.likert.r'
     'print.likert.r'
     'summary.likert.r'
+    'xtable.likert.r'
+    'geom_linedot.r'

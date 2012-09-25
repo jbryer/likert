@@ -1,12 +1,11 @@
 #' Utilities for Intitutional Research.
 #' 
 #' @name likert-package
-#' @aliases likert
 #' @docType package
 #' @title Likert Analysis and Visualization
 #' @author \email{jason@@bryer.org}
 #' @keywords package institutional research likert
-#' @import reshape ggplot2 tools
+#' @import reshape ggplot2 tools xtable
 NULL
 
 #' North American (i.e. Canada, Mexico, and United States) results from the 2009
@@ -22,6 +21,6 @@ NULL
 NULL
 
 .onAttach <- function(libname, pkgname) {
-	pkgEnv = pos.to.env(match('package:likert', search()))
+	#pkgEnv = pos.to.env(match('package:likert', search()))
 	#assignInNamespace("sqlrepos", paste(system.file(package='likert'), '/data', sep=''), "irutils")
 }
