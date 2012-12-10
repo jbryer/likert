@@ -30,9 +30,9 @@ plot.likert.heat <- function(likert, low.color='white', high.color='blue',
 		geom_tile() + geom_text(size=text.size, colour=text.color) + coord_flip() + 
 		scale_fill_gradient2("Percent", low='white', mid=low.color, high=high.color, limits=c(0,100)) + 
 		xlab('') + ylab('') + 
-		opts(panel.grid.major=theme_blank(), 
-			 panel.grid.minor=theme_blank(), 
-			 axis.ticks=theme_blank(),
-			 panel.background=theme_blank())
+		theme(panel.grid.major=element_blank(), 
+			 panel.grid.minor=element_blank(), 
+			 axis.ticks=element_blank(),
+			 panel.background=element_blank())
 	return(p)
 }

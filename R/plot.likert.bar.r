@@ -10,6 +10,7 @@
 #'        the lower half of levels will be negative.
 #' @param ... currently unused.
 #' @param ordered reorder items from high to low.
+#' @export
 #' @seealso plot.likert
 plot.likert.bar <- function(likert, low.color='blue', high.color='red', 
 							neutral.color='white', text.size=3, text.color='black',
@@ -30,6 +31,7 @@ plot.likert.bar <- function(likert, low.color='blue', high.color='red',
 	p <- NULL
 	if(!is.null(likert$grouping)) {
 		results = melt(likert$results, id=c('Group', 'Item'))
+		results$variable <- factor(results$variable, ordered=TRUE)
 		ymin = 0
 
 		if(centered) {
@@ -47,21 +49,14 @@ plot.likert.bar <- function(likert, low.color='blue', high.color='red',
 					( floor(ncol(likert$results) / 2 + 2) )])
 				results[rows.mid, 'value'] = 0
 			}
+			
 			p = ggplot(results, aes(y=value, x=Group, group=variable))
 			p = p + 
 				geom_bar(data=results.low, aes(fill=variable), stat='identity') + 
 				geom_bar(data=results.high, aes(fill=variable), stat='identity') +
 				ylim(c(-100,100))
-			if(likert$nlevels %% 2 != 0) {
-				p = p + scale_fill_manual('Response', 
-							values=cols[-ceiling(length(cols) / 2)], 
-							breaks=levels(results$variable)[-ceiling(length(cols) / 2)],
-							labels=levels(results$variable)[-ceiling(length(cols) / 2)])
-			} else {
-				p = p + scale_fill_manual('Response', values=cols, 
-							breaks=levels(results$variable),
-							labels=levels(results$variable))
-			}
+			names(cols) <- levels(results$variable)
+			p = p + scale_fill_manual('Response', values=cols)
 		} else {
 			p = ggplot(results, aes(y=value, x=Group, group=variable))
 			p = p + geom_bar(stat='identity', aes(fill=variable)) + 
@@ -79,7 +74,7 @@ plot.likert.bar <- function(likert, low.color='blue', high.color='red',
 					label=paste(round(high), '%', sep=''), 
 					group=Item), size=text.size, hjust=-.2) +
 			coord_flip() +	ylab('Percentage') + xlab('') + 
-			opts(axis.ticks=theme_blank()) + facet_wrap(~ Item, ncol=1)
+			theme(axis.ticks=element_blank()) + facet_wrap(~ Item, ncol=1)
 	} else {
 		results = melt(likert$results, id.vars='Item')
 		if(ordered) {
@@ -113,7 +108,7 @@ plot.likert.bar <- function(likert, low.color='blue', high.color='red',
 				  			label=paste(round(high), '%', sep='')), 
 				  			size=text.size, hjust=-.2) +
 			coord_flip() + ylab('Percentage') + xlab('') + 
-			opts(axis.ticks=theme_blank())
+			theme(axis.ticks=element_blank())
 	} 
 	return(p)
 }
