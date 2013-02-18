@@ -34,6 +34,7 @@ pisaitems <- pisa.student[,substr(names(pisa.student), 1,5) %in%
 				  paste('PV', 1:5, 'SCIE', sep='')
 )]
 pisaitems <- pisaitems[pisaitems$CNT %in% c('Canada','Mexico','United States'),]
+pisaitems$CNT <- as.factor(as.character(pisaitems$CNT))
 names(pisaitems); nrow(pisaitems); ncol(pisaitems)
 save(pisaitems, file='likert/data/pisaitems.rda')
 tools::resaveRdaFiles('likert/data/pisaitems.rda')

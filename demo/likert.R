@@ -16,11 +16,11 @@ items28 <- rename(items28, c(
 			ST24Q09="I cannot sit still and read for more than a few minutes.",
 			ST24Q10="I like to express my opinions about books I have read.",
 			ST24Q11="I like to exchange books with my friends"))
-for(i in 1:ncol(items28)) {
-	items28[,i] = factor(items28[,i], levels=1:4, 
-						 labels=c('Strongly disagree', 'Disagree', 'Agree', 'Strongly Agree'), 
-						 ordered=TRUE)
-}
+# for(i in 1:ncol(items28)) {
+# 	items28[,i] = factor(items28[,i], levels=1:4, 
+# 						 labels=c('Strongly disagree', 'Disagree', 'Agree', 'Strongly Agree'), 
+# 						 ordered=TRUE)
+# }
 str(items28)
 
 l28 = likert(items28)
