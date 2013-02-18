@@ -12,15 +12,15 @@
   are bar and heat.}
 
   \item{...}{other parameters passed passed to
-  \code{\link{plot.likert.bar}} or
-  \code{\link{plot.likert.heat}}.}
+  \code{\link{likert.bar.plot}} or
+  \code{\link{likert.heat.plot}}.}
 }
 \description{
   Plots a set of likert items.
 }
 \seealso{
-  plot.likert.bar
+  likert.bar.plot
 
-  plot.likert.heat
+  likert.heat.plot
 }
 

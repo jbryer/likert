@@ -12,8 +12,8 @@
 #' @param ordered reorder items from high to low.
 #' @export
 #' @seealso plot.likert
-#' @seealso plot.likert.heat
-plot.likert.bar <- function(likert, low.color='blue', high.color='red', 
+#' @seealso likert.heat.plot
+likert.bar.plot <- function(likert, low.color='blue', high.color='red', 
 							neutral.color='white', text.size=3, text.color='black',
 							centered=FALSE, ordered=TRUE, ...) {
 	lowrange = 1 : ceiling(likert$nlevels / 2 - likert$nlevels %% 2)

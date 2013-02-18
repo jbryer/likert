@@ -1,8 +1,4 @@
-install.packages(c('devtools', 'roxygen2', 'RSQLite', 'ipeds'), 
-		repos=c('http://cran.r-project.org', 'http://r-forge.r-project.org'))
-
 require(devtools)
-require(roxygen2)
 
 setwd("~/Dropbox/Projects") #Mac
 setwd("C:/Dropbox/Projects") #Windows
@@ -17,7 +13,7 @@ check("likert")
 library(likert)
 ls('package:likert')
 
-#Data setup. We will use a few of the student items from North America PISA
+##### Data setup. We will use a few of the student items from North America PISA
 require(pisa)
 data(pisa.student)
 pisaitems <- pisa.student[,substr(names(pisa.student), 1,5) %in% 

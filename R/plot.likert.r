@@ -2,17 +2,17 @@
 #'
 #' @param likert the likert items to plot
 #' @param type the type of plot to create. Current values are bar and heat.
-#' @param ... other parameters passed passed to \code{\link{plot.likert.bar}} or 
-#'        \code{\link{plot.likert.heat}}.
+#' @param ... other parameters passed passed to \code{\link{likert.bar.plot}} or 
+#'        \code{\link{likert.heat.plot}}.
 #' @export
-#' @seealso plot.likert.bar
-#' @seealso plot.likert.heat
+#' @seealso likert.bar.plot
+#' @seealso likert.heat.plot
 #' @method plot likert
 #' @S3method plot likert
 plot.likert <- function(likert, type=c('bar','heat'), ...) {
 	if(type[1] == 'bar') {
-		plot.likert.bar(likert, ...)
+		likert.bar.plot(likert, ...)
 	} else {
-		plot.likert.heat(likert, ...)
+		likert.heat.plot(likert, ...)
 	}
 }

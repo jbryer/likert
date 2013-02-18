@@ -67,7 +67,7 @@ pairs.ordered.categorical <- function(xx,...) {
 
 #'
 #' @export
-plot.likert.matrix <- function (likert, nSample=nrow(likert$items), ...) {
+likert.matrix.plot <- function (likert, nSample=nrow(likert$items), ...) {
 	rows = sample.int(nrow(likert$items), nSample)
 	pairs.ordered.categorical(likert$items[rows,], ...)
 }

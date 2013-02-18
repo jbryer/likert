@@ -7,8 +7,8 @@
 #' @param text.color color of text attributes.
 #' @param ... currently unused.
 #' @seealso plot.likert
-#' @seealso plot.likert.bar
-plot.likert.heat <- function(likert, low.color='white', high.color='blue', 
+#' @seealso likert.bar.plot
+likert.heat.plot <- function(likert, low.color='white', high.color='blue', 
 							 text.color='black', text.size=2, ...) {
 	if(!is.null(likert$grouping)) {
 		stop('likert plots with grouping are not supported.')
