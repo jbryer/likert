@@ -7,6 +7,7 @@
 #' @param text.color color of text attributes.
 #' @param ... currently unused.
 #' @seealso plot.likert
+#' @seealso plot.likert.bar
 plot.likert.heat <- function(likert, low.color='white', high.color='blue', 
 							 text.color='black', text.size=2, ...) {
 	if(!is.null(likert$grouping)) {
@@ -34,5 +35,13 @@ plot.likert.heat <- function(likert, low.color='white', high.color='blue',
 			 panel.grid.minor=element_blank(), 
 			 axis.ticks=element_blank(),
 			 panel.background=element_blank())
+	class(p) <- c('likert.heat.plot', class(p))
 	return(p)
+}
+
+#' Print method for \code{\link{plot.likert.heat}}.
+#' @param p a plot from \code{\link{plot.likert.heat}}.
+#' @param ... other parameters passed to ggplot2.
+print.likert.heat.plot <- function(p, ...) {
+	NextMethod(p, ...)
 }

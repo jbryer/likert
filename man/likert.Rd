@@ -23,23 +23,26 @@
 \description{
   This function will provide various summary statistics
   about a set of likert items. The resulting object will
-  have the following items: \itemize{ \item results this
-  data frame will contain a column 'Item', 'Group' (if a
-  grouping variable was specified, and a column for each
-  level of the items (e.g. agree, disagree, etc.). The
-  value within each cell corresponds to the percentage of
-  responses for that level and group.  \item items a copy
-  of the original items data frame.  \item grouping a copy
-  of the original grouping vector.  \item nlevels the
-  number of levels used in the calculations.  \item summary
-  this data frame provides additional summary information.
-  It will contain 'Item' and 'Group' columns similiar to
-  the results data frame as well as a column 'low'
-  corresponding to the sum of levels below neutral, a
-  column 'high' corresponding to the sum of levels above
-  neutral, and columns 'mean' and 'sd' corresponding to the
-  mean and standard deviation, respectively, of the
-  results. The numeric values are determined by as.numeric
-  which will use the values of the factors. }
+  have the following items:
+}
+\details{
+  \itemize{ \item results this data frame will contain a
+  column 'Item', 'Group' (if a grouping variable was
+  specified, and a column for each level of the items (e.g.
+  agree, disagree, etc.). The value within each cell
+  corresponds to the percentage of responses for that level
+  and group.  \item items a copy of the original items data
+  frame.  \item grouping a copy of the original grouping
+  vector.  \item nlevels the number of levels used in the
+  calculations.  \item summary this data frame provides
+  additional summary information. It will contain 'Item'
+  and 'Group' columns similiar to the results data frame as
+  well as a column 'low' corresponding to the sum of levels
+  below neutral, a column 'high' corresponding to the sum
+  of levels above neutral, and columns 'mean' and 'sd'
+  corresponding to the mean and standard deviation,
+  respectively, of the results. The numeric values are
+  determined by as.numeric which will use the values of the
+  factors. }
 }
 

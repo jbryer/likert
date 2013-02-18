@@ -14,3 +14,4 @@ xtable.likert <- function(x, caption=NULL, label=NULL, align=NULL, digits=NULL,
 						  display=NULL, ...) {
 	
 }
+

@@ -5,6 +5,8 @@ Version: 1.0
 Date: 2012-05-04
 Author: Jason Bryer <jason@bryer.org>
 Maintainer: Jason Bryer <jason@bryer.org>
+URL: http://jason.bryer.org/likert, http://github.com/jbryer/likert
+BugReports: https://github.com/jbryer/likert/issues
 Description: Functions to analyze and visualize likert type itemss
 License: What license is it under?
 LazyLoad: yes
@@ -23,4 +25,4 @@ Collate:
     'print.likert.r'
     'summary.likert.r'
     'xtable.likert.r'
-    'geom_linedot.r'
+    'recode.r'

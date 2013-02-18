@@ -12,6 +12,7 @@
 #' @param ordered reorder items from high to low.
 #' @export
 #' @seealso plot.likert
+#' @seealso plot.likert.heat
 plot.likert.bar <- function(likert, low.color='blue', high.color='red', 
 							neutral.color='white', text.size=3, text.color='black',
 							centered=FALSE, ordered=TRUE, ...) {
@@ -56,7 +57,7 @@ plot.likert.bar <- function(likert, low.color='blue', high.color='red',
 				geom_bar(data=results.high, aes(fill=variable), stat='identity') +
 				ylim(c(-100,100))
 			names(cols) <- levels(results$variable)
-			p = p + scale_fill_manual('Response', values=cols)
+			p = p + scale_fill_manual('Response', breaks=names(cols), values=cols)
 		} else {
 			p = ggplot(results, aes(y=value, x=Group, group=variable))
 			p = p + geom_bar(stat='identity', aes(fill=variable)) + 
@@ -94,13 +95,15 @@ plot.likert.bar <- function(likert, low.color='blue', high.color='red',
 				geom_bar(data=results.low, aes(fill=variable), stat='identity') + 
 				geom_bar(data=results.high, aes(fill=variable), stat='identity') +
 				ylim(c(-100,100))
+			names(cols) <- levels(results$variable)
+			p =	p + scale_fill_manual('Response', breaks=names(cols), values=cols)
 		} else {
 			p = p + geom_bar(stat='identity', aes(fill=variable)) + ylim(c(-5,105))
+			p = p + scale_fill_manual('Response', values=cols, 
+							  breaks=levels(results$variable), 
+							  labels=levels(results$variable))
 		}
 		p = p + 
-			scale_fill_manual('Response', values=cols, 
-							  breaks=levels(results$variable), 
-							  labels=levels(results$variable)) + 
 			geom_text(data=likert$summary, y=ymin, aes(x=Item, 
 				  			label=paste(round(low), '%', sep='')), 
 				  			size=text.size, hjust=1) +
@@ -110,5 +113,18 @@ plot.likert.bar <- function(likert, low.color='blue', high.color='red',
 			coord_flip() + ylab('Percentage') + xlab('') + 
 			theme(axis.ticks=element_blank())
 	} 
+	class(p) <- c('likert.bar.plot', class(p))
 	return(p)
+}
+
+#' Print method for \code{\link{plot.likert.bar}}. The primary purpose is to 
+#' suppress the "Stacking not well defined when ymin != 0" warning printed
+#' by \code{ggplot2} for bar plots that have negative bars (i.e. the centered
+#' plots).
+#' @param p a plot from \code{\link{plot.likert.bar}}.
+#' @param ... other parameters passed to ggplot2.
+#' @S3method print likert.bar.plot
+#' @export
+print.likert.bar.plot <- function(p, ...) {
+	suppressWarnings(NextMethod(p, ...))
 }

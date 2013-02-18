@@ -15,9 +15,9 @@ NULL
 #' as provided by the Organization for Economic Co-operation and Development (OECD).
 #' See \url{http://www.pisa.oecd.org/} for more information including the code book.
 #'
-#' @name pisana
+#' @name pisaitems
 #' @docType data
-#' @format a data frame 66,690 ovservations of 437 variables from North America.
+#' @format a data frame 66,690 ovservations of 81 variables from North America.
 #' @source Organization for Economic Co-operation and Development
 #' @keywords datasets
 NULL

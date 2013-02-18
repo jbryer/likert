@@ -34,5 +34,7 @@
 }
 \seealso{
   plot.likert
+
+  plot.likert.heat
 }
 

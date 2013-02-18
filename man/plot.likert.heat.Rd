@@ -24,5 +24,7 @@
 }
 \seealso{
   plot.likert
+
+  plot.likert.bar
 }
 

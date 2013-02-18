@@ -2,6 +2,7 @@
 #'
 #' This function will provide various summary statistics about a set of likert
 #' items. The resulting object will have the following items:
+#' 
 #' \itemize{
 #'    \item results this data frame will contain a column 'Item', 'Group' (if a 
 #'          grouping variable was specified, and a column for each level of the
