@@ -86,8 +86,8 @@ likert.bar.plot <- function(likert, low.color='blue', high.color='red',
 		ymin = 0
 		if(centered) {
 			ymin = -100
-			rows = which(results$variable %in% names(likert$results)[1:(
-				(ncol(likert$results)-1)/2)])
+			rows = which(results$variable %in% names(likert$results)[2:((
+				(ncol(likert$results) - 1) / 2) + 1)])
 			results[rows, 'value'] = -1 * results[rows, 'value']
 			results.low = results[rows,]
 			results.high = results[-rows,]
