@@ -62,7 +62,10 @@ l29 = likert(items29)
 print(l29)
 summary(l29)
 
-plot(l29, low.color='maroon', high.color='burlywood4') + 
+plot(l29, low.color='maroon', high.color='burlywood4', neutral.color='white') + 
+	ggtitle("How often do you read these materials because you want to?")
+
+plot(l29, low.color='maroon', high.color='burlywood4', centered=TRUE) + 
 	ggtitle("How often do you read these materials because you want to?")
 
 plot(l29, type='heat') + opts(title="How often do you read these materials because you want to?")

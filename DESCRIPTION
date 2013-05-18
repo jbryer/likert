@@ -3,7 +3,8 @@ Type: Package
 Title: Functions to analyze and visualize likert type items
 Version: 1.0
 Date: 2012-05-04
-Author: Jason Bryer <jason@bryer.org>
+Author: Jason Bryer <jason@bryer.org>, Kimberly Speerschneider
+    <kimkspeer@gmail.com>
 Maintainer: Jason Bryer <jason@bryer.org>
 URL: http://jason.bryer.org/likert, http://github.com/jbryer/likert
 BugReports: https://github.com/jbryer/likert/issues
@@ -11,6 +12,7 @@ Description: Functions to analyze and visualize likert type itemss
 License: What license is it under?
 LazyLoad: yes
 Depends:
+    R (>= 3.0),
     ggplot2,
     xtable,
     psych,

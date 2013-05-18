@@ -46,14 +46,15 @@ likert.bar.plot <- function(likert, low.color='blue', high.color='red',
 			results.high = results[rows.high,]
 			if(likert$nlevels %% 2 != 0) {
 				#Odd number of levels, will remove the middle
+				#TODO: Perhaps have an option to leave it.
 				rows.mid = which(results$variable %in% names(likert$results)[
 					( floor(ncol(likert$results) / 2 + 2) )])
 				results[rows.mid, 'value'] = 0
 			}
-			
-			p = ggplot(results, aes(y=value, x=Group, group=variable))
-			p = p + 
-				geom_bar(data=results.low, aes(fill=variable), stat='identity') + 
+
+			p = ggplot(results, aes(y=value, x=Group, group=variable)) + 
+				geom_bar(data=results.low[nrow(results.low):1,], 
+						 aes(fill=variable), stat='identity') + 
 				geom_bar(data=results.high, aes(fill=variable), stat='identity') +
 				ylim(c(-100,100))
 			names(cols) <- levels(results$variable)
@@ -76,28 +77,36 @@ likert.bar.plot <- function(likert, low.color='blue', high.color='red',
 					group=Item), size=text.size, hjust=-.2) +
 			coord_flip() +	ylab('Percentage') + xlab('') + 
 			theme(axis.ticks=element_blank()) + facet_wrap(~ Item, ncol=1)
-	} else {
+	} else { #No grouping
 		results = melt(likert$results, id.vars='Item')
 		if(ordered) {
 			order = likert$summary[order(likert$summary$high),'Item']
 			results$Item = factor(results$Item, levels=order)
 		}
-		p = ggplot(results, aes(y=value, x=Item, group=Item))
 		ymin = 0
 		if(centered) {
 			ymin = -100
 			rows = which(results$variable %in% names(likert$results)[2:((
 				(ncol(likert$results) - 1) / 2) + 1)])
+			if(likert$nlevels %% 2 != 0) {
+				#Odd number of levels, will remove the middle
+				#TODO: Perhaps have an option to leave it.
+				rows.mid = which(results$variable %in% names(likert$results)[
+					( floor(ncol(likert$results) / 2 + 1) )])
+				results[rows.mid, 'value'] = 0
+			}
 			results[rows, 'value'] = -1 * results[rows, 'value']
 			results.low = results[rows,]
 			results.high = results[-rows,]
-			p = p + 
-				geom_bar(data=results.low, aes(fill=variable), stat='identity') + 
+			p <- ggplot(results, aes(y=value, x=Item, group=Item)) + 
+				geom_bar(data=results.low[nrow(results.low):1,], 
+						 aes(fill=variable), stat='identity') + 
 				geom_bar(data=results.high, aes(fill=variable), stat='identity') +
 				ylim(c(-100,100))
 			names(cols) <- levels(results$variable)
 			p =	p + scale_fill_manual('Response', breaks=names(cols), values=cols)
 		} else {
+			p = ggplot(results, aes(y=value, x=Item, group=Item))
 			p = p + geom_bar(stat='identity', aes(fill=variable)) + ylim(c(-5,105))
 			p = p + scale_fill_manual('Response', values=cols, 
 							  breaks=levels(results$variable), 
