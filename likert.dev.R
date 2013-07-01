@@ -1,13 +1,11 @@
 require(devtools)
 
 setwd("~/Dropbox/Projects") #Mac
-setwd("C:/Dropbox/Projects") #Windows
+#setwd("C:/Dropbox/Projects") #Windows
 
 #Package building
 document("likert")
 check_doc("likert")
-build("likert", binary=FALSE)
-build("likert", binary=TRUE)
 install("likert")
 check("likert")
 library(likert)

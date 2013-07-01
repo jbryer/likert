@@ -5,11 +5,17 @@
 #' @param high.color color for high values.
 #' @param text.size size of text attributes.
 #' @param text.color color of text attributes.
+#' @param wrap width to wrap label text for non-grouped likert objects.
 #' @param ... currently unused.
 #' @seealso plot.likert
 #' @seealso likert.bar.plot
-likert.heat.plot <- function(likert, low.color='white', high.color='blue', 
-							 text.color='black', text.size=2, ...) {
+likert.heat.plot <- function(likert,
+							 low.color='white',
+							 high.color='blue', 
+							 text.color='black',
+							 text.size=2,
+							 wrap=50,
+							 ...) {
 	if(!is.null(likert$grouping)) {
 		stop('likert plots with grouping are not supported.')
 	}
@@ -34,7 +40,8 @@ likert.heat.plot <- function(likert, low.color='white', high.color='blue',
 		theme(panel.grid.major=element_blank(), 
 			 panel.grid.minor=element_blank(), 
 			 axis.ticks=element_blank(),
-			 panel.background=element_blank())
+			 panel.background=element_blank()) +
+		scale_x_discrete(labels=likert:::label_wrap_mod(likert$results$Item, width=wrap))
 	class(p) <- c('likert.heat.plot', class(p))
 	return(p)
 }

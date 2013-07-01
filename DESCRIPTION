@@ -1,7 +1,7 @@
 Package: likert
 Type: Package
 Title: Functions to analyze and visualize likert type items
-Version: 1.0
+Version: 1.1
 Date: 2012-05-04
 Author: Jason Bryer <jason@bryer.org>, Kimberly Speerschneider
     <kimkspeer@gmail.com>
@@ -9,7 +9,7 @@ Maintainer: Jason Bryer <jason@bryer.org>
 URL: http://jason.bryer.org/likert, http://github.com/jbryer/likert
 BugReports: https://github.com/jbryer/likert/issues
 Description: Functions to analyze and visualize likert type itemss
-License: What license is it under?
+License: GPL
 LazyLoad: yes
 Depends:
     R (>= 3.0),
@@ -28,3 +28,4 @@ Collate:
     'summary.likert.r'
     'xtable.likert.r'
     'recode.r'
+    'label_wrap_mod.r'

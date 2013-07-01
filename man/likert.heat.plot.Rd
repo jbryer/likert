@@ -4,7 +4,7 @@
 \usage{
   likert.heat.plot(likert, low.color = "white",
     high.color = "blue", text.color = "black",
-    text.size = 2, ...)
+    text.size = 2, wrap = 50, ...)
 }
 \arguments{
   \item{likert}{object of type likert.}
@@ -16,6 +16,9 @@
   \item{text.size}{size of text attributes.}
 
   \item{text.color}{color of text attributes.}
+
+  \item{wrap}{width to wrap label text for non-grouped
+  likert objects.}
 
   \item{...}{currently unused.}
 }

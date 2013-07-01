@@ -1,11 +1,11 @@
 \name{likert.bar.plot}
 \alias{likert.bar.plot}
-\title{Internal method.}
+\title{Bar Plot for Likert Items.}
 \usage{
   likert.bar.plot(likert, low.color = "blue",
     high.color = "red", neutral.color = "white",
     text.size = 3, text.color = "black", centered = FALSE,
-    ordered = TRUE, ...)
+    ordered = TRUE, wrap = 50, ...)
 }
 \arguments{
   \item{likert}{object of type likert.}
@@ -25,12 +25,15 @@
   around zero such that the lower half of levels will be
   negative.}
 
-  \item{...}{currently unused.}
-
   \item{ordered}{reorder items from high to low.}
+
+  \item{wrap}{width to wrap label text for non-grouped
+  likert objects.}
+
+  \item{...}{currently unused.}
 }
 \description{
-  Internal method.
+  Bar plot for the results of \code{\link{likert}}.
 }
 \seealso{
   plot.likert

@@ -1,4 +1,6 @@
-#' Internal method.
+#' Bar Plot for Likert Items.
+#' 
+#' Bar plot for the results of \code{\link{likert}}.
 #' 
 #' @param likert object of type likert.
 #' @param low.color color for low values.
@@ -8,14 +10,22 @@
 #' @param text.color color of text attributes.
 #' @param centered if true, the bar plot will be centered around zero such that
 #'        the lower half of levels will be negative.
-#' @param ... currently unused.
 #' @param ordered reorder items from high to low.
+#' @param wrap width to wrap label text for non-grouped likert objects.
+#' @param ... currently unused.
 #' @export
 #' @seealso plot.likert
 #' @seealso likert.heat.plot
-likert.bar.plot <- function(likert, low.color='blue', high.color='red', 
-							neutral.color='white', text.size=3, text.color='black',
-							centered=FALSE, ordered=TRUE, ...) {
+likert.bar.plot <- function(likert,
+							low.color='blue',
+							high.color='red', 
+							neutral.color='white',
+							text.size=3,
+							text.color='black',
+							centered=FALSE,
+							ordered=TRUE,
+							wrap=50,
+							...) {
 	lowrange = 1 : ceiling(likert$nlevels / 2 - likert$nlevels %% 2)
 	highrange = ceiling(likert$nlevels / 2 + 1 ) : likert$nlevels
 	ramp = colorRamp(c(low.color, neutral.color))
@@ -31,6 +41,10 @@ likert.bar.plot <- function(likert, low.color='blue', high.color='red',
 	
 	p <- NULL
 	if(!is.null(likert$grouping)) {
+		likert$summary$Item <- likert:::label_wrap_mod(likert$summary$Item, width=wrap)
+		likert$results$Item <- likert:::label_wrap_mod(likert$results$Item, width=wrap)
+		names(likert$items) <- likert:::label_wrap_mod(names(likert$items), width=wrap)
+		
 		results = melt(likert$results, id=c('Group', 'Item'))
 		results$variable <- factor(results$variable, ordered=TRUE)
 		ymin = 0
@@ -120,7 +134,8 @@ likert.bar.plot <- function(likert, low.color='blue', high.color='red',
 				  			label=paste(round(high), '%', sep='')), 
 				  			size=text.size, hjust=-.2) +
 			coord_flip() + ylab('Percentage') + xlab('') + 
-			theme(axis.ticks=element_blank())
+			theme(axis.ticks=element_blank()) +
+			scale_x_discrete(labels=likert:::label_wrap_mod(likert$results$Item, width=wrap))
 	} 
 	class(p) <- c('likert.bar.plot', class(p))
 	return(p)
