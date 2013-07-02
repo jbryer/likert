@@ -65,9 +65,14 @@ pairs.ordered.categorical <- function(xx,...) {
 		  cex.labels = 1.5, ...) 
 }
 
-#'
-#' @export
-likert.matrix.plot <- function (likert, nSample=nrow(likert$items), ...) {
+#' Matrix plot (experimental)
+#' 
+#' @param likert results of \code{\link{likert}}.
+#' @param nSample random sample of all rows. This function may take a while
+#'        to run with large datasets (including the \code{pisaitems} data). Plotting
+#'        a random subsample allows for quicker development.
+#' @param ... parameters passed to \code{pairs.ordered.categorical}.
+likert.matrix.plot <- function(likert, nSample=nrow(likert$items), ...) {
 	rows = sample.int(nrow(likert$items), nSample)
 	pairs.ordered.categorical(likert$items[rows,], ...)
 }

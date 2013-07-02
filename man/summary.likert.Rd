@@ -2,11 +2,11 @@
 \alias{summary.likert}
 \title{Prints summary table of a Likert analysis.}
 \usage{
-  \method{summary}{likert} (x,
-    center = (x$nlevels - 1)/2 + 1, ...)
+  \method{summary}{likert} (object,
+    center = (object$nlevels - 1)/2 + 1, ...)
 }
 \arguments{
-  \item{x}{the likert class to summarize.}
+  \item{object}{the likert class to summarize.}
 
   \item{center}{specifies which level should be treated as
   the center. For example, \code{center = 3} would use the

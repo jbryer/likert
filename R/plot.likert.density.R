@@ -6,10 +6,13 @@
 #' @param likert object of type likert.
 #' @param facet for non-grouped items, should each density distribution be plotted
 #'        in a separate facet.
-#' @param ... currently unused.
+#' @param bw the smoothing bandwidth. This is often set to the standard deviation
+#'        but this is often inadequate for Likert type items. The value of 0.5
+#'        is used since the difference between any two adjacent levels is one.
+#' @param ... parameters passed to \code{\link{density}}.
 #' @export
 #' @seealso plot.likert
-likert.density.plot <- function(likert, facet=TRUE, ...) {
+likert.density.plot <- function(likert, facet=TRUE, bw=0.5, ...) {
 	lsum <- summary(likert)
 	items <- likert$items
 	items.density <- data.frame()
@@ -18,7 +21,7 @@ likert.density.plot <- function(likert, facet=TRUE, ...) {
 	
 	if(is.null(likert$grouping)) {
 		for(l in seq_along(items)) {
-			den <- density(as.integer(items[,l]), bw=0.5, na.rm=TRUE)
+			den <- density(as.integer(items[,l]), bw=bw, na.rm=TRUE, ...)
 			items.density <- rbind(items.density, 
 								   data.frame(Item=names(items)[l], x=den$x, y=den$y))
 		}
@@ -39,7 +42,7 @@ likert.density.plot <- function(likert, facet=TRUE, ...) {
 		for(g in unique(groups)) {
 			items.g <- items[groups == g,]
 			for(l in seq_along(items)) {
-				den <- density(as.integer(items.g[,l]), bw=0.5, na.rm=TRUE)
+				den <- density(as.integer(items.g[,l]), bw=bw, na.rm=TRUE, ...)
 				items.density <- rbind(items.density, 
 						data.frame(Item=names(items)[l], Group=g, x=den$x, y=den$y))
 			}

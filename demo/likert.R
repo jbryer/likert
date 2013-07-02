@@ -65,9 +65,9 @@ summary(l29)
 
 plot(l29) + ggtitle(title)
 plot(l29, centered=TRUE) + ggtitle(title)
-plot(l29, centered=TRUE, include.center=TRUE) + ggtitle(title)
-plot(l29, centered=TRUE, include.center=TRUE, center=2) + ggtitle(title)
-plot(l29, centered=TRUE, include.center=TRUE, center=2.5) + ggtitle(title)
+plot(l29, centered=TRUE, include.center=FALSE) + ggtitle(title)
+plot(l29, centered=TRUE, center=2) + ggtitle(title)
+plot(l29, centered=TRUE, center=2.5) + ggtitle(title)
 
 plot(l29, type='density') + ggtitle(title)
 plot(l29, type='density', facet=FALSE) + ggtitle(title)
@@ -80,7 +80,8 @@ summary(l29g)
 
 plot(l29g) + ggtitle(title)
 plot(l29g, centered=TRUE) + ggtitle(title)
-plot(l29g, centered=TRUE, include.center=TRUE) + ggtitle(title)
-plot(l29g, centered=TRUE, include.center=TRUE, center=2.5, include.center=TRUE) + ggtitle(title)
+plot(l29g, centered=TRUE, include.center=FALSE) + ggtitle(title)
+plot(l29g, centered=TRUE, center=2)
+plot(l29g, centered=TRUE, center=2.5) + ggtitle(title)
 
 plot(l29g, type='density') + ggtitle(title)

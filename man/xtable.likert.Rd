@@ -2,7 +2,7 @@
 \alias{xtable.likert}
 \title{Prints a LaTeX table of the likert items.}
 \usage{
-  xtable.likert(x, caption = NULL, label = NULL,
+  \method{xtable}{likert} (x, caption = NULL, label = NULL,
     align = NULL, digits = NULL, display = NULL, ...)
 }
 \arguments{

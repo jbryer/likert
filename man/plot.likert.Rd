@@ -2,11 +2,11 @@
 \alias{plot.likert}
 \title{Plots a set of likert items.}
 \usage{
-  \method{plot}{likert} (likert,
+  \method{plot}{likert} (x,
     type = c("bar", "heat", "density"), ...)
 }
 \arguments{
-  \item{likert}{the likert items to plot}
+  \item{x}{the likert items to plot}
 
   \item{type}{the type of plot to create. Current values
   are bar and heat.}

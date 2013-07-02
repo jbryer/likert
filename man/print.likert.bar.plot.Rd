@@ -1,19 +1,19 @@
 \name{print.likert.bar.plot}
 \alias{print.likert.bar.plot}
-\title{Print method for \code{\link{plot.likert.bar}}. The primary purpose is to
+\title{Print method for \code{\link{likert.bar.plot}}. The primary purpose is to
 suppress the "Stacking not well defined when ymin != 0" warning printed
 by \code{ggplot2} for bar plots that have negative bars (i.e. the centered
 plots).}
 \usage{
-  print.likert.bar.plot(p, ...)
+  \method{print}{likert.bar.plot} (x, ...)
 }
 \arguments{
-  \item{p}{a plot from \code{\link{plot.likert.bar}}.}
+  \item{x}{a plot from \code{\link{likert.bar.plot}}.}
 
   \item{...}{other parameters passed to ggplot2.}
 }
 \description{
-  Print method for \code{\link{plot.likert.bar}}. The
+  Print method for \code{\link{likert.bar.plot}}. The
   primary purpose is to suppress the "Stacking not well
   defined when ymin != 0" warning printed by \code{ggplot2}
   for bar plots that have negative bars (i.e. the centered

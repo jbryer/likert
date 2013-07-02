@@ -36,7 +36,15 @@
   vector.  \item nlevels the number of levels used in the
   calculations. }
 }
+\examples{
+data(pisaitems)
+items29 = pisaitems[,substr(names(pisaitems), 1,5) == 'ST25Q']
+names(items29) = c("Magazines", "Comic books", "Fiction", "Non-fiction books", "Newspapers")
+l29 = likert(items29)
+summary(l29)
+plot(l29)
+}
 \seealso{
-  plot.likert summary.likert
+  \code{\link{plot.likert}}, \code{\link{summary.likert}}
 }
 

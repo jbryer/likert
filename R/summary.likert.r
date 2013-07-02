@@ -8,7 +8,7 @@
 #' standard deviation, respectively, of the results. The numeric values
 #' are determined by as.numeric which will use the values of the factors.
 #'          
-#' @param x the likert class to summarize.
+#' @param object the likert class to summarize.
 #' @param center specifies which level should be treated as the center. For example,
 #'        \code{center = 3} would use the third level as the center whereas
 #'        \code{center = 3.5} would indicate no specific level is the center but
@@ -18,18 +18,18 @@
 #' @export
 #' @method summary likert
 #' @S3method summary likert
-summary.likert <- function(x, center=(x$nlevels-1)/2 + 1, ...) {
-	if(center < 1.5 | center > (x$nlevels - 0.5) | center %% 0.5 != 0) {
+summary.likert <- function(object, center=(object$nlevels-1)/2 + 1, ...) {
+	if(center < 1.5 | center > (object$nlevels - 0.5) | center %% 0.5 != 0) {
 		stop(paste0('Invalid center. Values can range from 1.5 to ', 
-					(x$nlevels - 0.5), ' in increments of 0.5'))
+					(object$nlevels - 0.5), ' in increments of 0.5'))
 	}
 	
-	results <- x$results
-	items <- x$items
-	nlevels <- x$nlevels
+	results <- object$results
+	items <- object$items
+	nlevels <- object$nlevels
 	lowrange <- 1 : floor(center - 0.5)
 	highrange <- ceiling(center + 0.5) : nlevels
-	if(!is.null(x$grouping)) { #Grouping
+	if(!is.null(object$grouping)) { #Grouping
 		results2 = data.frame(Group=rep(unique(results$Group), each=ncol(items)),
 							  Item=rep(names(items), length(unique(results$Group))), 
 							  low=rep(NA, ncol(items) * length(unique(results$Group))), 
@@ -58,9 +58,9 @@ summary.likert <- function(x, center=(x$nlevels-1)/2 + 1, ...) {
 			}
 			for(i in names(items)) {
 				results2[which(results2$Group == g & results2$Item == i), 'mean'] = 
-					mean(as.numeric(items[which(x$grouping == g), i]), na.rm=TRUE)
+					mean(as.numeric(items[which(object$grouping == g), i]), na.rm=TRUE)
 				results2[which(results2$Group == g & results2$Item == i), 'sd'] = 
-					sd(as.numeric(items[which(x$grouping == g), i]), na.rm=TRUE)
+					sd(as.numeric(items[which(object$grouping == g), i]), na.rm=TRUE)
 			}
 		}
 	} else { #No grouping

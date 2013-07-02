@@ -1,0 +1,22 @@
+\name{likert.matrix.plot}
+\alias{likert.matrix.plot}
+\title{Matrix plot (experimental)}
+\usage{
+  likert.matrix.plot(likert, nSample = nrow(likert$items),
+    ...)
+}
+\arguments{
+  \item{likert}{results of \code{\link{likert}}.}
+
+  \item{nSample}{random sample of all rows. This function
+  may take a while to run with large datasets (including
+  the \code{pisaitems} data). Plotting a random subsample
+  allows for quicker development.}
+
+  \item{...}{parameters passed to
+  \code{pairs.ordered.categorical}.}
+}
+\description{
+  Matrix plot (experimental)
+}
+

@@ -21,7 +21,15 @@
 #' @param nlevels number of possible levels. Only necessary if there are missing levels.
 #' @return a likert class with the following elements: results, items, grouping,
 #'        nlevels, and summary.
-#' @seealso plot.likert summary.likert
+#' @seealso \code{\link{plot.likert}}, \code{\link{summary.likert}}
+#' @examples
+#' data(pisaitems)
+#' items29 = pisaitems[,substr(names(pisaitems), 1,5) == 'ST25Q']
+#' names(items29) = c("Magazines", "Comic books", "Fiction", 
+#'                    "Non-fiction books", "Newspapers")
+#' l29 = likert(items29)
+#' summary(l29)
+#' plot(l29)
 likert <- function(items, grouping=NULL, nlevels=length(levels(items[,1]))) {
 	lowrange = 1 : ceiling(nlevels / 2 - nlevels %% 2)
 	highrange = ceiling(nlevels / 2 + 1 ) : nlevels

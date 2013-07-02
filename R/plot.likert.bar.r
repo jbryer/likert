@@ -1,3 +1,5 @@
+utils::globalVariables(c('value','Group','variable','low','Item','high','neutral','x','y'))
+
 #' Bar Plot for Likert Items.
 #' 
 #' Bar plot for the results of \code{\link{likert}}.
@@ -47,9 +49,9 @@ likert.bar.plot <- function(likert,
 	lowrange <- 1 : floor(center - 0.5)
 	highrange <- ceiling(center + 0.5) : likert$nlevels
 	ramp <- colorRamp(c(low.color, neutral.color.ramp))
-	ramp <- rgb( ramp(seq(0, 1, length=length(lowrange)+1)), max=255)
+	ramp <- rgb( ramp(seq(0, 1, length=length(lowrange)+1)), maxColorValue=255)
 	bamp <- colorRamp(c(neutral.color.ramp, high.color))
-	bamp <- rgb( bamp(seq(0, 1, length=length(highrange)+1)), max=255)
+	bamp <- rgb( bamp(seq(0, 1, length=length(highrange)+1)), maxColorValue=255)
 	cols <- NULL
 	if(center %% 1 != 0) {
 		cols <- c(ramp[1:(length(ramp)-1)], bamp[2:length(bamp)])		
@@ -191,14 +193,15 @@ likert.bar.plot <- function(likert,
 	return(p)
 }
 
-#' Print method for \code{\link{plot.likert.bar}}. The primary purpose is to 
+#' Print method for \code{\link{likert.bar.plot}}. The primary purpose is to 
 #' suppress the "Stacking not well defined when ymin != 0" warning printed
 #' by \code{ggplot2} for bar plots that have negative bars (i.e. the centered
 #' plots).
-#' @param p a plot from \code{\link{plot.likert.bar}}.
+#' @param x a plot from \code{\link{likert.bar.plot}}.
 #' @param ... other parameters passed to ggplot2.
 #' @S3method print likert.bar.plot
+#' @method print likert.bar.plot
 #' @export
-print.likert.bar.plot <- function(p, ...) {
-	suppressWarnings(NextMethod(p, ...))
+print.likert.bar.plot <- function(x, ...) {
+	suppressWarnings(NextMethod(x, ...))
 }

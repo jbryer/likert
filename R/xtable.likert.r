@@ -9,7 +9,7 @@
 #' @param ... other parameters passed to \link{xtable}.
 #' @seealso \link{xtable}, \link{print.xtable}
 #' @S3method xtable likert
-#' @export
+#' @method xtable likert
 xtable.likert <- function(x, caption=NULL, label=NULL, align=NULL, digits=NULL,
 						  display=NULL, ...) {
 	

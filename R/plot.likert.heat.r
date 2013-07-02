@@ -47,8 +47,8 @@ likert.heat.plot <- function(likert,
 	return(p)
 }
 
-#' Print method for \code{\link{plot.likert.heat}}.
-#' @param p a plot from \code{\link{plot.likert.heat}}.
+#' Print method for \code{\link{likert.heat.plot}}.
+#' @param p a plot from \code{\link{likert.heat.plot}}.
 #' @param ... other parameters passed to ggplot2.
 print.likert.heat.plot <- function(p, ...) {
 	NextMethod(p, ...)

@@ -1,15 +1,15 @@
 \name{print.likert.heat.plot}
 \alias{print.likert.heat.plot}
-\title{Print method for \code{\link{plot.likert.heat}}.}
+\title{Print method for \code{\link{likert.heat.plot}}.}
 \usage{
   print.likert.heat.plot(p, ...)
 }
 \arguments{
-  \item{p}{a plot from \code{\link{plot.likert.heat}}.}
+  \item{p}{a plot from \code{\link{likert.heat.plot}}.}
 
   \item{...}{other parameters passed to ggplot2.}
 }
 \description{
-  Print method for \code{\link{plot.likert.heat}}.
+  Print method for \code{\link{likert.heat.plot}}.
 }
 
