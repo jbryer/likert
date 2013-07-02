@@ -2,7 +2,8 @@
 \alias{likert.density.plot}
 \title{Creates a density plot for likert items.}
 \usage{
-  likert.density.plot(likert, facet = TRUE, bw = 0.5, ...)
+  likert.density.plot(likert, facet = TRUE, bw = 0.5,
+    legend, ...)
 }
 \arguments{
   \item{likert}{object of type likert.}
@@ -14,6 +15,8 @@
   the standard deviation but this is often inadequate for
   Likert type items. The value of 0.5 is used since the
   difference between any two adjacent levels is one.}
+
+  \item{legend}{title for the legend.}
 
   \item{...}{parameters passed to \code{\link{density}}.}
 }

@@ -3,7 +3,7 @@
 \alias{likert-package}
 \title{Likert Analysis and Visualization}
 \description{
-  Utilities for Intitutional Research.
+  Likert Analysis and Visualization
 }
 \author{
   \email{jason@bryer.org}

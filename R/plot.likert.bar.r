@@ -24,6 +24,7 @@ utils::globalVariables(c('value','Group','variable','low','Item','high','neutral
 #'        the center will be excluded.
 #' @param ordered reorder items from high to low.
 #' @param wrap width to wrap label text for non-grouped likert objects.
+#' @param legend title for the legend.
 #' @param ... currently unused.
 #' @export
 #' @seealso plot.likert
@@ -40,6 +41,7 @@ likert.bar.plot <- function(likert,
 							include.center=TRUE,
 							ordered=TRUE,
 							wrap=ifelse(is.null(likert$grouping), 50, 100),
+							legend='Response',
 							...) {
 	if(center < 1.5 | center > (likert$nlevels - 0.5) | center %% 0.5 != 0) {
 		stop(paste0('Invalid center. Values can range from 1.5 to ', 
@@ -96,12 +98,12 @@ likert.bar.plot <- function(likert,
 				geom_bar(data=results.high, aes(fill=variable), stat='identity') +
 				ylim(c(-105,105))
 			names(cols) <- levels(results$variable)
-			p <- p + scale_fill_manual('Response', breaks=names(cols), values=cols)
+			p <- p + scale_fill_manual(legend, breaks=names(cols), values=cols)
 		} else {
 			p <- ggplot(results, aes(y=value, x=Group, group=variable))
 			p <- p + geom_bar(stat='identity', aes(fill=variable)) + 
 				ylim(c(-5,105)) +
-				scale_fill_manual('Response', 
+				scale_fill_manual(legend, 
 							values=cols, 
 							breaks=levels(results$variable),
 							labels=levels(results$variable))
@@ -114,10 +116,20 @@ likert.bar.plot <- function(likert,
 					label=paste0(round(high), '%'), 
 					group=Item), size=text.size, hjust=-.2)
 		if(!any(is.na(lsum$neutral)) & include.center) {
-			p <- p +
-				geom_text(data=lsum, y=0, aes(x=Group,
-					label=paste0(round(neutral), '%'), group=Item),
-					size=text.size, hjust=.5)
+			if(centered) {
+				p <- p +
+					geom_text(data=lsum, y=0, 
+							  aes(x=Group, group=Item,
+							  	label=paste0(round(neutral), '%')),
+							  size=text.size, hjust=.5)
+			} else {
+				lsum$y <- lsum$low + (lsum$neutral/2)
+				p <- p +
+					geom_text(data=lsum,
+							  aes(x=Group, y=y, group=Item,
+							  	label=paste0(round(neutral), '%')),
+							  size=text.size, hjust=.5)				
+			}
 		}
 		p <- p +
 			coord_flip() +	ylab('Percentage') + xlab('') + 
@@ -155,11 +167,11 @@ likert.bar.plot <- function(likert,
 				geom_bar(data=results.high, aes(fill=variable), stat='identity') +
 				ylim(c(-105,105))
 			names(cols) <- levels(results$variable)
-			p <- p + scale_fill_manual('Response', breaks=names(cols), values=cols)
+			p <- p + scale_fill_manual(legend, breaks=names(cols), values=cols)
 		} else {
 			p <- ggplot(results, aes(y=value, x=Item, group=Item))
 			p <- p + geom_bar(stat='identity', aes(fill=variable)) + ylim(c(-5,105))
-			p <- p + scale_fill_manual('Response', values=cols, 
+			p <- p + scale_fill_manual(legend, values=cols, 
 							  breaks=levels(results$variable), 
 							  labels=levels(results$variable))
 		}
@@ -189,6 +201,7 @@ likert.bar.plot <- function(likert,
 			theme(axis.ticks=element_blank()) +
 			scale_x_discrete(labels=likert:::label_wrap_mod(likert$results$Item, width=wrap))
 	}
+	
 	class(p) <- c('likert.bar.plot', class(p))
 	return(p)
 }

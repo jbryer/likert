@@ -8,7 +8,8 @@
     text.color = "black", centered = FALSE,
     center = (likert$nlevels - 1)/2 + 1,
     include.center = TRUE, ordered = TRUE,
-    wrap = ifelse(is.null(likert$grouping), 50, 100), ...)
+    wrap = ifelse(is.null(likert$grouping), 50, 100),
+    legend = "Response", ...)
 }
 \arguments{
   \item{likert}{object of type likert.}
@@ -48,6 +49,8 @@
 
   \item{wrap}{width to wrap label text for non-grouped
   likert objects.}
+
+  \item{legend}{title for the legend.}
 
   \item{...}{currently unused.}
 }

@@ -1,4 +1,4 @@
-#' Utilities for Intitutional Research.
+#' Likert Analysis and Visualization
 #' 
 #' @name likert-package
 #' @docType package

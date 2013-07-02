@@ -1,4 +1,5 @@
 options(digits=2)
+theme_update(panel.background=element_rect(size=1, color='grey70', fill=NA) )
 
 require(likert)
 data(pisaitems)
@@ -70,7 +71,7 @@ plot(l29, centered=TRUE, center=2) + ggtitle(title)
 plot(l29, centered=TRUE, center=2.5) + ggtitle(title)
 
 plot(l29, type='density') + ggtitle(title)
-plot(l29, type='density', facet=FALSE) + ggtitle(title)
+plot(l29, type='density', facet=FALSE, legend='Material') + ggtitle(title)
 
 plot(l29, type='heat') + ggtitle(title)
 
@@ -84,4 +85,4 @@ plot(l29g, centered=TRUE, include.center=FALSE) + ggtitle(title)
 plot(l29g, centered=TRUE, center=2)
 plot(l29g, centered=TRUE, center=2.5) + ggtitle(title)
 
-plot(l29g, type='density') + ggtitle(title)
+plot(l29g, type='density', legend='Country') + ggtitle(title)

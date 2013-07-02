@@ -1,12 +1,15 @@
 likert 1.1
 =========
 
-* New density plot type.
+* New density plot type plot(l, type='density').
 * Added several parameters related to centering bar plots. Can now include the
   center level and split across zero, or specify which level, or between which
   levels, centering occurs.
 * Summary function now includes neutral column. Values will be NA if no level
   is the center.
+* If there is a neutral category in the bar plot it will be labeled with its
+  percentage.
 * Added parameter to wrap text in plots for long item names.
 * Changed the default colors.
+* Added parameter to change legend title.
 * Several bug fixes.
