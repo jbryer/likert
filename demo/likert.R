@@ -21,37 +21,35 @@ items28 <- rename(items28, c(
 str(items28)
 
 l28 = likert(items28)
-l28
-print(l28)
-likert:::print.likert(l28)
+l28 #print(l28)
 summary(l28)
+summary(l28, center=1.5)
+summary(l28, center=2)
 
 plot(l28)
-plot(l28, centered=TRUE, low.color='#FF9900', high.color='#660066')
+plot(l28, centered=TRUE, wrap=30)
+plot(l28, centered=TRUE, center=1.5, wrap=30)
+plot(l28, centered=TRUE, center=2, wrap=30)
+plot(l28, centered=TRUE, center=2, include.center=FALSE, wrap=30)
 
-plot(l28, type='heat')
+plot(l28, type='heat', wrap=30)
 
 #Experimental.
 #plot.likert.matrix(l28)
 
 ##### Group by Country
-l28 = likert(items28, grouping=pisaitems$CNT)
-print(l28)
-summary(l28)
-
-plot(l28)
-plot(l28, centered=TRUE, low.color='#FF9900', high.color='#660066')
-likert.bar.plot(l28, centered=TRUE, low.color='#FF9900', high.color='#660066') + ylim(c(-110,110))
-plot(l28, type='heat')
-
-
-#Group by country
-l28g = likert(items28, grouping = pisaitems$CNT)
+l28g = likert(items28, grouping=pisaitems$CNT)
 print(l28g)
 summary(l28g)
+summary(l28g, center=1.5)
+summary(l28g, center=2)
 
-plot(l28g, low.color='maroon', high.color='darkblue')
-plot(l28g, low.color='maroon', high.color='darkblue', centered=TRUE) + ylim(c(-110,110))
+plot(l28g)
+plot(l28g, centered=TRUE)
+plot(l28g, centered=TRUE, center=1.5)
+plot(l28g, centered=TRUE, center=2)
+plot(l28g, centered=TRUE, center=2, include.center=FALSE)
+
 
 #How often do you read these materials because you want to?
 items29 = pisaitems[,substr(names(pisaitems), 1,5) == 'ST25Q']
@@ -62,19 +60,20 @@ l29 = likert(items29)
 print(l29)
 summary(l29)
 
-plot(l29, low.color='maroon', high.color='burlywood4', neutral.color='white') + 
-	ggtitle("How often do you read these materials because you want to?")
+title <- "How often do you read these materials because you want to?"
+plot(l29) + ggtitle(title)
+plot(l29, centered=TRUE) + ggtitle(title)
+plot(l29, centered=TRUE, include.center=TRUE) + ggtitle(title)
+plot(l29, centered=TRUE, include.center=TRUE, center=2) + ggtitle(title)
+plot(l29, centered=TRUE, include.center=TRUE, center=2.5) + ggtitle(title)
 
-plot(l29, low.color='maroon', high.color='burlywood4', centered=TRUE) + 
-	ggtitle("How often do you read these materials because you want to?")
+plot(l29, type='heat') + ggtitle(title)
 
-plot(l29, type='heat') + opts(title="How often do you read these materials because you want to?")
 
 l29g = likert(items29, grouping=pisaitems$CNT)
 summary(l29g)
 
-plot(l29g, low.color='maroon', high.color='burlywood4') + 
-	opts(title="How often do you read these materials because you want to?")
-
-plot(l29g, centered=TRUE, low.color='maroon', high.color='burlywood4') + 
-	opts(title="How often do you read these materials because you want to?")
+plot(l29g) + ggtitle(title)
+plot(l29g, centered=TRUE) + ggtitle(title)
+plot(l29g, centered=TRUE, include.center=TRUE) + ggtitle(title)
+plot(l29g, centered=TRUE, include.center=TRUE, center=2.5, include.center=TRUE) + ggtitle(title)
