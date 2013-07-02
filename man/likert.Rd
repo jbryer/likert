@@ -1,6 +1,6 @@
 \name{likert}
 \alias{likert}
-\title{Constructor function to create a likert class.}
+\title{Analyze Likert type items.}
 \usage{
   likert(items, grouping = NULL,
     nlevels = length(levels(items[, 1])))
@@ -34,15 +34,9 @@
   and group.  \item items a copy of the original items data
   frame.  \item grouping a copy of the original grouping
   vector.  \item nlevels the number of levels used in the
-  calculations.  \item summary this data frame provides
-  additional summary information. It will contain 'Item'
-  and 'Group' columns similiar to the results data frame as
-  well as a column 'low' corresponding to the sum of levels
-  below neutral, a column 'high' corresponding to the sum
-  of levels above neutral, and columns 'mean' and 'sd'
-  corresponding to the mean and standard deviation,
-  respectively, of the results. The numeric values are
-  determined by as.numeric which will use the values of the
-  factors. }
+  calculations. }
+}
+\seealso{
+  plot.likert summary.likert
 }
 

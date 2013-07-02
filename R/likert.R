@@ -1,4 +1,4 @@
-#' Constructor function to create a likert class.
+#' Analyze Likert type items.
 #'
 #' This function will provide various summary statistics about a set of likert
 #' items. The resulting object will have the following items:
@@ -11,13 +11,6 @@
 #'    \item items a copy of the original items data frame.
 #'    \item grouping a copy of the original grouping vector.
 #'    \item nlevels the number of levels used in the calculations.
-#'    \item summary this data frame provides additional summary information. It
-#'          will contain 'Item' and 'Group' columns similiar to the results data
-#'          frame as well as a column 'low' corresponding to the sum of levels below
-#'          neutral, a column 'high' corresponding to the sum of levels above
-#'          neutral, and columns 'mean' and 'sd' corresponding to the mean and
-#'          standard deviation, respectively, of the results. The numeric values
-#'          are determined by as.numeric which will use the values of the factors.
 #' }
 #'
 #' @export
@@ -28,6 +21,7 @@
 #' @param nlevels number of possible levels. Only necessary if there are missing levels.
 #' @return a likert class with the following elements: results, items, grouping,
 #'        nlevels, and summary.
+#' @seealso plot.likert summary.likert
 likert <- function(items, grouping=NULL, nlevels=length(levels(items[,1]))) {
 	lowrange = 1 : ceiling(nlevels / 2 - nlevels %% 2)
 	highrange = ceiling(nlevels / 2 + 1 ) : nlevels
@@ -47,27 +41,6 @@ likert <- function(items, grouping=NULL, nlevels=length(levels(items[,1]))) {
 		}
 		
 		names(results)[3:ncol(results)] = names(items)
-		
-		results2 = data.frame(Group=rep(unique(results$Group), each=ncol(items)),
-							  Item=rep(names(items), length(unique(results$Group))), 
-							  low=rep(NA, ncol(items) * length(unique(results$Group))), 
-							  high=rep(NA, ncol(items) * length(unique(results$Group))),
-							  mean=rep(NA, ncol(items) * length(unique(results$Group))),
-							  sd=rep(NA, ncol(items) * length(unique(results$Group))) )
-		for(g in unique(results$Group)) {
-			results2[which(results2$Group == g),]$low = apply(
-				results[results$Response %in% lowrange & 
-					results$Group == g,3:ncol(results)], 2, sum)
-			results2[which(results2$Group == g),]$high = apply(
-				results[results$Response %in% highrange & 
-					results$Group == g,3:ncol(results)], 2, sum)
-			for(i in names(items)) {
-				results2[which(results2$Group == g & results2$Item == i), 'mean'] = 
-					mean(as.numeric(items[which(grouping == g), i]), na.rm=TRUE)
-				results2[which(results2$Group == g & results2$Item == i), 'sd'] = 
-					sd(as.numeric(items[which(grouping == g), i]), na.rm=TRUE)
-			}
-		}
 		
 		results$Response = factor(results$Response, levels=1:nlevels, 
 								  labels=levels(items[,i]))
@@ -90,24 +63,13 @@ likert <- function(items, grouping=NULL, nlevels=length(levels(items[,1]))) {
 		results = as.data.frame(t(results))
 		names(results) = levels(items[,1])
 		results = results[2:nrow(results),]
-		results2 = data.frame(Item=row.names(results),
-							  low=apply(results[,lowrange], 1, sum),
-							  high=apply(results[,highrange], 1, sum),
-							  mean=means, sd=sds)
-		row.names(results2) = 1:nrow(results2)
 		
 		results = cbind(row.names(results), results)
 		names(results)[1] = 'Item'
-		row.names(results) = 1:nrow(results)
-		
-# 		results2 = cbind(row.names(results2), results2)
-# 		names(results2)[1] = 'Item'
-# 		row.names(results2) = 1:nrow(results2)
-# 		
+		row.names(results) = 1:nrow(results) 		
 	}
 	
-	r = list(results=results, items=items, grouping=grouping, nlevels=nlevels, 
-			 summary=results2)
+	r = list(results=results, items=items, grouping=grouping, nlevels=nlevels)
 	class(r) = 'likert'
 	return(r)
 }

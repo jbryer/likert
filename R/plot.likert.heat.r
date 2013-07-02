@@ -20,14 +20,15 @@ likert.heat.plot <- function(likert,
 		stop('likert plots with grouping are not supported.')
 	}
 	
+	lsum <- summary(likert)
 	results = melt(likert$results, id.vars='Item')
 	results$variable = as.character(results$variable)
 	results$label = paste(format(results$value, digits=2, drop0trailing=FALSE), '%', sep='')
-	tmp = data.frame(Item=likert$summary$Item, 
-					 variable=rep('Mean (SD)', nrow(likert$summary)),
-					 value=rep(-100, nrow(likert$summary)),
-					 label=paste(format(likert$summary$mean, digits=3, drop0trailing=FALSE), 
-					 			' (', format(likert$summary$sd, digits=2, drop0trailing=FALSE), 
+	tmp = data.frame(Item=lsum$Item, 
+					 variable=rep('Mean (SD)', nrow(lsum)),
+					 value=rep(-100, nrow(lsum)),
+					 label=paste(format(lsum$mean, digits=3, drop0trailing=FALSE), 
+					 			' (', format(lsum$sd, digits=2, drop0trailing=FALSE), 
 					 			')', sep=''),
 					 stringsAsFactors=FALSE)
 	results = rbind(tmp, results)

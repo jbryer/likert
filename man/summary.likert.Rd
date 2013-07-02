@@ -1,15 +1,32 @@
 \name{summary.likert}
 \alias{summary.likert}
-\title{Prints summary table.}
+\title{Prints summary table of a Likert analysis.}
 \usage{
-  \method{summary}{likert} (x, ...)
+  \method{summary}{likert} (x,
+    center = (x$nlevels - 1)/2 + 1, ...)
 }
 \arguments{
   \item{x}{the likert class to summarize.}
 
+  \item{center}{specifies which level should be treated as
+  the center. For example, \code{center = 3} would use the
+  third level as the center whereas \code{center = 3.5}
+  would indicate no specific level is the center but <= 3
+  are low levels and >= 4 are high levels (i.e. used for
+  forced choice items or those without a neutral option).}
+
   \item{...}{currently unused.}
 }
 \description{
-  Prints summary table.
+  The \code{summary} function returns a data frame that
+  provides additional information. It contains 'Item' and
+  'Group' columns similiar to the results data frame as
+  well as a column 'low' corresponding to the sum of levels
+  below neutral, a column 'high' corresponding to the sum
+  of levels above neutral, and columns 'mean' and 'sd'
+  corresponding to the mean and standard deviation,
+  respectively, of the results. The numeric values are
+  determined by as.numeric which will use the values of the
+  factors.
 }
 
