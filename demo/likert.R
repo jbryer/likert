@@ -3,6 +3,7 @@ options(digits=2)
 require(likert)
 data(pisaitems)
 
+##### Item 28: Reading Attitudes
 items28 = pisaitems[,substr(names(pisaitems), 1,5) == 'ST24Q']
 head(items28); ncol(items28)
 
@@ -32,10 +33,10 @@ plot(l28, centered=TRUE, center=1.5, wrap=30)
 plot(l28, centered=TRUE, center=2, wrap=30)
 plot(l28, centered=TRUE, center=2, include.center=FALSE, wrap=30)
 
-plot(l28, type='heat', wrap=30)
+plot(l28, type='density')
+plot(l28, type='density', facet=FALSE)
 
-#Experimental.
-#plot.likert.matrix(l28)
+plot(l28, type='heat', wrap=30)
 
 ##### Group by Country
 l28g = likert(items28, grouping=pisaitems$CNT)
@@ -50,8 +51,10 @@ plot(l28g, centered=TRUE, center=1.5)
 plot(l28g, centered=TRUE, center=2)
 plot(l28g, centered=TRUE, center=2, include.center=FALSE)
 
+plot(l28g, type='density')
 
-#How often do you read these materials because you want to?
+##### Item 29: How often do you read these materials because you want to?
+title <- "How often do you read these materials because you want to?"
 items29 = pisaitems[,substr(names(pisaitems), 1,5) == 'ST25Q']
 head(items29); ncol(items29)
 names(items29) = c("Magazines", "Comic books", "Fiction", "Non-fiction books", "Newspapers")
@@ -60,20 +63,24 @@ l29 = likert(items29)
 print(l29)
 summary(l29)
 
-title <- "How often do you read these materials because you want to?"
 plot(l29) + ggtitle(title)
 plot(l29, centered=TRUE) + ggtitle(title)
 plot(l29, centered=TRUE, include.center=TRUE) + ggtitle(title)
 plot(l29, centered=TRUE, include.center=TRUE, center=2) + ggtitle(title)
 plot(l29, centered=TRUE, include.center=TRUE, center=2.5) + ggtitle(title)
 
+plot(l29, type='density') + ggtitle(title)
+plot(l29, type='density', facet=FALSE) + ggtitle(title)
+
 plot(l29, type='heat') + ggtitle(title)
 
-
-l29g = likert(items29, grouping=pisaitems$CNT)
+##### Grouped by country
+l29g <- likert(items29, grouping=pisaitems$CNT)
 summary(l29g)
 
 plot(l29g) + ggtitle(title)
 plot(l29g, centered=TRUE) + ggtitle(title)
 plot(l29g, centered=TRUE, include.center=TRUE) + ggtitle(title)
 plot(l29g, centered=TRUE, include.center=TRUE, center=2.5, include.center=TRUE) + ggtitle(title)
+
+plot(l29g, type='density') + ggtitle(title)

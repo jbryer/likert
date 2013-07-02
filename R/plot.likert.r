@@ -7,12 +7,17 @@
 #' @export
 #' @seealso likert.bar.plot
 #' @seealso likert.heat.plot
+#' @seealso likert.density.plot
 #' @method plot likert
 #' @S3method plot likert
-plot.likert <- function(likert, type=c('bar','heat'), ...) {
+plot.likert <- function(likert, type=c('bar','heat','density'), ...) {
 	if(type[1] == 'bar') {
 		likert.bar.plot(likert, ...)
-	} else {
+	} else if(type[1] == 'heat') {
 		likert.heat.plot(likert, ...)
+	} else if(type[1] == 'density') {
+		likert.density.plot(likert, ...)
+	} else {
+		stop('Invalid plot type specified.')
 	}
 }

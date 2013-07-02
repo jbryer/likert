@@ -2,8 +2,8 @@
 \alias{plot.likert}
 \title{Plots a set of likert items.}
 \usage{
-  \method{plot}{likert} (likert, type = c("bar", "heat"),
-    ...)
+  \method{plot}{likert} (likert,
+    type = c("bar", "heat", "density"), ...)
 }
 \arguments{
   \item{likert}{the likert items to plot}
@@ -22,5 +22,7 @@
   likert.bar.plot
 
   likert.heat.plot
+
+  likert.density.plot
 }
 

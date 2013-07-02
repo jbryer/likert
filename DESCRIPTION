@@ -29,3 +29,4 @@ Collate:
     'xtable.likert.r'
     'recode.r'
     'label_wrap_mod.r'
+    'plot.likert.density.R'
