@@ -1,0 +1,10 @@
+### Analysis and Visualization of Likert Based Items
+
+`likert` is an R package designed to help analyzing and visualizing Likert type items. More information can be optained at http://jason.bryer.org/likert. Also, the [included demo](https://github.com/jbryer/likert/blob/master/demo/likert.R) demonstrates many of the features.
+
+![Reading Attitude](http://jason.bryer.org/images/likert/centeredPlot2.png)
+
+The latest development version can be downloaded using the `devtools` package.
+
+	require(devtools)
+	install_github('likert','jbryer')
