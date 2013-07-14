@@ -1,16 +1,16 @@
 #' Analyze Likert type items.
 #'
-#' This function will provide various summary statistics about a set of likert
+#' This function will provide various statistics about a set of likert
 #' items. The resulting object will have the following items:
 #' 
 #' \itemize{
-#'    \item results this data frame will contain a column 'Item', 'Group' (if a 
+#'    \item \code{results} - this data frame will contain a column 'Item', 'Group' (if a 
 #'          grouping variable was specified, and a column for each level of the
 #'          items (e.g. agree, disagree, etc.). The value within each cell corresponds
 #'          to the percentage of responses for that level and group.
-#'    \item items a copy of the original items data frame.
-#'    \item grouping a copy of the original grouping vector.
-#'    \item nlevels the number of levels used in the calculations.
+#'    \item \code{items} - a copy of the original items data frame.
+#'    \item \code{grouping} - a copy of the original grouping vector.
+#'    \item \code{nlevels} - the number of levels used in the calculations.
 #' }
 #'
 #' @export
@@ -21,7 +21,8 @@
 #' @param nlevels number of possible levels. Only necessary if there are missing levels.
 #' @return a likert class with the following elements: results, items, grouping,
 #'        nlevels, and summary.
-#' @seealso \code{\link{plot.likert}}, \code{\link{summary.likert}}
+#' @seealso plot.likert
+#' @seealso summary.likert
 #' @examples
 #' data(pisaitems)
 #' items29 = pisaitems[,substr(names(pisaitems), 1,5) == 'ST25Q']

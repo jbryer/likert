@@ -37,6 +37,8 @@ utils::globalVariables(c('value','Group','variable','low','Item','high','neutral
 #' @export
 #' @seealso plot.likert
 #' @seealso likert.heat.plot
+#' @seealso likert.bar.plot
+#' @seealso likert.density.plot
 likert.bar.plot <- function(likert,
 							low.color='#D8B365',
 							high.color='#5AB4AC',

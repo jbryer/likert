@@ -21,20 +21,20 @@
   items, grouping, nlevels, and summary.
 }
 \description{
-  This function will provide various summary statistics
-  about a set of likert items. The resulting object will
-  have the following items:
+  This function will provide various statistics about a set
+  of likert items. The resulting object will have the
+  following items:
 }
 \details{
-  \itemize{ \item results this data frame will contain a
-  column 'Item', 'Group' (if a grouping variable was
-  specified, and a column for each level of the items (e.g.
-  agree, disagree, etc.). The value within each cell
+  \itemize{ \item \code{results} - this data frame will
+  contain a column 'Item', 'Group' (if a grouping variable
+  was specified, and a column for each level of the items
+  (e.g. agree, disagree, etc.). The value within each cell
   corresponds to the percentage of responses for that level
-  and group.  \item items a copy of the original items data
-  frame.  \item grouping a copy of the original grouping
-  vector.  \item nlevels the number of levels used in the
-  calculations. }
+  and group.  \item \code{items} - a copy of the original
+  items data frame.  \item \code{grouping} - a copy of the
+  original grouping vector.  \item \code{nlevels} - the
+  number of levels used in the calculations. }
 }
 \examples{
 data(pisaitems)
@@ -46,6 +46,8 @@ summary(l29)
 plot(l29)
 }
 \seealso{
-  \code{\link{plot.likert}}, \code{\link{summary.likert}}
+  plot.likert
+
+  summary.likert
 }
 

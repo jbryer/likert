@@ -80,5 +80,9 @@
   plot.likert
 
   likert.heat.plot
+
+  likert.bar.plot
+
+  likert.density.plot
 }
 

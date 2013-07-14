@@ -9,6 +9,7 @@
 #' @param ... currently unused.
 #' @seealso plot.likert
 #' @seealso likert.bar.plot
+#' @export
 likert.heat.plot <- function(likert,
 							 low.color='white',
 							 high.color='blue', 
