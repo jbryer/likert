@@ -7,7 +7,8 @@
 \arguments{
   \item{x}{the likert class to print.}
 
-  \item{...}{currently unused.}
+  \item{...}{parameters passed to
+  \code{\link{print.data.frame}}.}
 }
 \description{
   Prints results table.

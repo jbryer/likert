@@ -4,11 +4,11 @@ theme_update(panel.background=element_rect(size=1, color='grey70', fill=NA) )
 require(likert)
 data(pisaitems)
 
-##### Item 28: Reading Attitudes
-items28 <- pisaitems[,substr(names(pisaitems), 1,5) == 'ST24Q']
-head(items28); ncol(items28)
+##### Item 24: Reading Attitudes
+items24 <- pisaitems[,substr(names(pisaitems), 1,5) == 'ST24Q']
+head(items24); ncol(items24)
 
-items28 <- rename(items28, c(
+items24 <- rename(items24, c(
 			ST24Q01="I read only if I have to.",
 			ST24Q02="Reading is one of my favorite hobbies.",
 			ST24Q03="I like talking about books with other people.",
@@ -19,40 +19,45 @@ items28 <- rename(items28, c(
 			ST24Q08="I read only to get information that I need.",
 			ST24Q09="I cannot sit still and read for more than a few minutes.",
 			ST24Q10="I like to express my opinions about books I have read.",
-			ST24Q11="I like to exchange books with my friends"))
-str(items28)
+			ST24Q11="I like to exchange books with my friends."))
+str(items24)
 
-l28 = likert(items28)
-l28 #print(l28)
-summary(l28)
-summary(l28, center=1.5)
-summary(l28, center=2)
+l24 = likert(items24)
+l24 #print(l24)
+summary(l24)
+summary(l24, center=1.5)
+summary(l24, center=2)
 
-plot(l28)
-plot(l28, centered=TRUE, wrap=30)
-plot(l28, centered=TRUE, center=1.5, wrap=30)
-plot(l28, centered=TRUE, center=2, wrap=30)
-plot(l28, centered=TRUE, center=2, include.center=FALSE, wrap=30)
+plot(l24)
+plot(l24, centered=FALSE, wrap=30)
+plot(l24, center=1.5, wrap=30)
+plot(l24, center=2, wrap=30)
+plot(l24, center=2, include.center=FALSE, wrap=30)
+plot(l24, center=2, include.center=FALSE, wrap=20)
 
-plot(l28, type='density')
-plot(l28, type='density', facet=FALSE)
+plot(l24, type='density')
+plot(l24, type='density', facet=FALSE)
 
-plot(l28, type='heat', wrap=30)
+plot(l24, type='heat', wrap=30, text.size=4)
 
 ##### Group by Country
-l28g <- likert(items28, grouping=pisaitems$CNT)
-print(l28g)
-summary(l28g)
-summary(l28g, center=1.5)
-summary(l28g, center=2)
+l24g <- likert(items24, grouping=pisaitems$CNT)
+print(l24g)
+summary(l24g)
+summary(l24g, center=1.5)
+summary(l24g, center=2)
 
-plot(l28g)
-plot(l28g, centered=TRUE)
-plot(l28g, centered=TRUE, center=1.5)
-plot(l28g, centered=TRUE, center=2)
-plot(l28g, centered=TRUE, center=2, include.center=FALSE)
+plot(l24g)
+plot(l24g, centered=FALSE)
+plot(l24g, centered=TRUE, center=1.5)
+plot(l24g, centered=TRUE, center=2)
+plot(l24g, centered=TRUE, center=2, include.center=FALSE)
 
-plot(l28g, type='density')
+# Alternate panel arrangements.
+plot(l24g, panel.arrange='h', wrap=20)
+plot(l24g, panel.arrange=NULL)
+
+plot(l24g, type='density')
 
 ##### Item 29: How often do you read these materials because you want to?
 title <- "How often do you read these materials because you want to?"

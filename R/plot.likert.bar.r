@@ -23,25 +23,34 @@ utils::globalVariables(c('value','Group','variable','low','Item','high','neutral
 #' @param include.center if TRUE, include the center level in the plot otherwise
 #'        the center will be excluded.
 #' @param ordered reorder items from high to low.
-#' @param wrap width to wrap label text for non-grouped likert objects.
+#' @param wrap width to wrap label text for item labels
+#' @param wrap.grouping width to wrap label text for group labels.
 #' @param legend title for the legend.
+#' @param legend.position the position for the legend ("left", "right", "bottom",
+#'        "top", or two-element numeric vector).
+#' @param panel.arrange how panels for grouped likert items should be arrange.
+#'        Possible values are \code{v} (vertical, the default), \code{h}
+#'        (horizontal), and \code{NULL} (auto fill horizontal and vertical)
 #' @param ... currently unused.
 #' @export
 #' @seealso plot.likert
 #' @seealso likert.heat.plot
 likert.bar.plot <- function(likert,
 							low.color='#D8B365',
-							high.color='#5AB4AC', 
+							high.color='#5AB4AC',
 							neutral.color='grey90',
 							neutral.color.ramp='white',
 							text.size=3,
 							text.color='black',
-							centered=FALSE,
+							centered=TRUE,
 							center=(likert$nlevels-1)/2 + 1,
 							include.center=TRUE,
 							ordered=TRUE,
 							wrap=ifelse(is.null(likert$grouping), 50, 100),
+							wrap.grouping=50,
 							legend='Response',
+							legend.position='bottom',
+							panel.arrange='v',
 							...) {
 	if(center < 1.5 | center > (likert$nlevels - 0.5) | center %% 0.5 != 0) {
 		stop(paste0('Invalid center. Values can range from 1.5 to ', 
@@ -68,6 +77,7 @@ likert.bar.plot <- function(likert,
 		lsum$Item <- likert:::label_wrap_mod(lsum$Item, width=wrap)
 		likert$results$Item <- likert:::label_wrap_mod(likert$results$Item, width=wrap)
 		names(likert$items) <- likert:::label_wrap_mod(names(likert$items), width=wrap)
+		lsum$Group <- likert:::label_wrap_mod(lsum$Group, width=wrap.grouping)
 		
 		results <- melt(likert$results, id=c('Group', 'Item'))
 		results$variable <- factor(results$variable, ordered=TRUE)
@@ -132,8 +142,14 @@ likert.bar.plot <- function(likert,
 			}
 		}
 		p <- p +
-			coord_flip() +	ylab('Percentage') + xlab('') + 
-			theme(axis.ticks=element_blank()) + facet_wrap(~ Item, ncol=1)
+			coord_flip() +	ylab('Percentage') + xlab('')
+		if(is.null(panel.arrange)) {
+			p <- p + theme(axis.ticks=element_blank()) + facet_wrap(~ Item)
+		} else if(panel.arrange == 'v') {
+			p <- p + theme(axis.ticks=element_blank()) + facet_wrap(~ Item, ncol=1)
+		} else if(panel.arrange == 'h') {
+			p <- p + theme(axis.ticks=element_blank()) + facet_wrap(~ Item, nrow=1)
+		}
 	} else { #No grouping
 		results <- melt(likert$results, id.vars='Item')
 		if(ordered) {
@@ -201,6 +217,7 @@ likert.bar.plot <- function(likert,
 			theme(axis.ticks=element_blank()) +
 			scale_x_discrete(labels=likert:::label_wrap_mod(likert$results$Item, width=wrap))
 	}
+	p <- p + theme(legend.position=legend.position)
 	
 	class(p) <- c('likert.bar.plot', class(p))
 	return(p)

@@ -12,4 +12,8 @@ likert 1.1
 * Added parameter to wrap text in plots for long item names.
 * Changed the default colors.
 * Added parameter to change legend title.
+* Can now plot bar plot panels horizontally.
+* Changed the center=TRUE as the default for bar plots to.
+* Added panel.flip to flip the placement of grouping elements and items.
+* Added legend.position parameter.
 * Several bug fixes.

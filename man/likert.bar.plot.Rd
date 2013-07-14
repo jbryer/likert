@@ -5,11 +5,12 @@
   likert.bar.plot(likert, low.color = "#D8B365",
     high.color = "#5AB4AC", neutral.color = "grey90",
     neutral.color.ramp = "white", text.size = 3,
-    text.color = "black", centered = FALSE,
+    text.color = "black", centered = TRUE,
     center = (likert$nlevels - 1)/2 + 1,
     include.center = TRUE, ordered = TRUE,
     wrap = ifelse(is.null(likert$grouping), 50, 100),
-    legend = "Response", ...)
+    wrap.grouping = 50, legend = "Response",
+    legend.position = "bottom", panel.arrange = "v", ...)
 }
 \arguments{
   \item{likert}{object of type likert.}
@@ -47,10 +48,21 @@
 
   \item{ordered}{reorder items from high to low.}
 
-  \item{wrap}{width to wrap label text for non-grouped
-  likert objects.}
+  \item{wrap}{width to wrap label text for item labels}
+
+  \item{wrap.grouping}{width to wrap label text for group
+  labels.}
 
   \item{legend}{title for the legend.}
+
+  \item{legend.position}{the position for the legend
+  ("left", "right", "bottom", "top", or two-element numeric
+  vector).}
+
+  \item{panel.arrange}{how panels for grouped likert items
+  should be arrange.  Possible values are \code{v}
+  (vertical, the default), \code{h} (horizontal), and
+  \code{NULL} (auto fill horizontal and vertical)}
 
   \item{...}{currently unused.}
 }
