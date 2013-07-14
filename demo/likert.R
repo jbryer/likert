@@ -76,6 +76,8 @@ plot(l29, centered=TRUE) + ggtitle(title)
 plot(l29, centered=TRUE, include.center=FALSE) + ggtitle(title)
 plot(l29, centered=TRUE, center=2) + ggtitle(title)
 plot(l29, centered=TRUE, center=2.5) + ggtitle(title)
+# Turn off neutral labels
+plot(l29, plot.percent.neutral=FALSE) + ggtitle(title)
 
 plot(l29, type='density') + ggtitle(title)
 plot(l29, type='density', facet=FALSE, legend='Material') + ggtitle(title)

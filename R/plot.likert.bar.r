@@ -10,6 +10,9 @@ utils::globalVariables(c('value','Group','variable','low','Item','high','neutral
 #' @param neutral.color color for middle values (if odd number of levels).
 #' @param neutral.color.ramp second color used when calling \code{\link{colorRamp}}
 #'        with \code{low.color} and \code{high.color} to define the color palettes.
+#' @param plot.percent.low whether to plot low percentages.
+#' @param plot.percent.high whether to plot high percentages.
+#' @param plot.percent.neutral whether to plot netural percentages.
 #' @param text.size size of text attributes.
 #' @param text.color color of text attributes.
 #' @param centered if true, the bar plot will be centered around zero such that
@@ -44,6 +47,9 @@ likert.bar.plot <- function(likert,
 							high.color='#5AB4AC',
 							neutral.color='grey90',
 							neutral.color.ramp='white',
+							plot.percent.low=TRUE,
+							plot.percent.high=TRUE,
+							plot.percent.neutral=TRUE,
 							text.size=3,
 							text.color='black',
 							centered=TRUE,
@@ -124,27 +130,26 @@ likert.bar.plot <- function(likert,
 							breaks=levels(results$variable),
 							labels=levels(results$variable))
 		}
-		p <- p + 
-		  	geom_text(data=lsum, y=ymin, aes(x=Group, 
-  					label=paste0(round(low), '%'), group=Item), 
-		  			size=text.size, hjust=1) +
-			geom_text(data=lsum, aes(x=Group, y=100, 
-					label=paste0(round(high), '%'), 
-					group=Item), size=text.size, hjust=-.2)
-		if(!any(is.na(lsum$neutral)) & include.center) {
+		if(plot.percent.low) {
+			p <- p + geom_text(data=lsum, y=ymin, aes(x=Group, 
+	  						   label=paste0(round(low), '%'), group=Item), 
+			  				   size=text.size, hjust=1)
+		}
+		if(plot.percent.high) {
+			p <- p + geom_text(data=lsum, aes(x=Group, y=100, 
+							   label=paste0(round(high), '%'), 
+							   group=Item), size=text.size, hjust=-.2)			
+		}
+		if(plot.percent.neutral & !any(is.na(lsum$neutral)) & include.center) {
 			if(centered) {
-				p <- p +
-					geom_text(data=lsum, y=0, 
-							  aes(x=Group, group=Item,
-							  	label=paste0(round(neutral), '%')),
-							  size=text.size, hjust=.5)
+				p <- p + geom_text(data=lsum, y=0, aes(x=Group, group=Item,
+							  	   label=paste0(round(neutral), '%')),
+							       size=text.size, hjust=.5)
 			} else {
 				lsum$y <- lsum$low + (lsum$neutral/2)
-				p <- p +
-					geom_text(data=lsum,
-							  aes(x=Group, y=y, group=Item,
-							  	label=paste0(round(neutral), '%')),
-							  size=text.size, hjust=.5)				
+				p <- p + geom_text(data=lsum, aes(x=Group, y=y, group=Item,
+							  	   label=paste0(round(neutral), '%')),
+							       size=text.size, hjust=.5)				
 			}
 		}
 		p <- p +
@@ -204,14 +209,17 @@ likert.bar.plot <- function(likert,
 							  breaks=levels(results$variable), 
 							  labels=levels(results$variable))
 		}
-		p <- p + 
-			geom_text(data=lsum, y=ymin, aes(x=Item, 
-				  			label=paste0(round(low), '%')), 
-				  			size=text.size, hjust=1) +
-			geom_text(data=lsum, y=100, aes(x=Item,
+		if(plot.percent.low) {
+			p <- p + geom_text(data=lsum, y=ymin, aes(x=Item, 
+					  			label=paste0(round(low), '%')), 
+					  			size=text.size, hjust=1)
+		}
+		if(plot.percent.high) {
+			p <- p + geom_text(data=lsum, y=100, aes(x=Item,
 				  			label=paste0(round(high), '%')), 
 				  			size=text.size, hjust=-.2)
-		if(!any(is.na(lsum$neutral)) & include.center) {
+		}
+		if(plot.percent.neutral & !any(is.na(lsum$neutral)) & include.center) {
 			if(centered) {
 				p <- p +
 					geom_text(data=lsum, y=0, 

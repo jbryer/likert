@@ -18,4 +18,5 @@ likert 1.1
 * Added legend.position parameter.
 * Added panel.strip.color to change the background color for panel labels.
 * Added group.order to reorder how groups are plotted.
+* Added parameters to turn off percent labels for low, high, and netural separately.
 * Several bug fixes.
