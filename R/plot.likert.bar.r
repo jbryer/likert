@@ -31,6 +31,8 @@ utils::globalVariables(c('value','Group','variable','low','Item','high','neutral
 #' @param panel.arrange how panels for grouped likert items should be arrange.
 #'        Possible values are \code{v} (vertical, the default), \code{h}
 #'        (horizontal), and \code{NULL} (auto fill horizontal and vertical)
+#' @param panel.strip.color the background color for panel labels.
+#' @param group.order the order in which groups should be plotted.
 #' @param ... currently unused.
 #' @export
 #' @seealso plot.likert
@@ -51,6 +53,8 @@ likert.bar.plot <- function(likert,
 							legend='Response',
 							legend.position='bottom',
 							panel.arrange='v',
+							panel.strip.color='#F0F0F0',
+							group.order,
 							...) {
 	if(center < 1.5 | center > (likert$nlevels - 0.5) | center %% 0.5 != 0) {
 		stop(paste0('Invalid center. Values can range from 1.5 to ', 
@@ -142,13 +146,20 @@ likert.bar.plot <- function(likert,
 			}
 		}
 		p <- p +
-			coord_flip() +	ylab('Percentage') + xlab('')
+			coord_flip() +	ylab('Percentage') + xlab('') +
+			theme(axis.ticks=element_blank(), 
+				  strip.background=element_rect(fill=panel.strip.color, 
+				  							    color=panel.strip.color))
 		if(is.null(panel.arrange)) {
-			p <- p + theme(axis.ticks=element_blank()) + facet_wrap(~ Item)
+			p <- p + facet_wrap(~ Item)
 		} else if(panel.arrange == 'v') {
-			p <- p + theme(axis.ticks=element_blank()) + facet_wrap(~ Item, ncol=1)
+			p <- p + facet_wrap(~ Item, ncol=1)
+			#p <- p + facet_grid(Item ~ .)
 		} else if(panel.arrange == 'h') {
-			p <- p + theme(axis.ticks=element_blank()) + facet_wrap(~ Item, nrow=1)
+			p <- p + facet_wrap(~ Item, nrow=1)
+		}
+		if(!missing(group.order)) {
+			p <- p + scale_x_discrete(limits=rev(group.order))
 		}
 	} else { #No grouping
 		results <- melt(likert$results, id.vars='Item')

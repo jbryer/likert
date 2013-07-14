@@ -10,7 +10,8 @@
     include.center = TRUE, ordered = TRUE,
     wrap = ifelse(is.null(likert$grouping), 50, 100),
     wrap.grouping = 50, legend = "Response",
-    legend.position = "bottom", panel.arrange = "v", ...)
+    legend.position = "bottom", panel.arrange = "v",
+    panel.strip.color = "#F0F0F0", group.order, ...)
 }
 \arguments{
   \item{likert}{object of type likert.}
@@ -63,6 +64,12 @@
   should be arrange.  Possible values are \code{v}
   (vertical, the default), \code{h} (horizontal), and
   \code{NULL} (auto fill horizontal and vertical)}
+
+  \item{panel.strip.color}{the background color for panel
+  labels.}
+
+  \item{group.order}{the order in which groups should be
+  plotted.}
 
   \item{...}{currently unused.}
 }

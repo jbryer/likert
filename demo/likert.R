@@ -1,5 +1,4 @@
 options(digits=2)
-theme_update(panel.background=element_rect(size=1, color='grey70', fill=NA) )
 
 require(likert)
 data(pisaitems)
@@ -59,6 +58,9 @@ plot(l24g, panel.arrange=NULL)
 
 plot(l24g, type='density')
 
+# Reordering the groups
+plot(l24g, group.order=c('Canada', 'Mexico', 'United States'))
+
 ##### Item 29: How often do you read these materials because you want to?
 title <- "How often do you read these materials because you want to?"
 items29 <- pisaitems[,substr(names(pisaitems), 1,5) == 'ST25Q']
@@ -85,7 +87,7 @@ l29g <- likert(items29, grouping=pisaitems$CNT)
 summary(l29g)
 
 plot(l29g) + ggtitle(title)
-plot(l29g, centered=TRUE) + ggtitle(title)
+plot(l29g, centered=FALSE) + ggtitle(title)
 plot(l29g, centered=TRUE, include.center=FALSE) + ggtitle(title)
 plot(l29g, centered=TRUE, center=2)
 plot(l29g, centered=TRUE, center=2.5) + ggtitle(title)

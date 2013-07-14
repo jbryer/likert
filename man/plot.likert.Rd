@@ -3,7 +3,9 @@
 \title{Plots a set of likert items.}
 \usage{
   \method{plot}{likert} (x,
-    type = c("bar", "heat", "density"), ...)
+    type = c("bar", "heat", "density"),
+    panel.background = element_rect(size = 1, color = "grey70", fill = NA),
+    ...)
 }
 \arguments{
   \item{x}{the likert items to plot}
@@ -14,6 +16,9 @@
   \item{...}{other parameters passed passed to
   \code{\link{likert.bar.plot}} or
   \code{\link{likert.heat.plot}}.}
+
+  \item{panel.background}{define background of the plot.
+  See \code{\link{theme}}.}
 }
 \description{
   Plots a set of likert items.

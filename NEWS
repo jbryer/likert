@@ -16,4 +16,6 @@ likert 1.1
 * Changed the center=TRUE as the default for bar plots to.
 * Added panel.flip to flip the placement of grouping elements and items.
 * Added legend.position parameter.
+* Added panel.strip.color to change the background color for panel labels.
+* Added group.order to reorder how groups are plotted.
 * Several bug fixes.
