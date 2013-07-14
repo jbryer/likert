@@ -17,6 +17,9 @@ Depends:
     xtable,
     psych,
     reshape
+Suggests:
+    devtools,
+    shiny
 Collate:
     'likert-package.R'
     'likert.R'
