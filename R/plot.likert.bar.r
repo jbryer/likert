@@ -68,6 +68,9 @@ likert.bar.plot <- function(likert,
 		stop(paste0('Invalid center. Values can range from 1.5 to ', 
 					(likert$nlevels - 0.5), ' in increments of 0.5'))
 	}
+	ymin <- 0
+	ymax <- 100
+	ybuffer <- 5
 	
 	lowrange <- 1 : floor(center - 0.5)
 	highrange <- ceiling(center + 0.5) : likert$nlevels
@@ -117,14 +120,13 @@ likert.bar.plot <- function(likert,
 				geom_hline(yintercept=0) +
 				geom_bar(data=results.low[nrow(results.low):1,], 
 						 aes(fill=variable), stat='identity') + 
-				geom_bar(data=results.high, aes(fill=variable), stat='identity') +
-				ylim(c(-105,105))
+				geom_bar(data=results.high, aes(fill=variable), stat='identity')
 			names(cols) <- levels(results$variable)
 			p <- p + scale_fill_manual(legend, breaks=names(cols), values=cols)
 		} else {
+			ymin <- 0
 			p <- ggplot(results, aes(y=value, x=Group, group=variable))
-			p <- p + geom_bar(stat='identity', aes(fill=variable)) + 
-				ylim(c(-5,105)) +
+			p <- p + geom_bar(stat='identity', aes(fill=variable)) +
 				scale_fill_manual(legend, 
 							values=cols, 
 							breaks=levels(results$variable),
@@ -180,7 +182,7 @@ likert.bar.plot <- function(likert,
 			rows <- which(results$variable %in% names(likert$results)[
 				2:(length(lowrange) + 1)])
 			results[rows, 'value'] <- -1 * results[rows, 'value']
-			if(center %% 1 == 0) { # Midpoint is a level (i.e. there are an odd number of levelss)
+			if(center %% 1 == 0) { # Midpoint is a level (i.e. there are an odd number of levels)
 				rows.mid <- which(results$variable %in% names(likert$results)[center+1])
 				if(include.center) {
 					tmp <- results[rows.mid,]
@@ -198,13 +200,12 @@ likert.bar.plot <- function(likert,
 				geom_hline(yintercept=0) +
 				geom_bar(data=results.low[nrow(results.low):1,], 
 						 aes(fill=variable), stat='identity') + 
-				geom_bar(data=results.high, aes(fill=variable), stat='identity') +
-				ylim(c(-105,105))
+				geom_bar(data=results.high, aes(fill=variable), stat='identity')
 			names(cols) <- levels(results$variable)
 			p <- p + scale_fill_manual(legend, breaks=names(cols), values=cols)
 		} else {
 			p <- ggplot(results, aes(y=value, x=Item, group=Item))
-			p <- p + geom_bar(stat='identity', aes(fill=variable)) + ylim(c(-5,105))
+			p <- p + geom_bar(stat='identity', aes(fill=variable))
 			p <- p + scale_fill_manual(legend, values=cols, 
 							  breaks=levels(results$variable), 
 							  labels=levels(results$variable))
@@ -238,6 +239,7 @@ likert.bar.plot <- function(likert,
 			theme(axis.ticks=element_blank()) +
 			scale_x_discrete(labels=likert:::label_wrap_mod(likert$results$Item, width=wrap))
 	}
+	p <- p + scale_y_continuous(label=abs_formatter, limits=c(ymin - ybuffer, ymax + ybuffer))
 	p <- p + theme(legend.position=legend.position)
 	
 	class(p) <- c('likert.bar.plot', class(p))
@@ -252,7 +254,6 @@ likert.bar.plot <- function(likert,
 #' @param ... other parameters passed to ggplot2.
 #' @S3method print likert.bar.plot
 #' @method print likert.bar.plot
-#' @export
 print.likert.bar.plot <- function(x, ...) {
 	suppressWarnings(NextMethod(x, ...))
 }
