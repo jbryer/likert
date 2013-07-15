@@ -27,6 +27,7 @@ summary(l24)
 summary(l24, center=1.5)
 summary(l24, center=2)
 
+# Plots
 plot(l24)
 plot(l24, centered=FALSE, wrap=30)
 plot(l24, center=1.5, wrap=30)
@@ -34,9 +35,11 @@ plot(l24, center=2, wrap=30)
 plot(l24, center=2, include.center=FALSE, wrap=30)
 plot(l24, center=2, include.center=FALSE, wrap=20)
 
+# Density plot
 plot(l24, type='density')
 plot(l24, type='density', facet=FALSE)
 
+# Heat map
 plot(l24, type='heat', wrap=30, text.size=4)
 
 ##### Group by Country
@@ -46,6 +49,7 @@ summary(l24g)
 summary(l24g, center=1.5)
 summary(l24g, center=2)
 
+# Plots
 plot(l24g)
 plot(l24g, centered=FALSE)
 plot(l24g, centered=TRUE, center=1.5)
@@ -56,6 +60,7 @@ plot(l24g, centered=TRUE, center=2, include.center=FALSE)
 plot(l24g, panel.arrange='h', wrap=20)
 plot(l24g, panel.arrange=NULL)
 
+# Density plots
 plot(l24g, type='density')
 
 # Reordering the groups
@@ -71,6 +76,7 @@ l29 <- likert(items29)
 print(l29)
 summary(l29)
 
+# Plots
 plot(l29) + ggtitle(title)
 plot(l29, centered=TRUE) + ggtitle(title)
 plot(l29, centered=TRUE, include.center=FALSE) + ggtitle(title)
@@ -79,19 +85,24 @@ plot(l29, centered=TRUE, center=2.5) + ggtitle(title)
 # Turn off neutral labels
 plot(l29, plot.percent.neutral=FALSE) + ggtitle(title)
 
+
+# Density plots
 plot(l29, type='density') + ggtitle(title)
 plot(l29, type='density', facet=FALSE, legend='Material') + ggtitle(title)
 
+# Heat maps
 plot(l29, type='heat') + ggtitle(title)
 
 ##### Grouped by country
 l29g <- likert(items29, grouping=pisaitems$CNT)
 summary(l29g)
 
+# Plots
 plot(l29g) + ggtitle(title)
 plot(l29g, centered=FALSE) + ggtitle(title)
 plot(l29g, centered=TRUE, include.center=FALSE) + ggtitle(title)
 plot(l29g, centered=TRUE, center=2)
 plot(l29g, centered=TRUE, center=2.5) + ggtitle(title)
 
+# Density plots
 plot(l29g, type='density', legend='Country') + ggtitle(title)
