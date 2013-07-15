@@ -1,0 +1,357 @@
+%\documentclass[handout]{beamer}
+%\documentclass[handout,10pt,slidestop,mathserif]{beamer}
+%\usepackage{pgfpages}
+%\pgfpagesuselayout{2 on 1}
+\documentclass[10pt,slidestop,mathserif,c,noae]{beamer}
+\usetheme{Madrid}
+\usecolortheme{seahorse}
+
+\usepackage{tabularx}
+\usepackage{verbatim}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{Sweave}
+\usepackage{moreverb}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{Sweave}
+\SweaveOpts{prefix.string=figures/Slides}
+
+\newcommand{\putat}[3]{\begin{picture}(0,0)(0,0)\put(#1,#2){#3}\end{picture}}
+  
+\newenvironment{changemargin}[2]{%
+  \begin{list}{}{%
+    \setlength{\topsep}{0pt}%
+    \setlength{\leftmargin}{#1}%
+    \setlength{\rightmargin}{#2}%
+    \setlength{\listparindent}{\parindent}%
+    \setlength{\itemindent}{\parindent}%
+    \setlength{\parsep}{\parskip}%
+  }%
+  \item[]}{\end{list}}
+
+%% Define a new 'leo' style for the package that will use a smaller font.
+\makeatletter
+\def\url@leostyle{%
+  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\tiny\ttfamily}}}
+\makeatother
+
+\title[likert Package]{likert: An R Package for Visualizing and Analyzing Likert-Based Items}
+\subtitle{Presentation for the 2013 useR! Conference}
+\author[Speerschneider \& Bryer]{
+\normalsize{Kimberly K. Speerschneider}\\
+\footnotesize{\href{mailto:kimkspeer@gmail.com}{kimkspeer@gmail.com}}\\
+\ \\
+\normalsize{Jason M. Bryer}\\
+\footnotesize{\href{mailto:jason@bryer.org}{jason@bryer.org}}
+}
+\institute[Excelsior College]{Excelsior College\\University at Albany
+}
+\date[Jul 12, 2013]{July 12, 2013}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+<<echo=FALSE>>=
+options(width=50)
+options(digits=2)
+options(continue="   ")
+options(warn=-1)
+require(ggplot2)
+theme_update(panel.background=element_rect(size=1, color='grey70', fill=NA))
+@
+
+\frame{\titlepage}
+%\frame{\frametitle{Agenda}\tableofcontents[hideallsubsections]}
+
+\section{Background}
+\begin{frame}[fragile,containsverbatim]
+  \frametitle{Background}
+  \includegraphics{figures/rensis-likert.jpg}
+% Likert items were developed in an effort to overcome the difficulties in measuring human attitudes. Building on Thurstone's work \( \) using judges to create scales of equal increments, Likert \(1939-check\) developed scales aiming to achieve equidistant levels as an assumption. 
+% 
+% Likert-based items are widely used and are most likely the most common method for measuring personal attitutdes in survey research. Over the years, however, many have become increasingly critical of this assumption. 
+\end{frame}
+
+\begin{frame}[fragile,containsverbatim]
+  \frametitle{Background}
+  \begin{center}
+\Large Categorical vs. Continuous
+\pause
+\vfill
+\Large Know your data!
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile,containsverbatim]
+  \frametitle{likert: An R Package for Visualization and Analysis of Likert-Based Items}
+This package aims to provide the necessary tools to allow the user to make his/her own decisions about how the data should be treated, while also providing figures that may help clarify how well the assumptions discussed here hold up. 
+\vfill
+Motivation
+\begin{itemize}
+\item summarize likert type items
+\item provide tabular results
+\item provide visualizations
+\item allow flexibility (e.g. ggplot2 annotate)
+\item have a consistent aesthetic
+\item use familiar S3 generics (i.e. \texttt{print}, \texttt{plot}, \texttt{summary})
+\end{itemize} 
+\end{frame}
+
+\begin{frame}[fragile,containsverbatim]
+  \frametitle{Data}
+<<echo=TRUE>>=
+require(likert)
+require(pisa)
+data(pisaitems)
+@
+<<echo=FALSE, results=hide>>=
+##### Item 24: Reading Attitudes
+items24 <- pisaitems[,substr(names(pisaitems), 1,5) == 'ST24Q']
+items24 <- rename(items24, c(
+  		ST24Q01="I read only if I have to.",
+			ST24Q02="Reading is one of my favorite hobbies.",
+			ST24Q03="I like talking about books with other people.",
+			ST24Q04="I find it hard to finish books.",
+			ST24Q05="I feel happy if I receive a book as a present.",
+			ST24Q06="For me, reading is a waste of time.",
+			ST24Q07="I enjoy going to a bookstore or a library.",
+			ST24Q08="I read only to get information that I need.",
+			ST24Q09="I cannot sit still and read for more than a few minutes.",
+			ST24Q10="I like to express my opinions about books I have read.",
+			ST24Q11="I like to exchange books with my friends."))
+@
+
+The figures to follow will use Item 24 regarding 'Reading Attitudes' from the Programme for International Student Assessment (PISA) from \texttt{pisaitems} dataframe in the \texttt{pisa} package, which asks:
+\begin{itemize}
+<<results=tex,echo=FALSE>>=
+cat(paste0(paste0("\\item ",unlist(names(items24))), collapse="\n"))
+@
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile,containsverbatim]
+  \frametitle{The likert Function}
+<<echo=TRUE>>=
+l24 = likert(items24)
+class(l24)
+print(l24, row.names=FALSE)
+@
+\end{frame}
+
+\begin{frame}[fragile,containsverbatim]
+  \frametitle{Summary}
+<<echo=TRUE>>=
+summary(l24)
+@
+\end{frame}
+
+\begin{frame}[fragile,containsverbatim]
+  \frametitle{Plots}
+<<eval=FALSE>>=
+plot(l24)
+@
+\pause
+<<l24-pie,fig=TRUE,width=10,height=6,include=FALSE,echo=FALSE>>=
+pie(c(22.8,35.9,30.5,10.7), labels=c('Stongly disagree','Disagree','Agree','Strongly Agree'), main="I read only if I have to.")
+@
+\begin{center}
+    \includegraphics{figures/Slides-l24-pie}
+\end{center}
+\pause
+\Huge Just kidding!
+\end{frame}
+
+
+\begin{frame}[fragile,containsverbatim]
+  \frametitle{Stacked Bar Chart}
+<<l24-bar,fig=TRUE,width=10,height=7,include=FALSE,echo=TRUE>>=
+plot(l24)
+@
+\begin{center}
+    \includegraphics{figures/Slides-l24-bar}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile,containsverbatim]
+  \frametitle{Stacked Bar Chart}
+<<l24-bar-noreorder,fig=TRUE,width=10,height=7,include=FALSE,echo=TRUE>>=
+plot(l24, ordered=FALSE)
+@
+\begin{center}
+    \includegraphics{figures/Slides-l24-bar-noreorder}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile,containsverbatim]
+  \frametitle{centered}
+<<l24-centered,fig=TRUE,width=10,height=7,include=FALSE,echo=TRUE>>=
+plot(l24, centered=TRUE)
+@
+\begin{center}
+    \includegraphics{figures/Slides-l24-centered}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile,containsverbatim]
+  \frametitle{center}
+<<l24-center-1,fig=TRUE,width=10,height=7,include=FALSE,echo=TRUE>>=
+plot(l24, centered=TRUE, center=1.5)
+@
+\begin{center}
+    \includegraphics{figures/Slides-l24-center-1}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile,containsverbatim]
+  \frametitle{center}
+<<l24-center-3,fig=TRUE,width=10,height=7,include=FALSE,echo=TRUE>>=
+plot(l24, centered=TRUE, center=2)
+@
+\begin{center}
+    \includegraphics{figures/Slides-l24-center-3}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile,containsverbatim]
+  \frametitle{include.center=FALSE}
+<<l24-include-center,fig=TRUE,width=10,height=7,include=FALSE,echo=TRUE>>=
+plot(l24, centered=TRUE, center=2, include.center=FALSE)
+@
+\begin{center}
+    \includegraphics{figures/Slides-l24-include-center}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile,containsverbatim]
+  \frametitle{summary (defining the center group)}
+<<echo=TRUE>>=
+summary(l24, center=1.5)
+@
+\end{frame}
+
+\begin{frame}[fragile,containsverbatim]
+  \frametitle{summary (defining the center group)}
+<<echo=TRUE>>=
+summary(l24, center=2)
+@
+\end{frame}
+
+
+\begin{frame}[fragile,containsverbatim]
+  \frametitle{wrap}
+<<l24-wrap,fig=TRUE,width=10,height=7,include=FALSE,echo=TRUE>>=
+plot(l24, centered=TRUE, center=2, include.center=FALSE, wrap=30)
+@
+\begin{center}
+    \includegraphics{figures/Slides-l24-wrap}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile,containsverbatim]
+\frametitle{changing colors}
+<<l24-color,fig=TRUE,width=10,height=7,include=FALSE,echo=TRUE>>=
+plot(l24, centered=TRUE, center=2,include.center=TRUE, wrap=30, 
+low.color='burlywood', high.color='maroon')
+@
+\begin{center}
+\includegraphics{figures/Slides-l24-color}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[c,fragile,containsverbatim]
+    \frametitle{grouping}
+<<echo=TRUE>>=
+l24g <- likert(items24, grouping=pisaitems$CNT)
+@
+\end{frame}
+
+
+\begin{frame}[fragile,containsverbatim]
+\frametitle{Grouping}
+<<l24-grouping-1,fig=TRUE,width=10,height=7,include=FALSE,echo=TRUE>>=
+  plot(l24g)
+@
+\begin{center}
+\includegraphics{figures/Slides-l24-grouping-1}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile,containsverbatim]
+\frametitle{Grouped Bar Plot}
+<<l24-grouping-2,fig=TRUE,width=10,height=7,include=FALSE,echo=TRUE>>=
+plot(l24g, centered=TRUE)
+@
+\begin{center}
+\includegraphics{figures/Slides-l24-grouping-2}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile,containsverbatim]
+\frametitle{Heat Plot}
+<<l24-heat,fig=TRUE,width=10,height=7,include=FALSE,echo=TRUE>>=
+plot(l24, type='heat', wrap=30, text.size=6)
+@
+\begin{center}
+    \includegraphics{figures/Slides-l24-heat}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile,containsverbatim]
+\frametitle{Faceted Density Plot}
+<<l24-density-1,fig=TRUE,width=10,height=7,include=FALSE,echo=TRUE>>=
+plot(l24, type="density")
+@
+\begin{center}
+    \includegraphics{figures/Slides-l24-density-1}
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile,containsverbatim]
+\frametitle{Density Plot}
+<<l24-density-2,fig=TRUE,width=10,height=7,include=FALSE,echo=TRUE>>=
+plot(l24, type="density", facet=FALSE)
+@
+\begin{center}
+    \includegraphics{figures/Slides-l24-density-2}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile,containsverbatim]
+\frametitle{Grouped Density Plot}
+<<l24-density-3,fig=TRUE,width=10,height=7,include=FALSE,echo=TRUE>>=
+plot(l24g, type="density")
+@
+\begin{center}
+    \includegraphics{figures/Slides-l24-density-3}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile,containsverbatim]
+\frametitle{Future Directions}
+\begin{itemize}
+\item release version 1.1 to CRAN (probably next week, currently available on GitHub)
+<<eval=FALSE>>=
+require(devtools)
+install_github("likert","jbryer")
+@
+\item \texttt{xtable} functions
+\item ability to analyze and visualize gap analysis (e.g. items with importance and satisfaction)
+\item matrix plot (currently experimental)
+\end{itemize}
+\end{frame}
+
+\begin{frame}[c]
+	\LARGE{Thank You}\\\ \\
+	\normalsize
+	Kimberly Speerschneider (kimkspeer@gmail.com)\\
+	Jason Bryer (jason@bryer.org)\\\ \\
+	\url{http://github.com/jbryer/likert}
+\end{frame}
+
+\end{document}
