@@ -84,7 +84,7 @@ likert.bar.plot <- function(likert,
 	} else {
 		cols <- c(ramp[1:(length(ramp)-1)], neutral.color, bamp[2:length(bamp)])
 	}
-	
+
 	lsum <- summary(likert, center=center)
 	
 	p <- NULL
@@ -237,7 +237,8 @@ likert.bar.plot <- function(likert,
 		p <- p +
 			coord_flip() + ylab('Percentage') + xlab('') + 
 			theme(axis.ticks=element_blank()) +
-			scale_x_discrete(labels=likert:::label_wrap_mod(likert$results$Item, width=wrap))
+			scale_x_discrete(breaks=likert$results$Item,
+				labels=likert:::label_wrap_mod(likert$results$Item, width=wrap))
 	}
 	p <- p + scale_y_continuous(label=abs_formatter, limits=c(ymin - ybuffer, ymax + ybuffer))
 	p <- p + theme(legend.position=legend.position)
