@@ -14,11 +14,14 @@
 #'        \code{center = 3.5} would indicate no specific level is the center but
 #'        <= 3 are low levels and >= 4 are high levels (i.e. used for forced choice 
 #'        items or those without a neutral option).
+#' @param ordered whether the results should be ordered. Currently unsupported
+#'        for grouped analysis.
 #' @param ... currently unused.
 #' @export
 #' @method summary likert
 #' @S3method summary likert
-summary.likert <- function(object, center=(object$nlevels-1)/2 + 1, ...) {
+summary.likert <- function(object, center=(object$nlevels-1)/2 + 1,
+						   ordered=TRUE, ...) {
 	if(center < 1.5 | center > (object$nlevels - 0.5) | center %% 0.5 != 0) {
 		stop(paste0('Invalid center. Values can range from 1.5 to ', 
 					(object$nlevels - 0.5), ' in increments of 0.5'))
@@ -98,6 +101,9 @@ summary.likert <- function(object, center=(object$nlevels-1)/2 + 1, ...) {
 			results2$neutral <- results[,(highrange[1] - 1)]
 		}
 		row.names(results2) = 1:nrow(results2)	
+		if(ordered) {
+			results2 <- results2[order(results2$high, decreasing=TRUE),]
+		}
 	}
 	return(results2)
 }

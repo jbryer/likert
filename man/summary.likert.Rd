@@ -3,7 +3,8 @@
 \title{Prints summary table of a Likert analysis.}
 \usage{
   \method{summary}{likert} (object,
-    center = (object$nlevels - 1)/2 + 1, ...)
+    center = (object$nlevels - 1)/2 + 1, ordered = TRUE,
+    ...)
 }
 \arguments{
   \item{object}{the likert class to summarize.}
@@ -14,6 +15,9 @@
   would indicate no specific level is the center but <= 3
   are low levels and >= 4 are high levels (i.e. used for
   forced choice items or those without a neutral option).}
+
+  \item{ordered}{whether the results should be ordered.
+  Currently unsupported for grouped analysis.}
 
   \item{...}{currently unused.}
 }
