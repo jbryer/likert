@@ -18,7 +18,7 @@ likert.heat.plot <- function(likert,
 							 wrap=50,
 							 ...) {
 	if(!is.null(likert$grouping)) {
-		stop('likert plots with grouping are not supported.')
+		stop('heat plots with grouping are not supported.')
 	}
 	
 	lsum <- summary(likert)
@@ -43,7 +43,8 @@ likert.heat.plot <- function(likert,
 			 panel.grid.minor=element_blank(), 
 			 axis.ticks=element_blank(),
 			 panel.background=element_blank()) +
-		scale_x_discrete(labels=likert:::label_wrap_mod(likert$results$Item, width=wrap))
+		scale_x_discrete(breaks=likert$results$Item,
+			labels=likert:::label_wrap_mod(likert$results$Item, width=wrap))
 	class(p) <- c('likert.heat.plot', class(p))
 	return(p)
 }

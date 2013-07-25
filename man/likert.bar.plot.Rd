@@ -77,7 +77,8 @@
   \item{panel.strip.color}{the background color for panel
   labels.}
 
-  \item{group.order}{the order in which groups should be
+  \item{group.order}{the order in which groups (for grouped
+  items) or items (for non-grouped items) should be
   plotted.}
 
   \item{...}{currently unused.}
