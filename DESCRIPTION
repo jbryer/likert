@@ -34,3 +34,4 @@ Collate:
     'label_wrap_mod.r'
     'plot.likert.density.R'
     'abs_formatter.R'
+    'shinyLikert.R'
