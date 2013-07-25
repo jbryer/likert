@@ -93,7 +93,8 @@ likert <- function(items, grouping=NULL, nlevels=length(levels(items[,1]))) {
 		row.names(results) <- 1:nrow(results) 		
 	}
 	
-	r <- list(results=results, items=items, grouping=grouping, nlevels=nlevels)
+	r <- list(results=results, items=items, grouping=grouping, nlevels=nlevels,
+			  levels=levels(items[,1]))
 	class(r) <- 'likert'
 	return(r)
 }
