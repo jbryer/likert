@@ -14,3 +14,11 @@ The latest development version can be downloaded using the `devtools` package.
 	require(devtools)
 	install_github('likert','jbryer')
 
+To get started take a look at the [likert demo](https://github.com/jbryer/likert/blob/master/demo/likert.R) or from within R:
+
+	demo('likert', package='likert')
+	
+Or run the [Shiny app](http://rstudio.com/shiny):
+
+	shinyLikert()
+
