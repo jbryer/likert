@@ -32,6 +32,16 @@
 #' summary(l29)
 #' plot(l29)
 likert <- function(items, grouping=NULL, nlevels=length(levels(items[,1]))) {
+	if(!all(sapply(items, class) == 'factor')) {
+		warning('items parameter contains non-factors. Will convert to factors')
+		for(i in 1:ncol(items)) {
+			items[,i] <- as.factor(items[,i])
+		}
+	}
+	if(!all(sapply(items, function(x) { length(levels(x)) }) == nlevels)) {
+		stop('All items (columns) must have the same number of levels')
+	}
+	
 	lowrange <- 1 : ceiling(nlevels / 2 - nlevels %% 2)
 	highrange <- ceiling(nlevels / 2 + 1 ) : nlevels
 	
