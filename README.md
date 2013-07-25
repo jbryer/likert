@@ -1,5 +1,8 @@
 ### Analysis and Visualization of Likert Based Items
 
+Jason Bryer [jason@bryer.org](mailto:jason@bryer.org)  
+Kim Speerschneider [kimkspeer@gmail.com](mailto:kimkspeer@gmail.com)
+
 `likert` is an R package designed to help analyzing and visualizing Likert type items. More information can be optained at http://jason.bryer.org/likert. Also, the [included demo](https://github.com/jbryer/likert/blob/master/demo/likert.R) demonstrates many of the features.
 
 Download the 2013 useR! Conference [abstract](http://github.com/jbryer/likert/useR 2013/Abstrac) and [slides](http://github.com/jbryer/likert/useR 2013/Slides).
