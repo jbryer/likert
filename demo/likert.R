@@ -29,6 +29,7 @@ summary(l24, center=2)
 
 # Plots
 plot(l24)
+likert.bar.plot(l24, group.order=names(items24)) #Specify the exact order of the y-axis
 plot(l24, centered=FALSE, wrap=30)
 plot(l24, center=1.5, wrap=30)
 plot(l24, center=2, wrap=30)

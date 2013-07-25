@@ -35,7 +35,8 @@ utils::globalVariables(c('value','Group','variable','low','Item','high','neutral
 #'        Possible values are \code{v} (vertical, the default), \code{h}
 #'        (horizontal), and \code{NULL} (auto fill horizontal and vertical)
 #' @param panel.strip.color the background color for panel labels.
-#' @param group.order the order in which groups should be plotted.
+#' @param group.order the order in which groups (for grouped items) or items
+#'        (for non-grouped items) should be plotted.
 #' @param ... currently unused.
 #' @export
 #' @seealso plot.likert
@@ -236,11 +237,17 @@ likert.bar.plot <- function(likert,
 		}
 		p <- p +
 			coord_flip() + ylab('Percentage') + xlab('') + 
-			theme(axis.ticks=element_blank()) +
-			scale_x_discrete(breaks=likert$results$Item,
+			theme(axis.ticks=element_blank())
+		if(!missing(group.order)) {
+			p <- p + scale_x_discrete(limits=rev(group.order),
+				labels=likert:::label_wrap_mod(rev(group.order), width=wrap))
+		} else {
+			p <- p + scale_x_discrete(breaks=likert$results$Item,
 				labels=likert:::label_wrap_mod(likert$results$Item, width=wrap))
+		}
 	}
-	p <- p + scale_y_continuous(label=abs_formatter, limits=c(ymin - ybuffer, ymax + ybuffer))
+	p <- p + scale_y_continuous(label=likert:::abs_formatter, 
+								limits=c(ymin - ybuffer, ymax + ybuffer))
 	p <- p + theme(legend.position=legend.position)
 	
 	class(p) <- c('likert.bar.plot', class(p))
