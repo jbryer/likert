@@ -68,8 +68,9 @@ likert <- function(items, grouping=NULL, nlevels=length(levels(items[,1]))) {
 			t <- (t / sum(t) * 100)
 			means[i] <- mean(as.numeric(items[,i]), na.rm=TRUE)
 			sds[i] <- sd(as.numeric(items[,i]), na.rm=TRUE)
-			results <- merge(results, as.data.frame(t),
-							 by.x='Response', by.y='Var1', all.x=TRUE)
+			results <- cbind(results, as.data.frame(t)[,2])
+			#results <- merge(results, as.data.frame(t),
+			#				 by.x='Response', by.y='Var1', all.x=TRUE)
 			names(results)[ncol(results)] <- names(items)[i]
 		}
 		results <- as.data.frame(t(results))
