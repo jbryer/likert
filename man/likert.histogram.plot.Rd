@@ -7,7 +7,8 @@
     label.completed = "Completed",
     label.missing = "Missing", legend.position = "bottom",
     wrap = ifelse(is.null(l$grouping), 50, 100), order,
-    group.order, ...)
+    group.order, panel.arrange = "v",
+    panel.strip.color = "#F0F0F0", ...)
 }
 \arguments{
   \item{l}{results of \code{\link{likert}}.}
@@ -41,6 +42,14 @@
   \item{group.order}{the order in which groups (for grouped
   items) or items (for non-grouped items) should be
   plotted.}
+
+  \item{panel.arrange}{how panels for grouped likert items
+  should be arrange.  Possible values are \code{v}
+  (vertical, the default), \code{h} (horizontal), and
+  \code{NULL} (auto fill horizontal and vertical)}
+
+  \item{panel.strip.color}{the background color for panel
+  labels.}
 }
 \description{
   Plots a histogram of the number of responses for each
