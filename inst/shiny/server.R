@@ -1,7 +1,7 @@
 require(shiny)
 #library(pisa)
 require(devtools)
-#install_github('likert','jbryer')
+#install_github('likert','kspeer')
 require(likert)
 data(pisaitems)
 
@@ -52,12 +52,45 @@ shinyServer(function(input, output) {
     print(dataset)
   })
  
-  output$table<-renderTable({
-    dataset<-datasetInput()
-    xtab<-xtable(dataset)
-    print(xtab, include.rownames=FALSE)
-  })
+#   output$table<-renderTable({
+#     dataset<-datasetInput()
+#     xtab<-xtable(dataset)
+#     print(xtab, include.rownames=FALSE)
+#   })
   
+#   output$table<-renderTable({
+#     datasetInput()
+#   }, 
+#                             caption=input$caption,
+#                             include.rownames=FALSE,
+#                             include.n=input$include.n, 
+#                             include.mean=input$include.mean,
+#                             include.sd=input$include.sd,
+#                             include.low=input$include.low,
+#                             include.neutral=input$include.neutral,
+#                             include.high=input$include.high,
+#                             include.missing=input$include.missing
+#                             #include.levels=input$include.levels
+#                             )
+  
+  output$table<-renderTable({
+    dataset <- datasetInput()
+    xtab<-xtable(dataset,
+                  caption=input$caption,
+                  include.n=input$include.n, 
+                  include.mean=input$include.mean,
+                  include.sd=input$include.sd,
+                  include.low=input$include.low,
+                  include.neutral=input$include.neutral,
+                  include.high=input$include.high,
+                  include.missing=input$include.missing, 
+                  center=input$center,
+                  ordered=input$ordered
+                  #include.levels=input$include.levels
+                  )
+    xtab
+  })
+     #add ,caption.placement='top',include.rownames=FALSE
   output$plot <- renderPlot({
     dataset <- datasetInput()
     p<-plot(dataset, 
@@ -65,7 +98,7 @@ shinyServer(function(input, output) {
             centered=input$centered,
             ordered=input$ordered,
             center=input$center,
-            wrap=input$wrap,
+            wrap=input$wrap
             )
     print(p)
   })

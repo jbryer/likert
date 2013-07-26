@@ -21,11 +21,12 @@
 xtable.likert <- function(x, caption=NULL, label=NULL, align=NULL, digits=NULL,
                           display=NULL, include.n=TRUE, include.mean=TRUE, include.sd=TRUE, 
                           include.low=TRUE, include.neutral=TRUE, include.high=TRUE, 
-                          include.levels=TRUE, include.missing=TRUE, ...) {
+                          include.levels=TRUE, include.missing=TRUE, 
+                          center=(object$nlevels-1)/2 + 1, ordered=TRUE...) {
   if(!is.null(x$grouping)){
     
   }else{
-    s<-summary(x) #pass through center and ordered?
+    s<-summary(x, center=center,ordered=ordered) 
     tab<-as.data.frame(as.character(s$Item))
     names(tab)<-'Item'
     if(include.n){tab<-cbind(tab, rep(nrow(x$items),nrow(x$results)))
