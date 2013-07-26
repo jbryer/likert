@@ -98,7 +98,7 @@ likert <- function(items, grouping=NULL,
 		names(results)[1] <- 'Item'
 		row.names(results) <- 1:nrow(results) 
  		if(reverse.levels){
- 		  results <- cbind(results[,1],rev(results[,2:ncol(results)]))
+ 		  results <- cbind('Item'=results[,1],rev(results[,2:ncol(results)]))
  		}
 	}
 	

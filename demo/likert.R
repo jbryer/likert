@@ -44,6 +44,11 @@ plot(l24, type='density', facet=FALSE)
 # Heat map
 plot(l24, type='heat', wrap=30, text.size=4)
 
+# Reverse the levels
+l24.reverse <- likert(items24, reverse.levels=TRUE)
+print(l24.reverse)
+plot(l24.reverse)
+
 ##### Group by Country
 l24g <- likert(items24, grouping=pisaitems$CNT)
 print(l24g)
@@ -68,6 +73,11 @@ plot(l24g, type='density')
 
 # Reordering the groups
 plot(l24g, group.order=c('Canada', 'Mexico', 'United States'))
+
+# Reverse the levels
+l24g.reverse <- likert(items24, grouping=pisaitems$CNT, reverse.levels=TRUE)
+print(l24g.reverse)
+plot(l24g.reverse)
 
 ##### Item 29: How often do you read these materials because you want to?
 title <- "How often do you read these materials because you want to?"

@@ -5,6 +5,7 @@
   \method{plot}{likert} (x,
     type = c("bar", "heat", "density"),
     include.histogram = FALSE, panel.widths = c(3, 1),
+    panel.arrange = "v", panel.strip.color = "#F0F0F0",
     legend.position = "bottom",
     panel.background = element_rect(size = 1, color = "grey70", fill = NA),
     ...)
@@ -32,6 +33,14 @@
   \item{legend.position}{the position for the legend
   ("left", "right", "bottom", "top", or two-element numeric
   vector).}
+
+  \item{panel.arrange}{how panels for grouped likert items
+  should be arrange.  Possible values are \code{v}
+  (vertical, the default), \code{h} (horizontal), and
+  \code{NULL} (auto fill horizontal and vertical)}
+
+  \item{panel.strip.color}{the background color for panel
+  labels.}
 }
 \description{
   This is an implementation of the S3 plot generic
