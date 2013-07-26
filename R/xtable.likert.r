@@ -22,7 +22,7 @@ xtable.likert <- function(x, caption=NULL, label=NULL, align=NULL, digits=NULL,
                           display=NULL, include.n=TRUE, include.mean=TRUE, include.sd=TRUE, 
                           include.low=TRUE, include.neutral=TRUE, include.high=TRUE, 
                           include.levels=TRUE, include.missing=TRUE, 
-                          center=(object$nlevels-1)/2 + 1, ordered=TRUE...) {
+                          center=(object$nlevels-1)/2 + 1, ordered=TRUE,...) {
   if(!is.null(x$grouping)){
     
   }else{
