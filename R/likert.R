@@ -73,9 +73,9 @@ likert <- function(items, grouping=NULL,
 		results <- cast(results, Group + variable ~ Response)
 		results <- as.data.frame(results)
 		names(results)[2] <- 'Item'
-# 		if(reverse.levels){
-# 	      results=cbind(results[1:2],rev(results[3:ncol(results)]))
-# 	    }else{}
+ 		if(reverse.levels){
+ 	      results <- cbind(results[,1:2],rev(results[,3:ncol(results)]))
+ 	    }
 	} else {
 		results <- data.frame(Response=1:nlevels)
 		means <- numeric()
@@ -97,9 +97,9 @@ likert <- function(items, grouping=NULL,
 		results <- cbind(row.names(results), results)
 		names(results)[1] <- 'Item'
 		row.names(results) <- 1:nrow(results) 
-# 		if(reverse.levels){
-# 		  results=cbind(results[1],rev(results[2:ncol(results)]))
-# 		}else{}
+ 		if(reverse.levels){
+ 		  results <- cbind(results[,1],rev(results[,2:ncol(results)]))
+ 		}
 	}
 	
 	r <- list(results=results, items=items, grouping=grouping, nlevels=nlevels,
