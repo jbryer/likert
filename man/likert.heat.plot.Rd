@@ -4,7 +4,7 @@
 \usage{
   likert.heat.plot(likert, low.color = "white",
     high.color = "blue", text.color = "black",
-    text.size = 2, wrap = 50, ...)
+    text.size = 4, wrap = 50, ...)
 }
 \arguments{
   \item{likert}{object of type likert.}

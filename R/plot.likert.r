@@ -12,25 +12,82 @@
 #' @param ... other parameters passed passed to \code{\link{likert.bar.plot}} or 
 #'        \code{\link{likert.heat.plot}}.
 #' @param panel.background define background of the plot. See \code{\link{theme}}.
+#' @param include.histogram if TRUE, a histogram of count of responses is also plotted.
+#' @param panel.widths if \code{include.histogram=TRUE}, this vector of length two
+#'        specifies the ratio of the left and right panels.
+#' @param legend.position the position for the legend ("left", "right", "bottom",
+#'        "top", or two-element numeric vector).
+#' @param panel.arrange how panels for grouped likert items should be arrange.
+#'        Possible values are \code{v} (vertical, the default), \code{h}
+#'        (horizontal), and \code{NULL} (auto fill horizontal and vertical)
+#' @param panel.strip.color the background color for panel labels.
 #' @export
-#' @seealso likert.bar.plot
-#' @seealso likert.heat.plot
-#' @seealso likert.density.plot
+#' @seealso \link{likert.bar.plot}
+#' @seealso \link{likert.heat.plot}
+#' @seealso \link{likert.density.plot}
+#' @seealso \link{likert.histogram.plot}
 #' @method plot likert
 #' @S3method plot likert
 plot.likert <- function(x, type=c('bar','heat','density'),
+						include.histogram=FALSE,
+						panel.widths=c(3,1),
+						panel.arrange='v',
+						panel.strip.color='#F0F0F0',
+						legend.position='bottom',
 						panel.background=element_rect(size=1, color='grey70', fill=NA),
 						...) {
 	if(type[1] == 'bar') {
-		likert.bar.plot(x, ...) + 
-			theme(panel.background=element_rect(size=1, color='grey70', fill=NA))
+		p <- likert.bar.plot(x, 
+							 legend.position=legend.position, 
+							 panel.arrange=panel.arrange,
+							 panel.strip.color=panel.strip.color,
+							 ...)
 	} else if(type[1] == 'heat') {
-		likert.heat.plot(x, ...) +
-			theme(panel.background=element_rect(size=1, color='grey70', fill=NA))
+		p <- likert.heat.plot(x, legend.position=legend.position, ...)
 	} else if(type[1] == 'density') {
-		likert.density.plot(x, ...) +
-			theme(panel.background=element_rect(size=1, color='grey70', fill=NA))
+		p <- likert.density.plot(x, panel.arrange=panel.arrange,
+								 panel.strip.color=panel.strip.color,
+								 legend.position=legend.position,
+								 ...)
 	} else {
 		stop('Invalid plot type specified.')
+	}
+	p <- p + theme(panel.background=panel.background)
+
+	if(include.histogram) {
+		require(gridExtra)
+		item.order <- attr(p, 'item.order')
+		phist <- likert.histogram.plot(x, 
+									   legend.position=legend.position, 
+									   order=item.order,
+									   panel.arrange=panel.arrange,
+									   panel.strip.color=panel.strip.color,
+									   ...)
+ 		phist <- phist + theme(panel.background=panel.background)
+		if(panel.arrange == 'v') {
+			phist <- phist + theme(axis.text.y=element_blank())
+			grid_layout <- grid.layout(nrow=1, ncol=2, widths=panel.widths)
+			grid.newpage()
+			pushViewport( viewport( layout=grid_layout ) )
+			suppressWarnings({ #HACK to remove "Stacking not well defined when ymin != 0"
+				align.plots(grid_layout, 
+							list(p, 1, 1), 
+							list(phist, 1, 2))
+			})			
+		} else if(panel.arrange == 'h') {
+			grid_layout <- grid.layout(nrow=2, ncol=1, heights=panel.widths)
+			grid.newpage()
+			pushViewport( viewport( layout=grid_layout ) )
+			suppressWarnings({ #HACK to remove "Stacking not well defined when ymin != 0"
+				align.plots(grid_layout, 
+							list(p, 1, 1), 
+							list(phist, 2, 1))
+			})			
+		} else {
+			stop(paste0('panel.arrange of ', panel.arrange, ' not defined with ',
+						'include.histogram=TRUE'))
+		}
+	} else {
+		return(p)
 	}
 }

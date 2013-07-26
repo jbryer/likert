@@ -3,7 +3,8 @@
 \title{Analyze Likert type items.}
 \usage{
   likert(items, grouping = NULL,
-    nlevels = length(levels(items[, 1])))
+    nlevels = length(levels(items[, 1])),
+    reverse.levels = FALSE)
 }
 \arguments{
   \item{items}{data frame containing the likert based
@@ -15,6 +16,8 @@
 
   \item{nlevels}{number of possible levels. Only necessary
   if there are missing levels.}
+
+  \item{reverse.levels}{reverses order of levels}
 }
 \value{
   a likert class with the following elements: results,

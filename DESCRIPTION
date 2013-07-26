@@ -19,7 +19,8 @@ Depends:
     reshape
 Suggests:
     devtools,
-    shiny
+    shiny,
+    gridExtra
 Collate:
     'likert-package.R'
     'likert.R'
@@ -35,3 +36,5 @@ Collate:
     'plot.likert.density.R'
     'abs_formatter.R'
     'shinyLikert.R'
+    'align.R'
+    'plot.histogram.R'

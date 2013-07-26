@@ -4,6 +4,8 @@
 \usage{
   \method{plot}{likert} (x,
     type = c("bar", "heat", "density"),
+    include.histogram = FALSE, panel.widths = c(3, 1),
+    legend.position = "bottom",
     panel.background = element_rect(size = 1, color = "grey70", fill = NA),
     ...)
 }
@@ -19,6 +21,17 @@
 
   \item{panel.background}{define background of the plot.
   See \code{\link{theme}}.}
+
+  \item{include.histogram}{if TRUE, a histogram of count of
+  responses is also plotted.}
+
+  \item{panel.widths}{if \code{include.histogram=TRUE},
+  this vector of length two specifies the ratio of the left
+  and right panels.}
+
+  \item{legend.position}{the position for the legend
+  ("left", "right", "bottom", "top", or two-element numeric
+  vector).}
 }
 \description{
   This is an implementation of the S3 plot generic
@@ -32,10 +45,12 @@
   generic \code{plot} function.
 }
 \seealso{
-  likert.bar.plot
+  \link{likert.bar.plot}
 
-  likert.heat.plot
+  \link{likert.heat.plot}
 
-  likert.density.plot
+  \link{likert.density.plot}
+
+  \link{likert.histogram.plot}
 }
 

@@ -5,6 +5,9 @@ likert 1.1
 * Added several parameters related to centering bar plots. Can now include the
   center level and split across zero, or specify which level, or between which
   levels, centering occurs.
+* New Shiny app to demonstrate many of the features in the likert package. The
+  shinyLikert() function will start the app.
+* Plot a histogram of responses (n) alongside the barplot.
 * Summary function now includes neutral column. Values will be NA if no level
   is the center.
 * If there is a neutral category in the bar plot it will be labeled with its
@@ -22,4 +25,4 @@ likert 1.1
 * Added parameters to turn off percent labels for low, high, and netural separately.
 * Added a check to ensure all factors have the same number of levels.
 * Items (i.e columns) that are not a factor will be converted to a factor using as.factor.
-* Several bug fixes.
+* Other bug fixes.

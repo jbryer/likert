@@ -97,6 +97,9 @@ likert.bar.plot <- function(likert,
 		
 		results <- melt(likert$results, id=c('Group', 'Item'))
 		results$variable <- factor(results$variable, ordered=TRUE)
+		results$Item <- factor(results$Item,
+							   levels=likert:::label_wrap_mod(names(likert$items), width=wrap),
+							   ordered=TRUE)
 		ymin <- 0
 
 		if(centered) {
@@ -176,6 +179,10 @@ likert.bar.plot <- function(likert,
 		if(ordered) {
 			order <- lsum[order(lsum$high),'Item']
 			results$Item <- factor(results$Item, levels=order)
+		} else {
+			results$Item <- factor(results$Item,
+								   levels=likert:::label_wrap_mod(names(l$items), width=wrap),
+								   ordered=TRUE)
 		}
 		ymin <- 0
 		if(centered) {
@@ -250,6 +257,7 @@ likert.bar.plot <- function(likert,
 								limits=c(ymin - ybuffer, ymax + ybuffer))
 	p <- p + theme(legend.position=legend.position)
 	
+	attr(p, 'item.order') <- levels(results$Item)
 	class(p) <- c('likert.bar.plot', class(p))
 	return(p)
 }

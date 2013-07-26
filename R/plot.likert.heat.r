@@ -14,7 +14,7 @@ likert.heat.plot <- function(likert,
 							 low.color='white',
 							 high.color='blue', 
 							 text.color='black',
-							 text.size=2,
+							 text.size=4,
 							 wrap=50,
 							 ...) {
 	if(!is.null(likert$grouping)) {

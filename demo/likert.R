@@ -35,6 +35,7 @@ plot(l24, center=1.5, wrap=30)
 plot(l24, center=2, wrap=30)
 plot(l24, center=2, include.center=FALSE, wrap=30)
 plot(l24, center=2, include.center=FALSE, wrap=20)
+plot(l24, include.histogram=TRUE)
 
 # Density plot
 plot(l24, type='density')
@@ -53,9 +54,10 @@ summary(l24g, center=2)
 # Plots
 plot(l24g)
 plot(l24g, centered=FALSE)
-plot(l24g, centered=TRUE, center=1.5)
-plot(l24g, centered=TRUE, center=2)
-plot(l24g, centered=TRUE, center=2, include.center=FALSE)
+plot(l24g, center=1.5)
+plot(l24g, center=2)
+plot(l24g, center=2, include.center=FALSE)
+plot(l24g, include.histogram=TRUE)
 
 # Alternate panel arrangements.
 plot(l24g, panel.arrange='h', wrap=20)
