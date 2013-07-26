@@ -1,6 +1,7 @@
 require(shiny)
 #library(pisa)
 require(devtools)
+#install_github('likert','jbryer')
 require(likert)
 data(pisaitems)
 
@@ -34,22 +35,30 @@ shinyServer(function(input, output) {
   datasetInput <- reactive({
     switch(input$dataset,
             "l24" = l24,
-            "l29" = l29
-            )
+            "l29" = l29)
   })
   
     
   # Generate a summary of the dataset
   output$summary <- renderPrint({
     dataset <- datasetInput()
-    summary(dataset)#TODO change with plot changes
+    summary(dataset, 
+            center=input$center,
+            ordered=input$ordered)
   })
   
-   
-  # Generate a plot of the requested variable against mpg and only 
-  # include outliers if requested
-
-  output$demoPlot <- renderPlot({
+  output$print<-renderTable({
+    dataset<-datasetInput()
+    print(dataset)
+  })
+ 
+  output$table<-renderTable({
+    dataset<-datasetInput()
+    xtab<-xtable(dataset)
+    print(xtab, include.rownames=FALSE)
+  })
+  
+  output$plot <- renderPlot({
     dataset <- datasetInput()
     p<-plot(dataset, 
             include.center=input$include.center, 

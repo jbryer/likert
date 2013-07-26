@@ -17,9 +17,15 @@ shinyUI(pageWithSidebar(
     numericInput("wrap", "Length of wrapped text", 30)
   ),
   
-  
+
+  # Show a tabset that includes a plot, summary, and table view
+  # of the generated distribution
   mainPanel(
-    verbatimTextOutput("summary"),
-    plotOutput("demoPlot")
+    tabsetPanel(
+      tabPanel("Plot", plotOutput("plot")), 
+      tabPanel("Summary", verbatimTextOutput("summary")),
+      tabPanel("Print", tableOutput('print')),
+      tabPanel("Table", tableOutput('table'))
+      )
   )
 ))
