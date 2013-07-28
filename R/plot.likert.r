@@ -55,37 +55,42 @@ plot.likert <- function(x, type=c('bar','heat','density'),
 	p <- p + theme(panel.background=panel.background)
 
 	if(include.histogram) {
-		require(gridExtra)
-		item.order <- attr(p, 'item.order')
-		phist <- likert.histogram.plot(x, 
-									   legend.position=legend.position, 
-									   order=item.order,
-									   panel.arrange=panel.arrange,
-									   panel.strip.color=panel.strip.color,
-									   ...)
- 		phist <- phist + theme(panel.background=panel.background)
-		if(panel.arrange == 'v') {
-			phist <- phist + theme(axis.text.y=element_blank())
-			grid_layout <- grid.layout(nrow=1, ncol=2, widths=panel.widths)
-			grid.newpage()
-			pushViewport( viewport( layout=grid_layout ) )
-			suppressWarnings({ #HACK to remove "Stacking not well defined when ymin != 0"
-				align.plots(grid_layout, 
-							list(p, 1, 1), 
-							list(phist, 1, 2))
-			})			
-		} else if(panel.arrange == 'h') {
-			grid_layout <- grid.layout(nrow=2, ncol=1, heights=panel.widths)
-			grid.newpage()
-			pushViewport( viewport( layout=grid_layout ) )
-			suppressWarnings({ #HACK to remove "Stacking not well defined when ymin != 0"
-				align.plots(grid_layout, 
-							list(p, 1, 1), 
-							list(phist, 2, 1))
-			})			
+		if(type[1] == 'bar') {
+			require(gridExtra)
+			item.order <- attr(p, 'item.order')
+			phist <- likert.histogram.plot(x, 
+										   legend.position=legend.position, 
+										   order=item.order,
+										   panel.arrange=panel.arrange,
+										   panel.strip.color=panel.strip.color,
+										   ...)
+	 		phist <- phist + theme(panel.background=panel.background)
+			if(panel.arrange == 'v') {
+				phist <- phist + theme(axis.text.y=element_blank())
+				grid_layout <- grid.layout(nrow=1, ncol=2, widths=panel.widths)
+				grid.newpage()
+				pushViewport( viewport( layout=grid_layout ) )
+				suppressWarnings({ #HACK to remove "Stacking not well defined when ymin != 0"
+					align.plots(grid_layout, 
+								list(p, 1, 1), 
+								list(phist, 1, 2))
+				})			
+			} else if(panel.arrange == 'h') {
+				grid_layout <- grid.layout(nrow=2, ncol=1, heights=panel.widths)
+				grid.newpage()
+				pushViewport( viewport( layout=grid_layout ) )
+				suppressWarnings({ #HACK to remove "Stacking not well defined when ymin != 0"
+					align.plots(grid_layout, 
+								list(p, 1, 1), 
+								list(phist, 2, 1))
+				})			
+			} else {
+				stop(paste0('panel.arrange of ', panel.arrange, ' not defined with ',
+							'include.histogram=TRUE'))
+			}
 		} else {
-			stop(paste0('panel.arrange of ', panel.arrange, ' not defined with ',
-						'include.histogram=TRUE'))
+			warning('Plotting histogram is only supported with type="bar" plots.')
+			return(p)
 		}
 	} else {
 		return(p)

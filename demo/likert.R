@@ -35,6 +35,8 @@ plot(l24, center=1.5, wrap=30)
 plot(l24, center=2, wrap=30)
 plot(l24, center=2, include.center=FALSE, wrap=30)
 plot(l24, center=2, include.center=FALSE, wrap=20)
+
+#Include histogram with response counts
 plot(l24, include.histogram=TRUE)
 
 # Density plot
@@ -62,11 +64,14 @@ plot(l24g, centered=FALSE)
 plot(l24g, center=1.5)
 plot(l24g, center=2)
 plot(l24g, center=2, include.center=FALSE)
+
+#Include histogram with response counts
 plot(l24g, include.histogram=TRUE)
+plot(l24g, include.histogram=TRUE, group.order=c('Mexico', 'Canada', 'United States'))
 
 # Alternate panel arrangements.
 plot(l24g, panel.arrange='h', wrap=20)
-plot(l24g, panel.arrange=NULL)
+plot(l24g, panel.arrange=NULL, wrap=40)
 
 # Density plots
 plot(l24g, type='density')
