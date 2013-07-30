@@ -27,4 +27,6 @@ likert 1.1
 * Items (i.e columns) that are not a factor will be converted to a factor using as.factor.
 * Added reverse.levels function to reverse code factors. Useful when you wish to plot
   bars in reverse order (left-to-right).
+* Two new demos, RecodeFactors and UnusedLevels show how to deal with common data
+  issues before using the likert function.
 * Other bug fixes.
