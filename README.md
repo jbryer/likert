@@ -5,9 +5,10 @@ Kim Speerschneider [kimkspeer@gmail.com](mailto:kimkspeer@gmail.com)
 
 `likert` is an R package designed to help analyzing and visualizing Likert type items. More information can be optained at http://jason.bryer.org/likert. Also, the [included demo](https://github.com/jbryer/likert/blob/master/demo/likert.R) demonstrates many of the features.
 
-Download the 2013 useR! Conference [abstract](http://github.com/jbryer/likert/useR 2013/Abstrac) and [slides](http://github.com/jbryer/likert/useR 2013/Slides).
+Download the 2013 useR! Conference [abstract](http://github.com/jbryer/likert/useR 2013/Abstract) and [slides](http://github.com/jbryer/likert/useR 2013/Slides).
 
-![Reading Attitude](http://jason.bryer.org/images/likert/centeredPlot2.png)
+![Reading Attitude](http://jason.bryer.org/images/likert/centeredPlot1.png)
+![Reading Attitude with Histogram](http://jason.bryer.org/images/likert/centeredPlot2.png)
 
 The latest development version can be downloaded using the `devtools` package.
 
