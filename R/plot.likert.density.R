@@ -26,7 +26,9 @@ likert.density.plot <- function(likert,
 	
 	if(is.null(likert$grouping)) { #No Grouping
 		for(l in seq_along(items)) {
-			den <- density(as.integer(items[,l]), bw=bw, na.rm=TRUE, ...)
+			suppressWarnings({
+				den <- density(as.integer(items[,l]), bw=bw, na.rm=TRUE, ...)
+			})
 			items.density <- rbind(items.density, 
 								   data.frame(Item=names(items)[l], x=den$x, y=den$y))
 		}
