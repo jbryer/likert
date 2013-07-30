@@ -19,7 +19,6 @@
 #' @param grouping (optional) should the results be summarized by the given
 #'        grouping variable.
 #' @param nlevels number of possible levels. Only necessary if there are missing levels.
-#' @param reverse.levels reverses order of levels
 #' @return a likert class with the following elements: results, items, grouping,
 #'        nlevels, and summary.
 #' @seealso plot.likert
@@ -32,9 +31,9 @@
 #' l29 <- likert(items29)
 #' summary(l29)
 #' plot(l29)
-likert <- function(items, grouping=NULL, 
-				   nlevels=length(levels(items[,1])), 
-				   reverse.levels=FALSE) {
+likert <- function(items, 
+				   grouping=NULL, 
+				   nlevels=length(levels(items[,1]))) {
 	if(!all(sapply(items, class) == 'factor')) {
 		warning('items parameter contains non-factors. Will convert to factors')
 		for(i in 1:ncol(items)) {
@@ -73,9 +72,6 @@ likert <- function(items, grouping=NULL,
 		results <- cast(results, Group + variable ~ Response)
 		results <- as.data.frame(results)
 		names(results)[2] <- 'Item'
- 		if(reverse.levels){
- 	      results <- cbind(results[,1:2],rev(results[,3:ncol(results)]))
- 	    }
 	} else {
 		results <- data.frame(Response=1:nlevels)
 		means <- numeric()
@@ -97,9 +93,6 @@ likert <- function(items, grouping=NULL,
 		results <- cbind(row.names(results), results)
 		names(results)[1] <- 'Item'
 		row.names(results) <- 1:nrow(results) 
- 		if(reverse.levels){
- 		  results <- cbind('Item'=results[,1],rev(results[,2:ncol(results)]))
- 		}
 	}
 	
 	r <- list(results=results, items=items, grouping=grouping, nlevels=nlevels,
