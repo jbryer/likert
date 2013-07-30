@@ -38,3 +38,4 @@ Collate:
     'shinyLikert.R'
     'align.R'
     'plot.histogram.R'
+    'reverse.levels.R'

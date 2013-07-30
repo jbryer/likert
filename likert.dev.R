@@ -39,5 +39,3 @@ pisaitems$CNT <- as.factor(as.character(pisaitems$CNT))
 names(pisaitems); nrow(pisaitems); ncol(pisaitems)
 save(pisaitems, file='likert/data/pisaitems.rda')
 tools::resaveRdaFiles('likert/data/pisaitems.rda')
-
-

@@ -15,7 +15,7 @@
 #' recode(test, from=letters[1:5], to=paste('Letter', letters[1:5]))
 recode <- function(x, from, to, to.class=NULL) {
 	if(is.null(to.class)) {
-		if(is.character(x)) {
+		if(is.character(to)) {
 			to.class <- as.character
 		} else { 
 			to.class <- as.integer

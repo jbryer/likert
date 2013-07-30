@@ -25,4 +25,6 @@ likert 1.1
 * Added parameters to turn off percent labels for low, high, and netural separately.
 * Added a check to ensure all factors have the same number of levels.
 * Items (i.e columns) that are not a factor will be converted to a factor using as.factor.
+* Added reverse.levels function to reverse code factors. Useful when you wish to plot
+  bars in reverse order (left-to-right).
 * Other bug fixes.

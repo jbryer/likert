@@ -34,7 +34,7 @@
 likert <- function(items, 
 				   grouping=NULL, 
 				   nlevels=length(levels(items[,1]))) {
-	if(!all(sapply(items, class) == 'factor')) {
+	if(!all(sapply(items, function(x) 'factor' %in% class(x)))) {
 		warning('items parameter contains non-factors. Will convert to factors')
 		for(i in 1:ncol(items)) {
 			items[,i] <- as.factor(items[,i])

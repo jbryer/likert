@@ -1,1 +1,3 @@
 likert 	This demo creates likert plots for the PISA data.
+UnusedLevels 	This demo shows how to address the "All items (columns) must have the same number of levels" error that occurs when the items passed to likert do not have the same number of levels.
+RecodeFactors 	This demo shows how to recode likert items. This is useful if you wish to reverse the order from left-to-right how the likert responses are plotted or change the labels of responses (e.g. from numeric values to character values).
