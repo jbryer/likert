@@ -1,8 +1,10 @@
 require(shiny)
 #library(pisa)
 require(devtools)
+#install_github('likert','kspeer')
 require(likert)
 data(pisaitems)
+source('C:/Users/User/Dropbox/Github/likert/R/xtable.likert.R')#rm this when github syncs
 
 items24 <- pisaitems[,substr(names(pisaitems), 1,5) == 'ST24Q']
 
@@ -34,29 +36,70 @@ shinyServer(function(input, output) {
   datasetInput <- reactive({
     switch(input$dataset,
             "l24" = l24,
-            "l29" = l29
-            )
+            "l29" = l29)
   })
   
     
   # Generate a summary of the dataset
   output$summary <- renderPrint({
     dataset <- datasetInput()
-    summary(dataset)#TODO change with plot changes
+    summary(dataset, 
+            center=input$center,
+            ordered=input$ordered)
   })
   
-   
-  # Generate a plot of the requested variable against mpg and only 
-  # include outliers if requested
-
-  output$demoPlot <- renderPlot({
+  output$print<-renderTable({
+    dataset<-datasetInput()
+    print(dataset)
+  })
+ 
+#   output$table<-renderTable({
+#     dataset<-datasetInput()
+#     xtab<-xtable(dataset)
+#     print(xtab, include.rownames=FALSE)
+#   })
+  
+#   output$table<-renderTable({
+#     datasetInput()
+#   }, 
+#                             caption=input$caption,
+#                             include.rownames=FALSE,
+#                             include.n=input$include.n, 
+#                             include.mean=input$include.mean,
+#                             include.sd=input$include.sd,
+#                             include.low=input$include.low,
+#                             include.neutral=input$include.neutral,
+#                             include.high=input$include.high,
+#                             include.missing=input$include.missing
+#                             #include.levels=input$include.levels
+#                             )
+  
+  output$table<-renderTable({
+    dataset <- datasetInput()
+    xtab<-xtable(dataset,
+                  caption=input$caption,
+                  include.n=input$include.n, 
+                  include.mean=input$include.mean,
+                  include.sd=input$include.sd,
+                  include.low=input$include.low,
+                  include.neutral=input$include.neutral,
+                  include.high=input$include.high,
+                  include.missing=input$include.missing, 
+                  center=input$center,
+                  ordered=input$ordered
+                  #include.levels=input$include.levels
+                  )
+    xtab
+  })
+     #add ,caption.placement='top',include.rownames=FALSE
+  output$plot <- renderPlot({
     dataset <- datasetInput()
     p<-plot(dataset, 
             include.center=input$include.center, 
             centered=input$centered,
             ordered=input$ordered,
             center=input$center,
-            wrap=input$wrap,
+            wrap=input$wrap
             )
     print(p)
   })
