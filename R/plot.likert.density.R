@@ -47,7 +47,9 @@ likert.density.plot <- function(likert,
 		for(g in unique(groups)) {
 			items.g <- items[groups == g,]
 			for(l in seq_along(items)) {
-				den <- density(as.integer(items.g[,l]), bw=bw, na.rm=TRUE, ...)
+				suppressWarnings({
+					den <- density(as.integer(items.g[,l]), bw=bw, na.rm=TRUE, ...)
+				})
 				items.density <- rbind(items.density, 
 						data.frame(Item=names(items)[l], Group=g, x=den$x, y=den$y))
 			}
