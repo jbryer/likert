@@ -29,7 +29,7 @@ summary(l24, center=2)
 
 # Plots
 plot(l24)
-plot(l24, group.order=names(items24)) #Specify the exact order of the y-axis
+plot(l24, ordered=FALSE, group.order=names(items24)) #Specify the exact order of the y-axis
 plot(l24, centered=FALSE, wrap=30)
 plot(l24, center=1.5, wrap=30)
 plot(l24, center=2, wrap=30)
@@ -64,6 +64,7 @@ plot(l24g, centered=FALSE)
 plot(l24g, center=1.5)
 plot(l24g, center=2)
 plot(l24g, center=2, include.center=FALSE)
+plot(l24g, group.order=c('Mexico', 'Canada', 'United States'))
 
 #Include histogram with response counts
 plot(l24g, include.histogram=TRUE)

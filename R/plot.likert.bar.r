@@ -181,7 +181,7 @@ likert.bar.plot <- function(likert,
 			results$Item <- factor(results$Item, levels=order)
 		} else {
 			results$Item <- factor(results$Item,
-								   levels=likert:::label_wrap_mod(names(l$items), width=wrap),
+								   levels=likert:::label_wrap_mod(names(likert$items), width=wrap),
 								   ordered=TRUE)
 		}
 		ymin <- 0
