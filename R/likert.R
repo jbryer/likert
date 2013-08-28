@@ -72,6 +72,13 @@ likert <- function(items,
 		results <- cast(results, Group + variable ~ Response)
 		results <- as.data.frame(results)
 		names(results)[2] <- 'Item'
+		
+		for(i in 3:ncol(results)) {
+			narows <- which(is.na(results[,i]))
+			if(length(narows) > 0) {
+				results[narows, i] <- 0
+			}
+		}
 	} else {
 		results <- data.frame(Response=1:nlevels)
 		means <- numeric()
@@ -93,6 +100,13 @@ likert <- function(items,
 		results <- cbind(row.names(results), results)
 		names(results)[1] <- 'Item'
 		row.names(results) <- 1:nrow(results) 
+
+		for(i in 2:ncol(results)) {
+			narows <- which(is.na(results[,i]))
+			if(length(narows) > 0) {
+				results[narows, i] <- 0
+			}
+		}
 	}
 	
 	r <- list(results=results, items=items, grouping=grouping, nlevels=nlevels,

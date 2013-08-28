@@ -105,5 +105,19 @@ summary.likert <- function(object, center=(object$nlevels-1)/2 + 1,
 			results2 <- results2[order(results2$high, decreasing=TRUE),]
 		}
 	}
+	
+	narows <- which(is.na(results2$low))
+	if(length(narows) > 0) {
+		results2[narows,]$low <- 0
+	}
+	narows <- which(is.na(results2$neutral))
+	if(length(narows) > 0) {
+		results2[narows,]$neutral <- 0
+	}
+	narows <- which(is.na(results2$high))
+	if(length(narows) > 0) {
+		results2[narows,]$high <- 0
+	}
+	
 	return(results2)
 }
