@@ -8,6 +8,11 @@
 #'  "X10"="Do you know of online communities relevant to your discipline or the courses you are taking now?"))
 
 likert_add_fullnames <- function(to, fnames) {
+  
+  if(length(fnames) > length(unique(fnames))) {
+  	stop("All names must be unique")
+  }
+
   for(x in names(fnames)) {
     attr(to[[x]], "fullname") <- fnames[[x]]
   }
