@@ -44,7 +44,7 @@ likert <- function(items,
 		stop('All items (columns) must have the same number of levels')
 	}
 	
-	# pull in long names from attributes, if exi
+	# pull in long names from attributes, if exist
 	for (n in names(items)) {
 	  if (!is.null(attr(items[[n]], "fullname"))) {
 	    names(items)[names(items) == n] <- attr(items[[n]], "fullname") 
