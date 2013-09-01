@@ -39,3 +39,6 @@ Collate:
     'align.R'
     'plot.histogram.R'
     'reverse.levels.R'
+    'likert.add.fullnames.R'
+    'plot.likert.groups.R'
+    'likert.store.groups.R'
