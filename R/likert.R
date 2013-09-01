@@ -50,8 +50,8 @@ likert <- function(items,
 	results <- data.frame()
 	if(!is.null(grouping)) {
 		results <- data.frame(
-			Group = rep(unique(grouping), each=nlevels),
-			Response = rep(1:nlevels, length(unique(grouping)))
+			Group = rep(unique(na.omit(grouping)), each=nlevels),
+			Response = rep(1:nlevels, length(unique(na.omit((grouping)))))
 			)
 		for(i in 1:ncol(items)) {
 			t <- as.data.frame(table(grouping, as.integer(items[,i])))
