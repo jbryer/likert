@@ -6,7 +6,8 @@
     high.color = "#5AB4AC", neutral.color = "grey90",
     neutral.color.ramp = "white", plot.percent.low = TRUE,
     plot.percent.high = TRUE, plot.percent.neutral = TRUE,
-    text.size = 3, text.color = "black", centered = TRUE,
+    plot.percents = FALSE, text.size = 3,
+    text.color = "black", centered = TRUE,
     center = (likert$nlevels - 1)/2 + 1,
     include.center = TRUE, ordered = TRUE,
     wrap = ifelse(is.null(likert$grouping), 50, 100),
@@ -35,6 +36,8 @@
 
   \item{plot.percent.neutral}{whether to plot netural
   percentages.}
+
+  \item{plot.percents}{whether to label each category/bar.}
 
   \item{text.size}{size of text attributes.}
 

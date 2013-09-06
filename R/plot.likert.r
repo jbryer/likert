@@ -67,11 +67,12 @@ plot.likert <- function(x, type=c('bar','heat','density'),
 	 		phist <- phist + theme(panel.background=panel.background)
 			if(panel.arrange == 'v') {
 				phist <- phist + theme(axis.text.y=element_blank())
+				#phist <- phist + theme(strip.text=element_text(size=0))
 				grid_layout <- grid.layout(nrow=1, ncol=2, widths=panel.widths)
 				grid.newpage()
 				pushViewport( viewport( layout=grid_layout ) )
 				suppressWarnings({ #HACK to remove "Stacking not well defined when ymin != 0"
-					align.plots(grid_layout, 
+					likert:::align.plots(grid_layout, 
 								list(p, 1, 1), 
 								list(phist, 1, 2))
 				})			
@@ -80,7 +81,7 @@ plot.likert <- function(x, type=c('bar','heat','density'),
 				grid.newpage()
 				pushViewport( viewport( layout=grid_layout ) )
 				suppressWarnings({ #HACK to remove "Stacking not well defined when ymin != 0"
-					align.plots(grid_layout, 
+					likert:::align.plots(grid_layout, 
 								list(p, 1, 1), 
 								list(phist, 2, 1))
 				})			

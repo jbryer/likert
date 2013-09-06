@@ -35,6 +35,7 @@ plot(l24, center=1.5, wrap=30)
 plot(l24, center=2, wrap=30)
 plot(l24, center=2, include.center=FALSE, wrap=30)
 plot(l24, center=2, include.center=FALSE, wrap=20)
+plot(l24, plot.percents=TRUE)
 
 #Include histogram with response counts
 plot(l24, include.histogram=TRUE)

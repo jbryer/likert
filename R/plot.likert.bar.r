@@ -13,6 +13,7 @@ utils::globalVariables(c('value','Group','variable','low','Item','high','neutral
 #' @param plot.percent.low whether to plot low percentages.
 #' @param plot.percent.high whether to plot high percentages.
 #' @param plot.percent.neutral whether to plot netural percentages.
+#' @param plot.percents whether to label each category/bar.
 #' @param text.size size of text attributes.
 #' @param text.color color of text attributes.
 #' @param centered if true, the bar plot will be centered around zero such that
@@ -51,6 +52,7 @@ likert.bar.plot <- function(likert,
 							plot.percent.low=TRUE,
 							plot.percent.high=TRUE,
 							plot.percent.neutral=TRUE,
+							plot.percents=FALSE,
 							text.size=3,
 							text.color='black',
 							centered=TRUE,
@@ -146,7 +148,7 @@ likert.bar.plot <- function(likert,
 							   label=paste0(round(high), '%'), 
 							   group=Item), size=text.size, hjust=-.2)			
 		}
-		if(plot.percent.neutral & !any(is.na(lsum$neutral)) & include.center) {
+		if(plot.percent.neutral & likert$nlevels %% 2 == 1 & include.center) {
 			if(centered) {
 				p <- p + geom_text(data=lsum, y=0, aes(x=Group, group=Item,
 							  	   label=paste0(round(neutral), '%')),
@@ -157,6 +159,24 @@ likert.bar.plot <- function(likert,
 							  	   label=paste0(round(neutral), '%')),
 							       size=text.size, hjust=.5)				
 			}
+		}
+		if(FALSE & plot.percents) { #TODO: implement for grouping
+			warning('plot.percents is not currenlty supported for grouped analysis.')
+# 			lpercentpos <- ddply(results[results$value > 0,], .(Item), transform, 
+# 								 pos = cumsum(value) - 0.5*value)
+# 			p + geom_text(data=lpercentpos, aes(x=Group, y=pos, label=paste0(round(value), '%'),
+# 												group=Item),
+# 							   size=text.size)
+# 			lpercentneg <- results[results$value < 0,]
+# 			if(nrow(lpercentneg) > 0) {
+# 				lpercentneg <- lpercentneg[nrow(lpercentneg):1,]
+# 				lpercentneg$value <- abs(lpercentneg$value)
+# 				lpercentneg <- ddply(lpercentneg, .(Item), transform, 
+# 									 pos = cumsum(value) - 0.5*value)	
+# 				lpercentneg$pos <- lpercentneg$pos * -1
+# 				p <- p + geom_text(data=lpercentneg, aes(x=Item, y=pos, label=paste0(round(abs(value)), '%')),
+# 								   size=text.size)
+# 			}
 		}
 		p <- p +
 			coord_flip() +	ylab('Percentage') + xlab('') +
@@ -181,8 +201,8 @@ likert.bar.plot <- function(likert,
 			results$Item <- factor(results$Item, levels=order)
 		} else {
 			results$Item <- factor(results$Item,
-								   levels=likert:::label_wrap_mod(names(likert$items), width=wrap),
-								   ordered=TRUE)
+					levels=likert:::label_wrap_mod(names(likert$items), width=wrap),
+					ordered=TRUE)
 		}
 		ymin <- 0
 		if(centered) {
@@ -228,7 +248,7 @@ likert.bar.plot <- function(likert,
 				  			label=paste0(round(high), '%')), 
 				  			size=text.size, hjust=-.2)
 		}
-		if(plot.percent.neutral & !any(is.na(lsum$neutral)) & include.center) {
+		if(plot.percent.neutral & likert$nlevels %% 2 == 1 & include.center) {
 			if(centered) {
 				p <- p +
 					geom_text(data=lsum, y=0, 
@@ -240,6 +260,22 @@ likert.bar.plot <- function(likert,
 					geom_text(data=lsum,
 							  aes(x=Item, y=y, label=paste0(round(neutral), '%')),
 							  size=text.size, hjust=.5)				
+			}
+		}
+		if(plot.percents) {
+			lpercentpos <- ddply(results[results$value > 0,], .(Item), transform, 
+								 pos = cumsum(value) - 0.5*value)
+			p <- p + geom_text(data=lpercentpos, aes(x=Item, y=pos, label=paste0(round(value), '%')),
+						  size=text.size)
+			lpercentneg <- results[results$value < 0,]
+			if(nrow(lpercentneg) > 0) {
+				lpercentneg <- lpercentneg[nrow(lpercentneg):1,]
+				lpercentneg$value <- abs(lpercentneg$value)
+				lpercentneg <- ddply(lpercentneg, .(Item), transform, 
+									 pos = cumsum(value) - 0.5*value)	
+				lpercentneg$pos <- lpercentneg$pos * -1
+				p <- p + geom_text(data=lpercentneg, aes(x=Item, y=pos, label=paste0(round(abs(value)), '%')),
+							  size=text.size)
 			}
 		}
 		p <- p +

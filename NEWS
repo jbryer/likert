@@ -29,4 +29,5 @@ likert 1.1
   bars in reverse order (left-to-right).
 * Two new demos, RecodeFactors and UnusedLevels show how to deal with common data
   issues before using the likert function.
+* Added plot.percents parameter to label each category.
 * Other bug fixes.
