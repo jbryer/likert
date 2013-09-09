@@ -54,7 +54,7 @@ likert <- function(items,
 			Response = rep(1:nlevels, length(unique(grouping)))
 			)
 		for(i in 1:ncol(items)) {
-			t <- as.data.frame(table(grouping, as.integer(items[,i])))
+			t <- as.data.frame(table(grouping, factor(as.integer(items[,i]),levels=1:nlevels)))
 			t <- cast(t, Var2 ~ grouping, value='Freq', add.missing=TRUE)
 			t <- apply(t, 2, FUN=function(x) { x / sum(x) * 100 } )
 			t <- melt(t)
