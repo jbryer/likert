@@ -27,6 +27,9 @@ summary(l24)
 summary(l24, center=1.5)
 summary(l24, center=2)
 
+# xtable
+xtable(l24)
+
 # Plots
 plot(l24)
 plot(l24, ordered=FALSE, group.order=names(items24)) #Specify the exact order of the y-axis
@@ -35,7 +38,7 @@ plot(l24, center=1.5, wrap=30)
 plot(l24, center=2, wrap=30)
 plot(l24, center=2, include.center=FALSE, wrap=30)
 plot(l24, center=2, include.center=FALSE, wrap=20)
-plot(l24, plot.percents=TRUE)
+plot(l24, plot.percents=TRUE, plot.percent.low=FALSE, plot.percent.high=FALSE)
 
 #Include histogram with response counts
 plot(l24, include.histogram=TRUE)
@@ -52,12 +55,16 @@ l24.reverse <- likert(items24, reverse.levels=TRUE)
 print(l24.reverse)
 plot(l24.reverse)
 
+
 ##### Group by Country
 l24g <- likert(items24, grouping=pisaitems$CNT)
 print(l24g)
 summary(l24g)
 summary(l24g, center=1.5)
 summary(l24g, center=2)
+
+# xtable
+xtable(l24g)
 
 # Plots
 plot(l24g)
@@ -86,6 +93,7 @@ l24g.reverse <- likert(items24, grouping=pisaitems$CNT, reverse.levels=TRUE)
 print(l24g.reverse)
 plot(l24g.reverse)
 
+
 ##### Item 29: How often do you read these materials because you want to?
 title <- "How often do you read these materials because you want to?"
 items29 <- pisaitems[,substr(names(pisaitems), 1,5) == 'ST25Q']
@@ -95,6 +103,9 @@ names(items29) = c("Magazines", "Comic books", "Fiction", "Non-fiction books", "
 l29 <- likert(items29)
 print(l29)
 summary(l29)
+
+# xtable
+xtable(l29)
 
 # Plots
 plot(l29) + ggtitle(title)
@@ -126,3 +137,4 @@ plot(l29g, centered=TRUE, center=2.5) + ggtitle(title)
 
 # Density plots
 plot(l29g, type='density', legend='Country') + ggtitle(title)
+
