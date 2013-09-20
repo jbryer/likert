@@ -1,0 +1,23 @@
+\name{print.xlikert}
+\alias{print.xlikert}
+\title{Prints the results of \code{\link{xtable.likert}}.}
+\usage{
+  \method{print}{xlikert} (x,
+    tabular.environment = "longtable", floating = FALSE,
+    ...)
+}
+\arguments{
+  \item{x}{results of \code{\link{xtable.likert}}.}
+
+  \item{tabular.environment}{see
+  \code{\link{print.xtable}}.}
+
+  \item{floating}{see \code{\link{print.xtable}}.}
+
+  \item{...}{other parameters passed to
+  \code{\link{print.xtable}}}
+}
+\description{
+  Print method for \code{\link{xtable.likert}}.
+}
+

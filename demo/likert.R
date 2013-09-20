@@ -1,6 +1,7 @@
 options(digits=2)
 
 require(likert)
+require(reshape)
 data(pisaitems)
 
 ##### Item 24: Reading Attitudes

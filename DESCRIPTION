@@ -2,7 +2,7 @@ Package: likert
 Type: Package
 Title: Functions to analyze and visualize likert type items
 Version: 1.1
-Date: 2012-05-04
+Date: 2013-09-20
 Author: Jason Bryer <jason@bryer.org>, Kimberly Speerschneider
     <kimkspeer@gmail.com>
 Maintainer: Jason Bryer <jason@bryer.org>
@@ -12,15 +12,11 @@ Description: Functions to analyze and visualize likert type itemss
 License: GPL
 LazyLoad: yes
 Depends:
-    R (>= 3.0),
-    ggplot2,
-    xtable,
-    psych,
-    reshape
+    R (>= 3.0),ggplot2,gridExtra,xtable
+Imports:
+    reshape,psych
 Suggests:
-    devtools,
-    shiny,
-    gridExtra
+    devtools,shiny
 Collate:
     'likert-package.R'
     'likert.R'

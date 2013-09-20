@@ -56,7 +56,6 @@ plot.likert <- function(x, type=c('bar','heat','density'),
 
 	if(include.histogram) {
 		if(type[1] == 'bar') {
-			require(gridExtra)
 			item.order <- attr(p, 'item.order')
 			phist <- likert.histogram.plot(x, 
 										   legend.position=legend.position, 

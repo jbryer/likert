@@ -1,3 +1,5 @@
+utils::globalVariables(c('group'))
+
 #' Histogram of number of responses.
 #' 
 #' Plots a histogram of the number of responses for each item and group (if specified).

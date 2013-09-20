@@ -1,4 +1,5 @@
-utils::globalVariables(c('value','Group','variable','low','Item','high','neutral','x','y'))
+utils::globalVariables(c('value','Group','variable','low','Item','high',
+						 'neutral','x','y','pos','ddply','.'))
 
 #' Bar Plot for Likert Items.
 #' 

@@ -6,9 +6,10 @@
     align = NULL, digits = NULL, display = NULL,
     include.n = TRUE, include.mean = TRUE,
     include.sd = TRUE, include.low = TRUE,
-    include.neutral = TRUE, include.high = TRUE,
-    include.levels = TRUE, include.missing = TRUE,
-    center = (x$nlevels - 1)/2 + 1, ordered = TRUE, ...)
+    include.neutral = (x$nlevels\%\%2 != 0),
+    include.high = TRUE, include.levels = TRUE,
+    include.missing = TRUE, center = (x$nlevels - 1)/2 + 1,
+    ordered = TRUE, ...)
 }
 \arguments{
   \item{x}{likert class object.}
@@ -48,6 +49,9 @@
   forced choice items or those without a neutral option).
   This also influences which levels are summarized in the
   low and high groups.}
+
+  \item{ordered}{whether the results should be ordered. See
+  \code{\link{summary.likert}}}
 
   \item{...}{other parameters passed to \link{xtable}.}
 }

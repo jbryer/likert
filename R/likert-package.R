@@ -5,7 +5,7 @@
 #' @title Likert Analysis and Visualization
 #' @author \email{jason@@bryer.org}
 #' @keywords package institutional research likert
-#' @import reshape ggplot2 tools xtable
+#' @import reshape ggplot2 tools xtable gridExtra psych
 NULL
 
 #' Programme of International Student Assessment
