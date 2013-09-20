@@ -2,6 +2,7 @@ likert 1.1
 =========
 
 * New density plot type plot(l, type='density').
+* xtable function to create LaTeX and HTML tables.
 * Added several parameters related to centering bar plots. Can now include the
   center level and split across zero, or specify which level, or between which
   levels, centering occurs.
