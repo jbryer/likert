@@ -1,5 +1,7 @@
 #' Prints a LaTeX table of the likert items.
 #' 
+#' Crate a LaTeX or HTML table of the \code{\link{likert}} results.
+#' 
 #' @param x likert class object.
 #' @param caption the table caption.
 #' @param label the table label.
