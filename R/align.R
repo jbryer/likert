@@ -1,5 +1,11 @@
 utils::globalVariables(c('llply'))
 
+.zeroGrob <- grob(cl="zeroGrob", name="NULL")
+widthDetails.zeroGrob <- heightDetails <- grobWidth.zeroGrob <- grobHeigth.zeroGrob <- function(x) { unit(0, "cm") }
+drawDetails.zeroGrob <- function(x, recording) {}
+is.zero <- function(x) { is.null(x) || inherits(x, "zeroGrob") }
+zeroGrob <- function() .zeroGrob
+
 #' Adapted from ggExtra package which is no longer available. This is related to
 #' an experimental mlpsa plot that will combine the circular plot along with
 #' the two individual distributions.
@@ -64,41 +70,41 @@ align.plots <- function(gl, ...) {
 	plottitles <- lapply(dots, function(.g) {
 				if(!is.null(getGrob(.g, 'plot.title.text', grep=TRUE)))
 					editGrob(getGrob(.g, "plot.title.text", grep=TRUE), vp=NULL) 
-				else ggplot2:::.zeroGrob
+				else .zeroGrob
 				})
 	
 	xtitles <- lapply(dots, function(.g) {
 				#.g <- ggplotGrob(.g)
 				if(!is.null(getGrob(.g, "axis.title.x.text", grep=TRUE)))
 					editGrob(getGrob(.g,"axis.title.x.text",grep=TRUE), vp=NULL) 
-				else ggplot2:::.zeroGrob
+				else .zeroGrob
 				})   
 	
 	xlabels <- lapply(dots, function(.g) {
 				#.g <- ggplotGrob(.g)
 				if(!is.null(getGrob(.g, "axis.text.x.text",grep=TRUE)))
 					editGrob(getGrob(.g,"axis.text.x.text",grep=TRUE), vp=NULL) 
-				else ggplot2:::.zeroGrob
+				else .zeroGrob
 				})  
 	
 	ytitles <- lapply(dots, function(.g) {
 				#.g <- ggplotGrob(.g)
 				if(!is.null(getGrob(.g,"axis.title.y.text",grep=TRUE)))
 					editGrob(getGrob(.g,"axis.title.y.text",grep=TRUE), vp=NULL) 
-				else ggplot2:::.zeroGrob
+				else .zeroGrob
 				})
 	
 	ylabels <- lapply(dots, function(.g) {
 				#.g <- ggplotGrob(.g)
 				if(!is.null(getGrob(.g,"axis.text.y.text",grep=TRUE)))
 					editGrob(getGrob(.g,"axis.text.y.text",grep=TRUE), vp=NULL) 
-				else ggplot2:::.zeroGrob
+				else .zeroGrob
 				})
 	
 	legends <- lapply(dots, function(.g) {
 				if(!is.null(.g$children$legends))
 					editGrob(.g$children$legends, vp=NULL) 
-				else ggplot2:::.zeroGrob
+				else .zeroGrob
 				})
 	
 	widths.left <- mapply(`+`, e1=lapply(ytitles, grobWidth),

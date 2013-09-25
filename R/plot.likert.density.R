@@ -21,7 +21,7 @@ likert.density.plot <- function(likert,
 	lsum <- summary(likert)
 	items <- likert$items
 	items.density <- data.frame()
-	labels <- likert:::label_wrap_mod(
+	labels <- label_wrap_mod(
 		paste0(levels(items[,1]), ' (', 1:likert$nlevels, ')'), width=10)
 	
 	if(is.null(likert$grouping)) { #No Grouping

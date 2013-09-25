@@ -44,7 +44,7 @@ likert.heat.plot <- function(likert,
 			 axis.ticks=element_blank(),
 			 panel.background=element_blank()) +
 		scale_x_discrete(breaks=likert$results$Item,
-			labels=likert:::label_wrap_mod(likert$results$Item, width=wrap))
+			labels=label_wrap_mod(likert$results$Item, width=wrap))
 	class(p) <- c('likert.heat.plot', class(p))
 	return(p)
 }

@@ -71,7 +71,7 @@ plot.likert <- function(x, type=c('bar','heat','density'),
 				grid.newpage()
 				pushViewport( viewport( layout=grid_layout ) )
 				suppressWarnings({ #HACK to remove "Stacking not well defined when ymin != 0"
-					likert:::align.plots(grid_layout, 
+					align.plots(grid_layout, 
 								list(p, 1, 1), 
 								list(phist, 1, 2))
 				})			
@@ -80,7 +80,7 @@ plot.likert <- function(x, type=c('bar','heat','density'),
 				grid.newpage()
 				pushViewport( viewport( layout=grid_layout ) )
 				suppressWarnings({ #HACK to remove "Stacking not well defined when ymin != 0"
-					likert:::align.plots(grid_layout, 
+					align.plots(grid_layout, 
 								list(p, 1, 1), 
 								list(phist, 2, 1))
 				})			

@@ -8,11 +8,11 @@ document("likert")
 check_doc("likert")
 install("likert")
 check("likert")
-library(likert)
+require(likert)
 ls('package:likert')
 
 #Run shiny app. See also shinyLikert to run from the installed package.
-shiny::runApp('likert/inst/doc/shiny')
+shiny::runApp('likert/inst/shiny')
 
 ##### Data setup. We will use a few of the student items from North America PISA
 require(pisa)

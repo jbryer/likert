@@ -93,15 +93,15 @@ likert.bar.plot <- function(likert,
 	
 	p <- NULL
 	if(!is.null(likert$grouping)) {
-		lsum$Item <- likert:::label_wrap_mod(lsum$Item, width=wrap)
-		likert$results$Item <- likert:::label_wrap_mod(likert$results$Item, width=wrap)
-		names(likert$items) <- likert:::label_wrap_mod(names(likert$items), width=wrap)
-		lsum$Group <- likert:::label_wrap_mod(lsum$Group, width=wrap.grouping)
+		lsum$Item <- label_wrap_mod(lsum$Item, width=wrap)
+		likert$results$Item <- label_wrap_mod(likert$results$Item, width=wrap)
+		names(likert$items) <- label_wrap_mod(names(likert$items), width=wrap)
+		lsum$Group <- label_wrap_mod(lsum$Group, width=wrap.grouping)
 		
 		results <- melt(likert$results, id=c('Group', 'Item'))
 		results$variable <- factor(results$variable, ordered=TRUE)
 		results$Item <- factor(results$Item,
-							   levels=likert:::label_wrap_mod(names(likert$items), width=wrap),
+							   levels=label_wrap_mod(names(likert$items), width=wrap),
 							   ordered=TRUE)
 		ymin <- 0
 
@@ -200,10 +200,6 @@ likert.bar.plot <- function(likert,
 		if(ordered) {
 			order <- lsum[order(lsum$high),'Item']
 			results$Item <- factor(results$Item, levels=order)
-		} else {
-			results$Item <- factor(results$Item,
-					levels=likert:::label_wrap_mod(names(likert$items), width=wrap),
-					ordered=TRUE)
 		}
 		ymin <- 0
 		if(centered) {
@@ -266,8 +262,9 @@ likert.bar.plot <- function(likert,
 		if(plot.percents) {
 			lpercentpos <- ddply(results[results$value > 0,], .(Item), transform, 
 								 pos = cumsum(value) - 0.5*value)
-			p <- p + geom_text(data=lpercentpos, aes(x=Item, y=pos, label=paste0(round(value), '%')),
-						  size=text.size)
+			p <- p + geom_text(data=lpercentpos, aes(x=Item, y=pos, 
+						label=paste0(round(value), '%')),
+						size=text.size)
 			lpercentneg <- results[results$value < 0,]
 			if(nrow(lpercentneg) > 0) {
 				lpercentneg <- lpercentneg[nrow(lpercentneg):1,]
@@ -275,8 +272,9 @@ likert.bar.plot <- function(likert,
 				lpercentneg <- ddply(lpercentneg, .(Item), transform, 
 									 pos = cumsum(value) - 0.5*value)	
 				lpercentneg$pos <- lpercentneg$pos * -1
-				p <- p + geom_text(data=lpercentneg, aes(x=Item, y=pos, label=paste0(round(abs(value)), '%')),
-							  size=text.size)
+				p <- p + geom_text(data=lpercentneg, aes(x=Item, y=pos, 
+							label=paste0(round(abs(value)), '%')),
+							size=text.size)
 			}
 		}
 		p <- p +
@@ -284,13 +282,13 @@ likert.bar.plot <- function(likert,
 			theme(axis.ticks=element_blank())
 		if(!missing(group.order)) {
 			p <- p + scale_x_discrete(limits=rev(group.order),
-				labels=likert:::label_wrap_mod(rev(group.order), width=wrap))
+				labels=label_wrap_mod(rev(group.order), width=wrap))
 		} else {
 			p <- p + scale_x_discrete(breaks=likert$results$Item,
-				labels=likert:::label_wrap_mod(likert$results$Item, width=wrap))
+				labels=label_wrap_mod(likert$results$Item, width=wrap))
 		}
 	}
-	p <- p + scale_y_continuous(label=likert:::abs_formatter, 
+	p <- p + scale_y_continuous(label=abs_formatter, 
 								limits=c(ymin - ybuffer, ymax + ybuffer))
 	p <- p + theme(legend.position=legend.position)
 	

@@ -52,7 +52,8 @@ plot(l24, type='density', facet=FALSE)
 plot(l24, type='heat', wrap=30, text.size=4)
 
 # Reverse the levels
-l24.reverse <- likert(items24, reverse.levels=TRUE)
+items24.reverse <- reverse.levels(items24)
+l24.reverse <- likert(items24.reverse)
 print(l24.reverse)
 plot(l24.reverse)
 

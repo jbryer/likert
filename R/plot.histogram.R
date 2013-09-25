@@ -51,9 +51,9 @@ likert.histogram.plot <- function(l,
 	items <- l$items
 	if(is.null(l$grouping)) {
 		hist <- nacount(items)
-		hist$Item <- likert:::label_wrap_mod(hist$Item, width=wrap)
+		hist$Item <- label_wrap_mod(hist$Item, width=wrap)
 		hist$Item <- factor(hist$Item, 
-							levels=likert:::label_wrap_mod(order, width=wrap), 
+							levels=label_wrap_mod(order, width=wrap), 
 							ordered=TRUE)
 
 		p <- ggplot(hist, aes(x=Item, y=value, fill=missing))
@@ -63,7 +63,7 @@ likert.histogram.plot <- function(l,
 		p <- p +
 			geom_bar(data=hist[!hist$missing,], stat='identity') +
 			geom_hline(yintercept=0) +
-			scale_y_continuous(label=likert:::abs_formatter) +
+			scale_y_continuous(label=abs_formatter) +
 			coord_flip() + ylab(xlab) + xlab('') +
 			theme(legend.position=legend.position) +
 			scale_fill_manual('',
@@ -78,9 +78,9 @@ likert.histogram.plot <- function(l,
 			hist <- rbind(hist, h)
 		}
 		
-		hist$Item <- likert:::label_wrap_mod(hist$Item, width=wrap)
+		hist$Item <- label_wrap_mod(hist$Item, width=wrap)
 		hist$Item <- factor(hist$Item, 
-							levels=likert:::label_wrap_mod(order, width=wrap), 
+							levels=label_wrap_mod(order, width=wrap), 
 							ordered=TRUE)
 		
 		p <- ggplot(hist, aes(x=group, y=value, fill=missing))
@@ -90,7 +90,7 @@ likert.histogram.plot <- function(l,
 		p <- p +
 			geom_bar(data=hist[!hist$missing,], stat='identity') +
 			geom_hline(yintercept=0) +
-			scale_y_continuous(label=likert:::abs_formatter) +
+			scale_y_continuous(label=abs_formatter) +
 			coord_flip() + ylab(xlab) + xlab('') +
 			scale_fill_manual('',
 							  limits=c(TRUE,FALSE),
