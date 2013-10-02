@@ -44,14 +44,21 @@ likert <- function(items,
 		stop('All items (columns) must have the same number of levels')
 	}
 	
+	# pull in long names from attributes, if exist
+	for (n in names(items)) {
+	  if (!is.null(attr(items[[n]], "fullname"))) {
+	    names(items)[names(items) == n] <- attr(items[[n]], "fullname") 
+	    }  
+	}
+
 	lowrange <- 1 : ceiling(nlevels / 2 - nlevels %% 2)
 	highrange <- ceiling(nlevels / 2 + 1 ) : nlevels
 	
 	results <- data.frame()
 	if(!is.null(grouping)) {
 		results <- data.frame(
-			Group = rep(unique(grouping), each=nlevels),
-			Response = rep(1:nlevels, length(unique(grouping)))
+			Group = rep(unique(na.omit(grouping)), each=nlevels),
+			Response = rep(1:nlevels, length(unique(na.omit(grouping))))
 			)
 		for(i in 1:ncol(items)) {
 			t <- as.data.frame(table(grouping, as.integer(items[,i])))
