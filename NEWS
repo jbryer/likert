@@ -3,6 +3,8 @@ likert 1.2
 
 * Removed dependency on a non-exported function in ggplot2.
 * Can now create a likert object with a pre-summarized data frame.
+* New Shiny app to demonstrate many of the features in the likert package. The
+  shinyLikert() function will start the app.
 
 likert 1.1
 =========
@@ -14,8 +16,6 @@ Released September 25, 2013.
 * Added several parameters related to centering bar plots. Can now include the
   center level and split across zero, or specify which level, or between which
   levels, centering occurs.
-* New Shiny app to demonstrate many of the features in the likert package. The
-  shinyLikert() function will start the app.
 * Plot a histogram of responses (n) alongside the barplot.
 * Summary function now includes neutral column. Values will be NA if no level
   is the center.
