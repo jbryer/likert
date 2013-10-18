@@ -17,4 +17,8 @@ the two individual distributions.}
   that will combine the circular plot along with the two
   individual distributions.
 }
+\references{
+  http://groups.google.com/group/ggplot2/browse_thread/thread/1b859d6b4b441c90
+  http://ggextra.googlecode.com/svn/trunk/R/align.r
+}
 

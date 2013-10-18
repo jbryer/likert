@@ -95,14 +95,23 @@ likert.bar.plot <- function(likert,
 	if(!is.null(likert$grouping)) {
 		lsum$Item <- label_wrap_mod(lsum$Item, width=wrap)
 		likert$results$Item <- label_wrap_mod(likert$results$Item, width=wrap)
-		names(likert$items) <- label_wrap_mod(names(likert$items), width=wrap)
+		#names(likert$items) <- label_wrap_mod(names(likert$items), width=wrap)
 		lsum$Group <- label_wrap_mod(lsum$Group, width=wrap.grouping)
 		
-		results <- melt(likert$results, id=c('Group', 'Item'))
+		results <- likert$results
+		results <- melt(results, id=c('Group', 'Item'))
 		results$variable <- factor(results$variable, ordered=TRUE)
-		results$Item <- factor(results$Item,
-							   levels=label_wrap_mod(names(likert$items), width=wrap),
-							   ordered=TRUE)
+		if(TRUE | is.null(likert$items)) {
+			results$Item <- factor(as.character(results$Item),
+								   levels=unique(results$Item),
+								   labels=label_wrap_mod(
+								   	as.character(unique(results$Item)), width=wrap),
+								   ordered=TRUE)
+		} else {
+			results$Item <- factor(results$Item,
+								   levels=label_wrap_mod(names(likert$items), width=wrap),
+								   ordered=TRUE)
+		}
 		ymin <- 0
 
 		if(centered) {

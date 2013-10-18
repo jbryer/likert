@@ -1,10 +1,32 @@
 utils::globalVariables(c('llply'))
 
-.zeroGrob <- grob(cl="zeroGrob", name="NULL")
-widthDetails.zeroGrob <- heightDetails <- grobWidth.zeroGrob <- grobHeigth.zeroGrob <- function(x) { unit(0, "cm") }
-drawDetails.zeroGrob <- function(x, recording) {}
-is.zero <- function(x) { is.null(x) || inherits(x, "zeroGrob") }
+##### START zeroGrob FROM ggplot2 ##############################################
+# Copied from ggplot2. This is a non-exported function. To avoid R CMD CHECK
+# note for use ::: the functions were copied here.
+
+#' The zero grob draws nothing and has zero size.
+#' 
+#' @S3method widthDetails zeroGrob
+#' @S3method heightDetails zeroGrob
+#' @S3method grobWidth zeroGrob
+#' @S3method grobHeight zeroGrob
+#' @S3method drawDetails zeroGrob
+#' @keywords internal
+#' @author hadley
+#' @references https://github.com/hadley/ggplot2/blob/master/R/grob-null.r
 zeroGrob <- function() .zeroGrob
+
+.zeroGrob <- grob(cl = "zeroGrob", name = "NULL")
+widthDetails.zeroGrob <-
+	heightDetails.zeroGrob <- 
+	grobWidth.zeroGrob <- 
+	grobHeight.zeroGrob <- function(x) unit(0, "cm")
+
+drawDetails.zeroGrob <- function(x, recording) {}
+
+is.zero <- function(x) is.null(x) || inherits(x, "zeroGrob")
+
+##### END zeroGrob FROM ggplot2 ################################################
 
 #' Adapted from ggExtra package which is no longer available. This is related to
 #' an experimental mlpsa plot that will combine the circular plot along with
@@ -12,6 +34,8 @@ zeroGrob <- function() .zeroGrob
 #' 
 #' @param gl grid.layout
 #' @param ... graphic elements to combine.
+#' @references 	http://groups.google.com/group/ggplot2/browse_thread/thread/1b859d6b4b441c90
+#'              http://ggextra.googlecode.com/svn/trunk/R/align.r
 align.plots <- function(gl, ...) {
 	#With ggplot2 version .9.2 these functions were removed. This is a bit of
 	#a hack copying them from an older version, but seems to still work!
@@ -166,5 +190,4 @@ align.plots <- function(gl, ...) {
 		grid.draw(dots[[i]])
 		upViewport(2)
 	}
-	
 }

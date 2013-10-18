@@ -2,13 +2,17 @@
 \alias{likert}
 \title{Analyze Likert type items.}
 \usage{
-  likert(items, grouping = NULL,
+  likert(items, summary, grouping = NULL,
     nlevels = length(levels(items[, 1])))
 }
 \arguments{
   \item{items}{data frame containing the likert based
   items. The variables in the data frame should be
   factors.}
+
+  \item{summary}{a pre-summarized data frame. The first
+  column must be the items and the remaining columns are
+  the levels (e.g. strongly disagree, disagree, etc).}
 
   \item{grouping}{(optional) should the results be
   summarized by the given grouping variable.}

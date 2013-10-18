@@ -1,5 +1,13 @@
+likert 1.2
+=========
+
+* Removed dependency on a non-exported function in ggplot2.
+* Can now create a likert object with a pre-summarized data frame.
+
 likert 1.1
 =========
+
+Released September 25, 2013.
 
 * New density plot type plot(l, type='density').
 * xtable function to create LaTeX and HTML tables.

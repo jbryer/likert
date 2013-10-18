@@ -1,0 +1,18 @@
+\docType{data}
+\name{MathAnxiety}
+\alias{MathAnxiety}
+\title{Pre-summarized results from an administration of the Math Anxiety Scale Survey.}
+\format{data frame with 14 rows and 6 columns.}
+\description{
+  A data frame of presummarized results of the Math Anxiety
+  Scale Survey administered to 20 students in a statistics
+  course.
+}
+\references{
+  Bai, H., Wang, L., Pan, W., & Frey, M. (2009). Measuring
+  mathematics anxiety: Psychometric analysis of a
+  bidimensional affective scale. Journal of Instructional
+  Psychology, 36 (3), 185- 193.
+}
+\keyword{datasets}
+
