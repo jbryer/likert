@@ -140,3 +140,10 @@ plot(l29g, centered=TRUE, center=2.5) + ggtitle(title)
 # Density plots
 plot(l29g, type='density', legend='Country') + ggtitle(title)
 
+
+## With only one varaible
+lone <- likert(items24[,1, drop=FALSE])
+plot(lone)
+
+loneg <- likert(items24[,1, drop=FALSE], grouping=pisaitems$CNT)
+plot(loneg)
