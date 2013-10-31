@@ -60,7 +60,7 @@ likert <- function(items, summary,
 		if(class(items) != 'data.frame') {
 			stop(paste0('The items parameter must be a data frame. If trying ',
 						'to subset a data frame to analyze only one column, try: ',
-						'items=mydf[,1, drop=FALSE].'
+						'items=mydf[,1, drop=FALSE].'))
 		}
 		if(!all(sapply(items, function(x) 'factor' %in% class(x)))) {
 			warning('items parameter contains non-factors. Will convert to factors')
