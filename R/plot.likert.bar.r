@@ -151,23 +151,23 @@ likert.bar.plot <- function(likert,
 		if(plot.percent.low) {
 			p <- p + geom_text(data=lsum, y=ymin, aes(x=Group, 
 	  						   label=paste0(round(low), '%'), group=Item), 
-			  				   size=text.size, hjust=1)
+			  				   size=text.size, hjust=1, color=text.color)
 		}
 		if(plot.percent.high) {
 			p <- p + geom_text(data=lsum, aes(x=Group, y=100, 
 							   label=paste0(round(high), '%'), 
-							   group=Item), size=text.size, hjust=-.2)			
+							   group=Item), size=text.size, hjust=-.2, color=text.color)			
 		}
 		if(plot.percent.neutral & likert$nlevels %% 2 == 1 & include.center) {
 			if(centered) {
 				p <- p + geom_text(data=lsum, y=0, aes(x=Group, group=Item,
 							  	   label=paste0(round(neutral), '%')),
-							       size=text.size, hjust=.5)
+							       size=text.size, hjust=.5, color=text.color)
 			} else {
 				lsum$y <- lsum$low + (lsum$neutral/2)
 				p <- p + geom_text(data=lsum, aes(x=Group, y=y, group=Item,
 							  	   label=paste0(round(neutral), '%')),
-							       size=text.size, hjust=.5)				
+							       size=text.size, hjust=.5, color=text.color)				
 			}
 		}
 		if(FALSE & plot.percents) { #TODO: implement for grouping
@@ -247,25 +247,25 @@ likert.bar.plot <- function(likert,
 		if(plot.percent.low) {
 			p <- p + geom_text(data=lsum, y=ymin, aes(x=Item, 
 					  			label=paste0(round(low), '%')), 
-					  			size=text.size, hjust=1)
+					  			size=text.size, hjust=1, color=text.color)
 		}
 		if(plot.percent.high) {
 			p <- p + geom_text(data=lsum, y=100, aes(x=Item,
 				  			label=paste0(round(high), '%')), 
-				  			size=text.size, hjust=-.2)
+				  			size=text.size, hjust=-.2, color=text.color)
 		}
 		if(plot.percent.neutral & likert$nlevels %% 2 == 1 & include.center) {
 			if(centered) {
 				p <- p +
 					geom_text(data=lsum, y=0, 
 							  aes(x=Item, label=paste0(round(neutral), '%')),
-							  size=text.size, hjust=.5)
+							  size=text.size, hjust=.5, color=text.color)
 			} else {
 				lsum$y <- lsum$low + (lsum$neutral/2)
 				p <- p +
 					geom_text(data=lsum,
 							  aes(x=Item, y=y, label=paste0(round(neutral), '%')),
-							  size=text.size, hjust=.5)				
+							  size=text.size, hjust=.5, color=text.color)				
 			}
 		}
 		if(plot.percents) {
@@ -273,7 +273,7 @@ likert.bar.plot <- function(likert,
 								 pos = cumsum(value) - 0.5*value)
 			p <- p + geom_text(data=lpercentpos, aes(x=Item, y=pos, 
 						label=paste0(round(value), '%')),
-						size=text.size)
+						size=text.size, color=text.color)
 			lpercentneg <- results[results$value < 0,]
 			if(nrow(lpercentneg) > 0) {
 				lpercentneg <- lpercentneg[nrow(lpercentneg):1,]
@@ -283,7 +283,7 @@ likert.bar.plot <- function(likert,
 				lpercentneg$pos <- lpercentneg$pos * -1
 				p <- p + geom_text(data=lpercentneg, aes(x=Item, y=pos, 
 							label=paste0(round(abs(value)), '%')),
-							size=text.size)
+							size=text.size, color=text.colort)
 			}
 		}
 		p <- p +
