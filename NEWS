@@ -5,6 +5,8 @@ likert 1.2
 * Can now create a likert object with a pre-summarized data frame.
 * New Shiny app to demonstrate many of the features in the likert package. The
   shinyLikert() function will start the app.
+* Fixed bug where text.color parameter was not being used.
+* Fixed bug 16. 
 
 likert 1.1
 =========

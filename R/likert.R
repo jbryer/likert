@@ -77,12 +77,16 @@ likert <- function(items, summary,
 		
 		results <- data.frame()
 		if(!is.null(grouping)) {
+			if(is.numeric(gropuing)) {
+				grouping <- as.character(grouping)
+			}
 			results <- data.frame(
 				Group = rep(unique(grouping), each=nlevels),
 				Response = rep(1:nlevels, length(unique(grouping)))
 				)
 			for(i in 1:ncol(items)) {
-				t <- as.data.frame(table(grouping, as.integer(items[,i])))
+				#t <- as.data.frame(table(grouping, as.integer(items[,i])))
+				t <- as.data.frame(table(grouping, items[,i]))
 				t <- cast(t, Var2 ~ grouping, value='Freq', add.missing=TRUE)
 				t <- apply(t, 2, FUN=function(x) { x / sum(x) * 100 } )
 				t <- melt(t)

@@ -8,6 +8,7 @@ items <- data.frame('Item 1'=factor(sample(mylevels[1:4], 100, replace=TRUE)),
 					'Item 3'=factor(sample(mylevels[1:5], 100, replace=TRUE)),
 					check.names=FALSE)
 str(items)
+groups <- sample(c('g1','g2'), 100, replace=TRUE)
 
 tryCatch({
 	# This will throw an error because all the items must have the same number of levels.
@@ -28,3 +29,7 @@ lgood <- likert(items)
 lgood
 summary(lgood)
 plot(lgood)
+
+lgr <- likert(items, grouping=groups)
+summary(lgr)
+plot(lgr)
