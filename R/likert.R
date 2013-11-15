@@ -77,7 +77,7 @@ likert <- function(items, summary,
 		
 		results <- data.frame()
 		if(!is.null(grouping)) {
-			if(is.numeric(gropuing)) {
+			if(is.numeric(grouping)) {
 				grouping <- as.character(grouping)
 			}
 			results <- data.frame(
