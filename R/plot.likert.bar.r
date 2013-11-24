@@ -170,23 +170,23 @@ likert.bar.plot <- function(likert,
 							       size=text.size, hjust=.5, color=text.color)				
 			}
 		}
-		if(FALSE & plot.percents) { #TODO: implement for grouping
-			warning('plot.percents is not currenlty supported for grouped analysis.')
-# 			lpercentpos <- ddply(results[results$value > 0,], .(Item), transform, 
-# 								 pos = cumsum(value) - 0.5*value)
-# 			p + geom_text(data=lpercentpos, aes(x=Group, y=pos, label=paste0(round(value), '%'),
-# 												group=Item),
-# 							   size=text.size)
-# 			lpercentneg <- results[results$value < 0,]
-# 			if(nrow(lpercentneg) > 0) {
-# 				lpercentneg <- lpercentneg[nrow(lpercentneg):1,]
-# 				lpercentneg$value <- abs(lpercentneg$value)
-# 				lpercentneg <- ddply(lpercentneg, .(Item), transform, 
-# 									 pos = cumsum(value) - 0.5*value)	
-# 				lpercentneg$pos <- lpercentneg$pos * -1
-# 				p <- p + geom_text(data=lpercentneg, aes(x=Item, y=pos, label=paste0(round(abs(value)), '%')),
-# 								   size=text.size)
-# 			}
+		if(plot.percents) { #TODO: test implementation for grouping on different data sets (lpercentneg branch not tested)
+			# warning('plot.percents is not currenlty supported for grouped analysis.')
+ 			lpercentpos <- ddply(results[results$value > 0,], .(Group, Item), transform, 
+ 								 pos = cumsum(value) - 0.5*value)
+ 			p <- p + geom_text(data=lpercentpos, aes(x=Group, y=pos, label=paste0(round(value), '%'),
+ 												group=Item),
+ 							   size=text.size)
+ 			lpercentneg <- results[results$value < 0,]
+ 			if(nrow(lpercentneg) > 0) {
+ 				lpercentneg <- lpercentneg[nrow(lpercentneg):1,]
+ 				lpercentneg$value <- abs(lpercentneg$value)
+ 				lpercentneg <- ddply(lpercentneg, .(Group, Item), transform, 
+ 									 pos = cumsum(value) - 0.5*value)	
+ 				lpercentneg$pos <- lpercentneg$pos * -1
+ 				p <- p + geom_text(data=lpercentneg, aes(x=Item, y=pos, label=paste0(round(abs(value)), '%')),
+ 								   size=text.size)
+ 			}
 		}
 		p <- p +
 			coord_flip() +	ylab('Percentage') + xlab('') +
@@ -283,7 +283,7 @@ likert.bar.plot <- function(likert,
 				lpercentneg$pos <- lpercentneg$pos * -1
 				p <- p + geom_text(data=lpercentneg, aes(x=Item, y=pos, 
 							label=paste0(round(abs(value)), '%')),
-							size=text.size, color=text.colort)
+							size=text.size, color=text.color)
 			}
 		}
 		p <- p +
