@@ -283,7 +283,7 @@ likert.bar.plot <- function(likert,
 				lpercentneg$pos <- lpercentneg$pos * -1
 				p <- p + geom_text(data=lpercentneg, aes(x=Item, y=pos, 
 							label=paste0(round(abs(value)), '%')),
-							size=text.size, color=text.colort)
+							size=text.size, color=text.color)
 			}
 		}
 		p <- p +
