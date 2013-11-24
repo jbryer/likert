@@ -42,7 +42,7 @@ summary.likert <- function(object, center=(object$nlevels-1)/2 + 1,
 		if(center %% 1 == 0) {
 			neutral <- results[,(center+(startCol-1))]
 		} else {
-			neutral <- NA
+			netural <- NA
 		}
 		if(is.null(object$grouping)) {
 			lowCols <- startCol:center

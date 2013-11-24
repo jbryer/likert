@@ -84,16 +84,12 @@ likert <- function(items, summary,
 				Group = rep(unique(grouping), each=nlevels),
 				Response = rep(1:nlevels, length(unique(grouping)))
 				)
-			
-			results$Response <- factor(results$Response, levels=1:nlevels, 
-										  labels=levels(items[,1]))
-			
 			for(i in 1:ncol(items)) {
 				#t <- as.data.frame(table(grouping, as.integer(items[,i])))
 				t <- as.data.frame(table(grouping, items[,i]))
 				t <- cast(t, Var2 ~ grouping, value='Freq', add.missing=TRUE)
 				t <- apply(t, 2, FUN=function(x) { x / sum(x) * 100 } )
-				t <- melt(t)	
+				t <- melt(t)
 				results <- merge(results, t, 
 								 by.x=c('Group','Response'), by.y=c('X2','X1'), 
 								 all.x=TRUE)
@@ -101,6 +97,9 @@ likert <- function(items, summary,
 			}
 			
 			names(results)[3:ncol(results)] <- names(items)
+			
+			results$Response <- factor(results$Response, levels=1:nlevels, 
+									  labels=levels(items[,i]))
 			results <- melt(results, id=c('Group', 'Response'))
 			results <- cast(results, Group + variable ~ Response)
 			results <- as.data.frame(results)
