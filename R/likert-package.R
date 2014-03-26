@@ -7,6 +7,18 @@
 #' @keywords package institutional research likert
 NULL
 
+#' Fictitious dataset with importance and satisfaction results across five different
+#' offices.
+#' 
+#' This data set is used in the \code{GapAnalysis} demo and is used to demonstrate
+#' how the \code{likert} package handles a gap analysis.
+#' 
+#' @name gap
+#' @docType data
+#' @format a data frame with 68 ovservations of 11 variables.
+#' @keywords datasets
+NULL
+
 #' Programme of International Student Assessment
 #' 
 #' North American (i.e. Canada, Mexico, and United States) results from the 2009

@@ -35,3 +35,6 @@ Collate:
     'align.R'
     'plot.histogram.R'
     'reverse.levels.R'
+    'plot.likert.gap.R'
+    'print.likert.gap.R'
+    'summary.likert.gap.R'

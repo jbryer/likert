@@ -1,0 +1,72 @@
+\name{plot.likert.gap}
+\alias{plot.likert.gap}
+\title{Plots a set of likert items.}
+\usage{
+  \method{plot}{likert.gap} (x, type = c("bar", "density"),
+    include.histogram = FALSE, panel.widths = c(3, 1),
+    panel.arrange = "v", panel.strip.color = "#F0F0F0",
+    legend.position = "bottom",
+    panel.background = element_rect(size = 1, color = "grey70", fill = NA),
+    satisfaction.label = "Satisfaction",
+    importance.label = "Importance", legend, ...)
+}
+\arguments{
+  \item{x}{the likert items to plot}
+
+  \item{type}{the type of plot to create. Current values
+  are bar and heat.}
+
+  \item{...}{other parameters passed passed to
+  \code{\link{likert.bar.plot}} or
+  \code{\link{likert.heat.plot}}.}
+
+  \item{panel.background}{define background of the plot.
+  See \code{\link{theme}}.}
+
+  \item{include.histogram}{if TRUE, a histogram of count of
+  responses is also plotted.}
+
+  \item{panel.widths}{if \code{include.histogram=TRUE},
+  this vector of length two specifies the ratio of the left
+  and right panels.}
+
+  \item{legend.position}{the position for the legend
+  ("left", "right", "bottom", "top", or two-element numeric
+  vector).}
+
+  \item{panel.arrange}{how panels for grouped likert items
+  should be arrange.  Possible values are \code{v}
+  (vertical, the default), \code{h} (horizontal), and
+  \code{NULL} (auto fill horizontal and vertical)}
+
+  \item{panel.strip.color}{the background color for panel
+  labels.}
+
+  \item{legend}{title for the legend.}
+
+  \item{satisfaction.label}{label used for satisfaction
+  items.}
+
+  \item{importance.label}{label used for importance items.}
+}
+\description{
+  This is an implementation of the S3 plot generic
+  function. Based upon the \code{type} parameter this
+  function will call either \code{\link{likert.bar.plot}},
+  \code{\link{likert.heat.plot}}, or
+  \code{\link{likert.density.plot}}. See the help pages for
+  those functions for all the available parameters to
+  customize the aesthetics of the figure. Although those
+  functions can be plotted directly, we recommend call the
+  generic \code{plot} function.
+}
+\seealso{
+  \link{likert.bar.plot}
+
+  \link{likert.heat.plot}
+
+  \link{likert.density.plot}
+
+  \link{likert.histogram.plot}
+}
+

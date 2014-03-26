@@ -1,12 +1,16 @@
 likert 1.2
 =========
 
+* Added initial support for conducting gap analysis. A demo, GapAnalysis has
+  also been added.
 * Removed dependency on a non-exported function in ggplot2.
 * Can now create a likert object with a pre-summarized data frame.
 * New Shiny app to demonstrate many of the features in the likert package. The
   shinyLikert() function will start the app.
 * Fixed bug where text.color parameter was not being used.
-* Fixed bug 16. 
+* Fixed bug 16.
+* Fixed bug where automatic conversion to factors would not work if there were
+  missing levels in an item.
 
 likert 1.1
 =========

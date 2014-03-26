@@ -21,6 +21,9 @@
 #'        disagree, etc).
 #' @param grouping (optional) should the results be summarized by the given
 #'        grouping variable.
+#' @param importance a data frame of the same dimensions as items containing
+#'        an importance rating for each item. The order of columns should match
+#'        and the names from items will be used.
 #' @param nlevels number of possible levels. Only necessary if there are missing levels.
 #' @return a likert class with the following elements: results, items, grouping,
 #'        nlevels, and summary.
@@ -36,10 +39,14 @@
 #' plot(l29)
 likert <- function(items, summary,
 				   grouping=NULL, 
+				   importance,
 				   nlevels=length(levels(items[,1]))) {
 	if(!missing(summary)) { #Pre-summarized data
 		if(!is.null(grouping) & length(grouping) != nrow(summary)) {
 			stop('The length of grouping must be equal to the number of rows in summary.')
+		}
+		if(!missing(importance)) {
+			stop('Pre-summarized data with importance is not currently supported')
 		}
 		if(is.null(grouping)) {
 			r <- list(results=summary, 
@@ -65,11 +72,25 @@ likert <- function(items, summary,
 		if(!all(sapply(items, function(x) 'factor' %in% class(x)))) {
 			warning('items parameter contains non-factors. Will convert to factors')
 			for(i in 1:ncol(items)) {
-				items[,i] <- as.factor(items[,i])
+				items[,i] <- factor(items[,i], levels=1:nlevels)
 			}
 		}
 		if(!all(sapply(items, function(x) { length(levels(x)) }) == nlevels)) {
 			stop('All items (columns) must have the same number of levels')
+		}
+		if(!missing(importance)) {
+			if(ncol(importance) != ncol(items) | nrow(importance) != nrow(items)) {
+				stop('The dimensions of items and importance must be the same')
+			}
+			if(!all(sapply(importance, function(x) 'factor' %in% class(x)))) {
+				warning('importance parameter contains non-factors. Will convert to factors')
+				for(i in 1:ncol(importance)) {
+					importance[,i] <- factor(importance[,i], levels=1:nlevels)
+				}
+			}
+			if(!all(sapply(importance, function(x) { length(levels(x)) }) == nlevels)) {
+				stop('All columns in importance must have the same number of levels')
+			}
 		}
 		
 		lowrange <- 1 : ceiling(nlevels / 2 - nlevels %% 2)
@@ -143,7 +164,13 @@ likert <- function(items, summary,
 		
 		r <- list(results=results, items=items, grouping=grouping, nlevels=nlevels,
 				  levels=levels(items[,1]))
-		class(r) <- 'likert'
+		if(!missing(importance)) {
+			names(importance) <- names(items)
+			r$importance <- likert(importance, grouping=grouping, nlevels=nlevels)
+			class(r) <- c('likert.gap', 'likert')
+		} else {
+			class(r) <- 'likert'
+		}
 		return(r)
 	}
 }

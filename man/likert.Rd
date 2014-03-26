@@ -2,7 +2,7 @@
 \alias{likert}
 \title{Analyze Likert type items.}
 \usage{
-  likert(items, summary, grouping = NULL,
+  likert(items, summary, grouping = NULL, importance,
     nlevels = length(levels(items[, 1])))
 }
 \arguments{
@@ -16,6 +16,11 @@
 
   \item{grouping}{(optional) should the results be
   summarized by the given grouping variable.}
+
+  \item{importance}{a data frame of the same dimensions as
+  items containing an importance rating for each item. The
+  order of columns should match and the names from items
+  will be used.}
 
   \item{nlevels}{number of possible levels. Only necessary
   if there are missing levels.}
