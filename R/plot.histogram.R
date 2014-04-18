@@ -33,6 +33,7 @@ likert.histogram.plot <- function(l,
 								  group.order,
 								  panel.arrange='v',
 								  panel.strip.color='#F0F0F0',
+								  text.size=2.5,
 								  ...) {
 	nacount <- function(items) {
 		hist <- as.data.frame(sapply(items, function(x) { table(is.na(x)) }), 
@@ -56,13 +57,14 @@ likert.histogram.plot <- function(l,
 							levels=label_wrap_mod(order, width=wrap), 
 							ordered=TRUE)
 
-		p <- ggplot(hist, aes(x=Item, y=value, fill=missing))
+		p <- ggplot(hist, aes(x=Item, y=value, fill=missing, label=value))
 		if(plot.missing) {
 			p <- p + geom_bar(data=hist[hist$missing,], stat='identity')
 		}
 		p <- p +
 			geom_bar(data=hist[!hist$missing,], stat='identity') +
 			geom_hline(yintercept=0) +
+			geom_text(data=hist[!hist$missing,], hjust=1, size=text.size) +
 			scale_y_continuous(label=abs_formatter) +
 			coord_flip() + ylab(xlab) + xlab('') +
 			theme(legend.position=legend.position) +
@@ -83,13 +85,14 @@ likert.histogram.plot <- function(l,
 							levels=label_wrap_mod(order, width=wrap), 
 							ordered=TRUE)
 		
-		p <- ggplot(hist, aes(x=group, y=value, fill=missing))
+		p <- ggplot(hist, aes(x=group, y=value, fill=missing, label=value))
 		if(plot.missing) {
 			p <- p + geom_bar(data=hist[hist$missing,], stat='identity')
 		}
 		p <- p +
 			geom_bar(data=hist[!hist$missing,], stat='identity') +
 			geom_hline(yintercept=0) +
+			geom_text(data=hist[!hist$missing,], hjust=1, size=text.size) +
 			scale_y_continuous(label=abs_formatter) +
 			coord_flip() + ylab(xlab) + xlab('') +
 			scale_fill_manual('',

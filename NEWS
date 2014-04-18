@@ -11,6 +11,7 @@ likert 1.2
 * Fixed bug 16.
 * Fixed bug where automatic conversion to factors would not work if there were
   missing levels in an item.
+* Added text labels to the histogram (if include.histogram=TRUE) for the n.
 
 likert 1.1
 =========
