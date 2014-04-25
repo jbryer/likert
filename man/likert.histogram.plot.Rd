@@ -8,7 +8,7 @@
     label.missing = "Missing", legend.position = "bottom",
     wrap = ifelse(is.null(l$grouping), 50, 100), order,
     group.order, panel.arrange = "v",
-    panel.strip.color = "#F0F0F0", ...)
+    panel.strip.color = "#F0F0F0", text.size = 2.5, ...)
 }
 \arguments{
   \item{l}{results of \code{\link{likert}}.}
@@ -50,6 +50,8 @@
 
   \item{panel.strip.color}{the background color for panel
   labels.}
+
+  \item{text.size}{size of text attributes.}
 }
 \description{
   Plots a histogram of the number of responses for each

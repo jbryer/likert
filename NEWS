@@ -12,6 +12,7 @@ likert 1.2
 * Fixed bug where automatic conversion to factors would not work if there were
   missing levels in an item.
 * Added text labels to the histogram (if include.histogram=TRUE) for the n.
+* Fixed a bug where plot.likert(..., include.histogram=TRUE) would not work with a group and only one item (i.e. one column).
 
 likert 1.1
 =========

@@ -36,20 +36,34 @@ likert.histogram.plot <- function(l,
 								  text.size=2.5,
 								  ...) {
 	nacount <- function(items) {
-		hist <- as.data.frame(sapply(items, function(x) { table(is.na(x)) }), 
-							  stringsAsFactors=FALSE)
-		hist$missing <- row.names(hist)
-		hist <- melt(hist, id.vars='missing', variable_name='Item')
-		hist$missing <- as.logical(hist$missing)
-		hist[hist$missing,]$value <- -1 * hist[hist$missing,]$value
-		return(hist)
+		if(ncol(items) == 1) {
+			tab <- table(is.na(items[,1]))
+			hist <- data.frame(missing = c(FALSE, TRUE),
+					   Item = rep(names(items)[1], 2),
+					   value = unname(c(tab['FALSE'], tab['TRUE']))
+			)
+			if(length(which(is.na(hist$value))) > 0) {
+				hist[is.na(hist$value),]$value <- 0
+			}
+			row.names(hist) <- 1:nrow(hist)
+			hist[hist$missing,]$value <- -1 * hist[hist$missing,]$value
+			return(hist)
+		} else {
+			hist <- as.data.frame(sapply(items, function(x) { table(is.na(x)) }), 
+								  stringsAsFactors=FALSE)
+			hist$missing <- row.names(hist)
+			hist <- melt(hist, id.vars='missing', variable_name='Item')
+			hist$missing <- as.logical(hist$missing)
+			hist[hist$missing,]$value <- -1 * hist[hist$missing,]$value
+			return(hist)
+		}
 	}
 
+	items <- l$items
 	if(missing(order)) {
 		order <- names(items)
 	}
 	
-	items <- l$items
 	if(is.null(l$grouping)) {
 		hist <- nacount(items)
 		hist$Item <- label_wrap_mod(hist$Item, width=wrap)
@@ -73,9 +87,10 @@ likert.histogram.plot <- function(l,
 							  labels=c(label.missing, label.completed),
 							  values=c(missing.bar.color, bar.color))
 	} else {
-		hist <- data.frame()
+		hist <- data.frame( )
 		for(g in unique(l$grouping)) {
-			h <- nacount(items[l$grouping == g,])
+			tmp <- items[l$grouping == g,,drop=FALSE]
+			h <- nacount(tmp)
 			h$group <- g
 			hist <- rbind(hist, h)
 		}
