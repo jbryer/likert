@@ -8,6 +8,6 @@
 print.likert.gap <- function(x, ...) {
 	cat('Satisfaction results:\n')
 	print(x$results, ...)
-	cat('\nImprotance results:\n')
+	cat('\nImportance results:\n')
 	print(x$importance$results, ...)
 }
