@@ -8,6 +8,8 @@ document("likert")
 check_doc("likert")
 install("likert")
 check("likert")
+build('likert',vignettes=FALSE)
+
 require(likert)
 ls('package:likert')
 

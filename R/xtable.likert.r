@@ -25,7 +25,7 @@
 #' @param ordered whether the results should be ordered. See \code{\link{summary.likert}}
 #' @param ... other parameters passed to \link{xtable}.
 #' @seealso \link{xtable}, \link{print.xtable}
-#' @S3method xtable likert
+#' @export
 #' @method xtable likert
 xtable.likert <- function(x, caption=NULL, 
 						  label=NULL, 
@@ -134,7 +134,6 @@ xtable.likert <- function(x, caption=NULL,
 #' @param tabular.environment see \code{\link{print.xtable}}.
 #' @param floating see \code{\link{print.xtable}}.
 #' @param ... other parameters passed to \code{\link{print.xtable}}
-#' @S3method print xlikert
 #' @method print xlikert
 #' @export
 print.xlikert <- function(x, tabular.environment='longtable', floating=FALSE, ...) {

@@ -12,29 +12,8 @@ Description: Functions to analyze and visualize likert type itemss
 License: GPL
 LazyLoad: yes
 Depends:
-    R (>= 3.0),ggplot2,gridExtra,xtable,reshape
+    R (>= 3.0),ggplot2,xtable
 Imports:
-    psych
+    psych,reshape,gridExtra,grid
 Suggests:
     devtools,shiny
-Collate:
-    'likert-package.R'
-    'likert.R'
-    'plot.likert.bar.r'
-    'plot.likert.heat.r'
-    'plot.likert.matrix.r'
-    'plot.likert.r'
-    'print.likert.r'
-    'summary.likert.r'
-    'xtable.likert.r'
-    'recode.r'
-    'label_wrap_mod.r'
-    'plot.likert.density.R'
-    'abs_formatter.R'
-    'shinyLikert.R'
-    'align.R'
-    'plot.histogram.R'
-    'reverse.levels.R'
-    'plot.likert.gap.R'
-    'print.likert.gap.R'
-    'summary.likert.gap.R'

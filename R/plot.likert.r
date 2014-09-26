@@ -27,7 +27,6 @@
 #' @seealso \link{likert.density.plot}
 #' @seealso \link{likert.histogram.plot}
 #' @method plot likert
-#' @S3method plot likert
 plot.likert <- function(x, type=c('bar','heat','density'),
 						include.histogram=FALSE,
 						panel.widths=c(3,1),

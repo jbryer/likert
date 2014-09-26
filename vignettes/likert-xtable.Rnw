@@ -22,8 +22,9 @@ options(continue="  ")
 \setkeys{Gin}{width=\textwidth}
 
 <<>>=
-require(likert)
-require(reshape)
+library(likert)
+library(ggplot2)
+library(reshape)
 data(pisaitems)
 
 ##### Item 24: Reading Attitudes
