@@ -10,6 +10,8 @@ install("likert")
 check("likert")
 build('likert',vignettes=FALSE)
 
+release('likert')
+
 require(likert)
 ls('package:likert')
 

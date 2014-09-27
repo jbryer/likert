@@ -9,6 +9,7 @@
 #' @import ggplot2
 #' @import gridExtra
 #' @import grid
+#' @import plyr
 #' @importFrom reshape melt
 #' @importFrom reshape melt.data.frame
 #' @importFrom reshape cast

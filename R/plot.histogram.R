@@ -35,6 +35,7 @@ likert.histogram.plot <- function(l,
 								  panel.strip.color='#F0F0F0',
 								  text.size=2.5,
 								  ...) {
+	library(reshape)
 	nacount <- function(items) {
 		if(ncol(items) == 1) {
 			tab <- table(is.na(items[,1]))
@@ -49,10 +50,11 @@ likert.histogram.plot <- function(l,
 			hist[hist$missing,]$value <- -1 * hist[hist$missing,]$value
 			return(hist)
 		} else {
-			hist <- as.data.frame(sapply(items, function(x) { table(is.na(x)) }), 
+			hist <- as.data.frame(sapply(items, function(x) { 
+				table(factor(is.na(x), levels=c(TRUE,FALSE))) }), 
 								  stringsAsFactors=FALSE)
 			hist$missing <- row.names(hist)
-			hist <- reshape::melt(hist, id.vars='missing', variable_name='Item')
+			hist <- reshape::melt.data.frame(hist, id.vars='missing', variable_name='Item')
 			hist$missing <- as.logical(hist$missing)
 			hist[hist$missing,]$value <- -1 * hist[hist$missing,]$value
 			return(hist)
