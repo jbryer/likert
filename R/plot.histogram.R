@@ -35,7 +35,6 @@ likert.histogram.plot <- function(l,
 								  panel.strip.color='#F0F0F0',
 								  text.size=2.5,
 								  ...) {
-	library(reshape)
 	nacount <- function(items) {
 		if(ncol(items) == 1) {
 			tab <- table(is.na(items[,1]))

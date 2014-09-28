@@ -1,7 +1,5 @@
 %\VignetteIndexEntry{Examples of likert Tables}
-%\VignetteDepends{}
 %\VignetteKeyword{likert xtable}
-%\VignettePackage{likert}
 
 \documentclass[12pt]{article}
 

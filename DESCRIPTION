@@ -2,15 +2,16 @@ Package: likert
 Type: Package
 Title: Functions to analyze and visualize likert type items
 Version: 1.2
-Date: 2014-09-20
+Date: 2014-09-28
 Author: Jason Bryer <jason@bryer.org>, Kimberly Speerschneider
     <kimkspeer@gmail.com>
 Maintainer: Jason Bryer <jason@bryer.org>
 URL: http://jason.bryer.org/likert, http://github.com/jbryer/likert
 BugReports: https://github.com/jbryer/likert/issues
-Description: Functions to analyze and visualize likert type itemss
+Description: Functions to analyze and visualize likert type items
 License: GPL
 LazyLoad: yes
+VignetteBuilder: utils
 Depends:
     R (>= 3.0),ggplot2,xtable
 Imports:

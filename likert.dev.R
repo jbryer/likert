@@ -7,7 +7,7 @@ setwd("~/Dropbox/Projects") #Mac
 document("likert")
 check_doc("likert")
 install("likert")
-check("likert")
+check("likert", cran=TRUE)
 build('likert',vignettes=FALSE)
 
 release('likert')
