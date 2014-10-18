@@ -68,7 +68,7 @@ likert.bar.plot <- function(likert,
 							panel.arrange='v',
 							panel.strip.color='#F0F0F0',
 							group.order,
-							title='',
+							title=NULL,
               ...) {
 	if(center < 1.5 | center > (likert$nlevels - 0.5) | center %% 0.5 != 0) {
 		stop(paste0('Invalid center. Values can range from 1.5 to ', 
@@ -303,8 +303,8 @@ likert.bar.plot <- function(likert,
 								limits=c(ymin - ybuffer, ymax + ybuffer))
 	p <- p + theme(legend.position=legend.position)
 
-  if(title != '') {
-    p <- p + ggtitle(title)
+  if(!is.null(title)) {
+    p <- p + ggtitle(label_wrap_mod(title, 50))
   }
 
 	attr(p, 'item.order') <- levels(results$Item)
