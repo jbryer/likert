@@ -49,10 +49,11 @@ likert.histogram.plot <- function(l,
 			hist[hist$missing,]$value <- -1 * hist[hist$missing,]$value
 			return(hist)
 		} else {
-			hist <- as.data.frame(sapply(items, function(x) { table(is.na(x)) }), 
+			hist <- as.data.frame(sapply(items, function(x) { 
+				table(factor(is.na(x), levels=c(TRUE,FALSE))) }), 
 								  stringsAsFactors=FALSE)
 			hist$missing <- row.names(hist)
-			hist <- melt(hist, id.vars='missing', variable_name='Item')
+			hist <- reshape::melt.data.frame(hist, id.vars='missing', variable_name='Item')
 			hist$missing <- as.logical(hist$missing)
 			hist[hist$missing,]$value <- -1 * hist[hist$missing,]$value
 			return(hist)

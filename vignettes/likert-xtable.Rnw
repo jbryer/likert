@@ -1,7 +1,5 @@
 %\VignetteIndexEntry{Examples of likert Tables}
-%\VignetteDepends{}
 %\VignetteKeyword{likert xtable}
-%\VignettePackage{likert}
 
 \documentclass[12pt]{article}
 
@@ -22,8 +20,9 @@ options(continue="  ")
 \setkeys{Gin}{width=\textwidth}
 
 <<>>=
-require(likert)
-require(reshape)
+library(likert)
+library(ggplot2)
+library(reshape)
 data(pisaitems)
 
 ##### Item 24: Reading Attitudes

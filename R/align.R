@@ -6,11 +6,6 @@ utils::globalVariables(c('llply'))
 
 #' The zero grob draws nothing and has zero size.
 #' 
-#' @S3method widthDetails zeroGrob
-#' @S3method heightDetails zeroGrob
-#' @S3method grobWidth zeroGrob
-#' @S3method grobHeight zeroGrob
-#' @S3method drawDetails zeroGrob
 #' @keywords internal
 #' @author hadley
 #' @references https://github.com/hadley/ggplot2/blob/master/R/grob-null.r

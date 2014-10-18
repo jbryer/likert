@@ -7,7 +7,12 @@ setwd("~/Dropbox/Projects") #Mac
 document("likert")
 check_doc("likert")
 install("likert")
-check("likert")
+build('likert')
+check("likert", cran=TRUE)
+build('likert',vignettes=FALSE)
+
+release('likert')
+
 require(likert)
 ls('package:likert')
 

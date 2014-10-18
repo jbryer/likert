@@ -14,7 +14,6 @@
 #'         and importance results separately.
 #' @export
 #' @method summary likert.gap
-#' @S3method summary likert.gap
 summary.likert.gap <- function(object, ...) {
 	return(list(
 		Satisfaction=summary.likert(object, ...),

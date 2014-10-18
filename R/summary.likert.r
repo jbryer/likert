@@ -19,7 +19,6 @@
 #' @param ... currently unused.
 #' @export
 #' @method summary likert
-#' @S3method summary likert
 summary.likert <- function(object, center=(object$nlevels-1)/2 + 1,
 						   ordered=TRUE, ...) {
 	if(center < 1.5 | center > (object$nlevels - 0.5) | center %% 0.5 != 0) {

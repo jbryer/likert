@@ -101,7 +101,7 @@ likert.bar.plot <- function(likert,
 		lsum$Group <- label_wrap_mod(lsum$Group, width=wrap.grouping)
 		
 		results <- likert$results
-		results <- melt(results, id=c('Group', 'Item'))
+		results <- reshape::melt(results, id=c('Group', 'Item'))
 		results$variable <- factor(results$variable, ordered=TRUE)
 		if(TRUE | is.null(likert$items)) {
 			results$Item <- factor(as.character(results$Item),
@@ -207,7 +207,7 @@ likert.bar.plot <- function(likert,
 			p <- p + scale_x_discrete(limits=rev(group.order))
 		}
 	} else { #No grouping
-		results <- melt(likert$results, id.vars='Item')
+		results <- reshape::melt(likert$results, id.vars='Item')
 		if(ordered) {
 			order <- lsum[order(lsum$high),'Item']
 			results$Item <- factor(results$Item, levels=order)
@@ -318,7 +318,7 @@ likert.bar.plot <- function(likert,
 #' plots).
 #' @param x a plot from \code{\link{likert.bar.plot}}.
 #' @param ... other parameters passed to ggplot2.
-#' @S3method print likert.bar.plot
+#' @export
 #' @method print likert.bar.plot
 print.likert.bar.plot <- function(x, ...) {
 	suppressWarnings(NextMethod(x, ...))

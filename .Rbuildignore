@@ -1,0 +1,17 @@
+^\.Rproj\.user$
+^.*\.Rproj$
+archive
+Articles
+.gitignore
+.Rhistory
+Slides
+useR
+likert.dev.R
+vignettes
+Icon
+tests
+TODO.txt
+README.md
+RJournal
+cran-comments.md
+tests/*

@@ -5,7 +5,17 @@
 #' @title Likert Analysis and Visualization
 #' @author \email{jason@@bryer.org}
 #' @keywords package institutional research likert
-NULL
+#' @import xtable
+#' @import ggplot2
+#' @import gridExtra
+#' @import grid
+#' @import plyr
+#' @importFrom reshape melt
+#' @importFrom reshape melt.data.frame
+#' @importFrom reshape cast
+#' @importFrom psych describe
+#' @importFrom psych describeBy
+NA
 
 #' Fictitious dataset with importance and satisfaction results across five different
 #' offices.
@@ -17,7 +27,7 @@ NULL
 #' @docType data
 #' @format a data frame with 68 ovservations of 11 variables.
 #' @keywords datasets
-NULL
+NA
 
 #' Programme of International Student Assessment
 #' 
@@ -31,7 +41,7 @@ NULL
 #' @format a data frame 66,690 ovservations of 81 variables from North America.
 #' @source Organization for Economic Co-operation and Development
 #' @keywords datasets
-NULL
+NA
 
 #' Results from an administration of the Math Anxiety Scale Survey.
 #' 
@@ -46,7 +56,7 @@ NULL
 #' anxiety: Psychometric analysis of a bidimensional affective scale. Journal of 
 #' Instructional Psychology, 36 (3), 185- 193.
 #' @keywords datasets
-NULL
+NA
 
 #' Pre-summarized results from an administration of the Math Anxiety Scale Survey.
 #' 
@@ -60,7 +70,7 @@ NULL
 #' anxiety: Psychometric analysis of a bidimensional affective scale. Journal of 
 #' Instructional Psychology, 36 (3), 185- 193.
 #' @keywords datasets
-NULL
+NA
 
 #' Pre-summarized results from an administration of the Math Anxiety Scale Survey 
 #' grouped by gender.
@@ -75,7 +85,7 @@ NULL
 #' anxiety: Psychometric analysis of a bidimensional affective scale. Journal of 
 #' Instructional Psychology, 36 (3), 185- 193.
 #' @keywords datasets
-NULL
+NA
 
 .onAttach <- function(libname, pkgname) {
 	#pkgEnv = pos.to.env(match('package:likert', search()))
