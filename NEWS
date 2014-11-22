@@ -1,3 +1,8 @@
+likert 1.2.1
+=========
+
+* Added colors parameter to plot.likert.bar to define custom colors for levels.
+
 likert 1.2
 =========
 

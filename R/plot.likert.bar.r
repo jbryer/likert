@@ -11,6 +11,8 @@ utils::globalVariables(c('value','Group','variable','low','Item','high',
 #' @param neutral.color color for middle values (if odd number of levels).
 #' @param neutral.color.ramp second color used when calling \code{\link{colorRamp}}
 #'        with \code{low.color} and \code{high.color} to define the color palettes.
+#' @param colors vector specifying the colors to use. This must be equal to 
+#'        the number of likert levels.
 #' @param plot.percent.low whether to plot low percentages.
 #' @param plot.percent.high whether to plot high percentages.
 #' @param plot.percent.neutral whether to plot netural percentages.
@@ -50,6 +52,7 @@ likert.bar.plot <- function(likert,
 							high.color='#5AB4AC',
 							neutral.color='grey90',
 							neutral.color.ramp='white',
+							colors=NULL,
 							plot.percent.low=TRUE,
 							plot.percent.high=TRUE,
 							plot.percent.neutral=TRUE,
@@ -78,15 +81,23 @@ likert.bar.plot <- function(likert,
 	
 	lowrange <- 1 : floor(center - 0.5)
 	highrange <- ceiling(center + 0.5) : likert$nlevels
-	ramp <- colorRamp(c(low.color, neutral.color.ramp))
-	ramp <- rgb( ramp(seq(0, 1, length=length(lowrange)+1)), maxColorValue=255)
-	bamp <- colorRamp(c(neutral.color.ramp, high.color))
-	bamp <- rgb( bamp(seq(0, 1, length=length(highrange)+1)), maxColorValue=255)
 	cols <- NULL
-	if(center %% 1 != 0) {
-		cols <- c(ramp[1:(length(ramp)-1)], bamp[2:length(bamp)])		
+	if(!is.null(colors) & length(colors) == likert$nlevels) {
+		cols <- colors
 	} else {
-		cols <- c(ramp[1:(length(ramp)-1)], neutral.color, bamp[2:length(bamp)])
+		if(!is.null(colors) & length(colors) != likert$nlevels) {
+			warning('The length of colors must be equal the number of levels.')
+		}
+		ramp <- colorRamp(c(low.color, neutral.color.ramp))
+		ramp <- rgb( ramp(seq(0, 1, length=length(lowrange)+1)), maxColorValue=255)
+		bamp <- colorRamp(c(neutral.color.ramp, high.color))
+		bamp <- rgb( bamp(seq(0, 1, length=length(highrange)+1)), maxColorValue=255)
+		cols <- NULL
+		if(center %% 1 != 0) {
+			cols <- c(ramp[1:(length(ramp)-1)], bamp[2:length(bamp)])		
+		} else {
+			cols <- c(ramp[1:(length(ramp)-1)], neutral.color, bamp[2:length(bamp)])
+		}		
 	}
 
 	lsum <- summary(likert, center=center)

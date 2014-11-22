@@ -4,7 +4,7 @@
 \title{Bar Plot for Likert Items.}
 \usage{
 likert.bar.plot(likert, low.color = "#D8B365", high.color = "#5AB4AC",
-  neutral.color = "grey90", neutral.color.ramp = "white",
+  neutral.color = "grey90", neutral.color.ramp = "white", colors = NULL,
   plot.percent.low = TRUE, plot.percent.high = TRUE,
   plot.percent.neutral = TRUE, plot.percents = FALSE, text.size = 3,
   text.color = "black", centered = TRUE, center = (likert$nlevels - 1)/2 +
@@ -24,6 +24,9 @@ likert.bar.plot(likert, low.color = "#D8B365", high.color = "#5AB4AC",
 
 \item{neutral.color.ramp}{second color used when calling \code{\link{colorRamp}}
 with \code{low.color} and \code{high.color} to define the color palettes.}
+
+\item{colors}{vector specifying the colors to use. This must be equal to
+the number of likert levels.}
 
 \item{plot.percent.low}{whether to plot low percentages.}
 
