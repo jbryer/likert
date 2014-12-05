@@ -1,10 +1,18 @@
 require(shiny)
 #library(pisa)
 require(devtools)
+
+
+## adding dependency not previously specified for rename
+require(reshape)
+
+
 #install_github('likert','kspeer')
 require(likert)
 data(pisaitems)
-source('C:/Users/User/Dropbox/Github/likert/R/xtable.likert.R')#rm this when github syncs
+
+# removing line giving error when shiny app is loading
+# source('C:/Users/User/Dropbox/Github/likert/R/xtable.likert.R')#rm this when github syncs
 
 items24 <- pisaitems[,substr(names(pisaitems), 1,5) == 'ST24Q']
 
