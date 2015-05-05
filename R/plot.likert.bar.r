@@ -149,7 +149,7 @@ likert.bar.plot <- function(likert,
 						 aes(fill=variable), stat='identity') + 
 				geom_bar(data=results.high, aes(fill=variable), stat='identity')
 			names(cols) <- levels(results$variable)
-			p <- p + scale_fill_manual(legend, breaks=names(cols), values=cols)
+			p <- p + scale_fill_manual(legend, breaks=names(cols), values=cols, drop=FALSE)
 		} else {
 			ymin <- 0
 			p <- ggplot(results, aes(y=value, x=Group, group=variable))
@@ -157,7 +157,8 @@ likert.bar.plot <- function(likert,
 				scale_fill_manual(legend, 
 							values=cols, 
 							breaks=levels(results$variable),
-							labels=levels(results$variable))
+							labels=levels(results$variable),
+							drop=FALSE)
 		}
 		if(plot.percent.low) {
 			p <- p + geom_text(data=lsum, y=ymin, aes(x=Group, 
@@ -213,7 +214,7 @@ likert.bar.plot <- function(likert,
 			p <- p + facet_wrap(~ Item, nrow=1)
 		}
 		if(!missing(group.order)) {
-			p <- p + scale_x_discrete(limits=rev(group.order))
+			p <- p + scale_x_discrete(limits=rev(group.order), drop=FALSE)
 		}
 	} else { #No grouping
 		results <- reshape::melt(likert$results, id.vars='Item')
@@ -247,13 +248,14 @@ likert.bar.plot <- function(likert,
 						 aes(fill=variable), stat='identity') + 
 				geom_bar(data=results.high, aes(fill=variable), stat='identity')
 			names(cols) <- levels(results$variable)
-			p <- p + scale_fill_manual(legend, breaks=names(cols), values=cols)
+			p <- p + scale_fill_manual(legend, breaks=names(cols), values=cols, drop=FALSE)
 		} else {
 			p <- ggplot(results, aes(y=value, x=Item, group=Item))
 			p <- p + geom_bar(stat='identity', aes(fill=variable))
 			p <- p + scale_fill_manual(legend, values=cols, 
 							  breaks=levels(results$variable), 
-							  labels=levels(results$variable))
+							  labels=levels(results$variable),
+							  drop=FALSE)
 		}
 		if(plot.percent.low) {
 			p <- p + geom_text(data=lsum, y=ymin, aes(x=Item, 
@@ -302,10 +304,10 @@ likert.bar.plot <- function(likert,
 			theme(axis.ticks=element_blank())
 		if(!missing(group.order)) {
 			p <- p + scale_x_discrete(limits=rev(group.order),
-				labels=label_wrap_mod(rev(group.order), width=wrap))
+				labels=label_wrap_mod(rev(group.order), width=wrap), drop=FALSE)
 		} else {
 			p <- p + scale_x_discrete(breaks=likert$results$Item,
-				labels=label_wrap_mod(likert$results$Item, width=wrap))
+				labels=label_wrap_mod(likert$results$Item, width=wrap), drop=FALSE)
 		}
 	}
 	p <- p + scale_y_continuous(label=abs_formatter, 

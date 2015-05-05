@@ -2,6 +2,7 @@ likert 1.2.1
 =========
 
 * Added colors parameter to plot.likert.bar to define custom colors for levels.
+* Fixed bug where an unused factor level would not appear in the legend.
 
 likert 1.2
 =========
