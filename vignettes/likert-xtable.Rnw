@@ -48,7 +48,7 @@ l24g <- likert(items24, grouping=pisaitems$CNT)
 xtable(l24)
 @
 
-<<results=tex>>=
+<<results=tex,eval=FALSE,echo=FALSE>>=
 xtable(l24g)
 @
 

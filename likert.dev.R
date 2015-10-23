@@ -8,8 +8,9 @@ document("likert")
 check_doc("likert")
 install("likert")
 build('likert')
-check("likert", cran=TRUE)
 build('likert',vignettes=FALSE)
+build_vignettes('likert')
+check("likert", cran=TRUE)
 
 release('likert')
 
