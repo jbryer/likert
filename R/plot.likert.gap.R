@@ -59,7 +59,7 @@ plot.likert.gap <- function(x, type=c('bar','density'),
 		sat$Row <- 1:nrow(sat)
 		imp$Row <- 1:nrow(imp)
 		df <- rbind(sat, imp)
-		df.melt <- reshape::melt(df, id.vars=c('Row','Type'))
+		df.melt <- reshape2::melt(df, id.vars=c('Row','Type'))
 		df.melt$value <- as.integer(df.melt$value)
 		names(df.melt) <- c('Row','Type','Question','Value')
 		tab <- describeBy(df.melt$Value, group=list(df.melt$Type, df.melt$Question),

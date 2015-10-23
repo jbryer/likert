@@ -3,3 +3,4 @@ UnusedLevels 	This demo shows how to address the "All items (columns) must have 
 RecodeFactors 	This demo shows how to recode likert items. This is useful if you wish to reverse the order from left-to-right how the likert responses are plotted or change the labels of responses (e.g. from numeric values to character values).
 PreSummarized 	This demo shows how to use the likert package with presummarized data.
 GapAnalysis 	This demo shows how to perform a gap analysis where each item has two repsonses for satisfaction and importance.
+GroupedFactors	This demo shows how to group by factors (i.e. group columns together).

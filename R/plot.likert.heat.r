@@ -22,7 +22,7 @@ likert.heat.plot <- function(likert,
 	}
 	
 	lsum <- summary(likert)
-	results = reshape::melt(likert$results, id.vars='Item')
+	results = reshape2::melt(likert$results, id.vars='Item')
 	results$variable = as.character(results$variable)
 	results$label = paste(format(results$value, digits=2, drop0trailing=FALSE), '%', sep='')
 	tmp = data.frame(Item=lsum$Item, 

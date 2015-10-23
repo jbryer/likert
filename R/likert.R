@@ -21,6 +21,9 @@
 #'        disagree, etc).
 #' @param grouping (optional) should the results be summarized by the given
 #'        grouping variable.
+#' @param factors a vector with \code{length(factors) == ncol(items)}
+#'        defining which factor each column belongs to. The values correspond
+#'        to the factor label.
 #' @param importance a data frame of the same dimensions as items containing
 #'        an importance rating for each item. The order of columns should match
 #'        and the names from items will be used.
@@ -39,6 +42,7 @@
 #' plot(l29)
 likert <- function(items, summary,
 				   grouping=NULL, 
+				   factors=NULL,
 				   importance,
 				   nlevels=length(levels(items[,1]))) {
 	if(!missing(summary)) { #Pre-summarized data
@@ -93,6 +97,11 @@ likert <- function(items, summary,
 			}
 		}
 		
+		if(!is.null(grouping) & !is.null(factors)) {
+			stop('Grouping by a grouping column and factor is not supported. 
+				 Specify either grouping or factors.')
+		}
+		
 		lowrange <- 1 : ceiling(nlevels / 2 - nlevels %% 2)
 		highrange <- ceiling(nlevels / 2 + 1 ) : nlevels
 		
@@ -107,12 +116,13 @@ likert <- function(items, summary,
 				)
 			for(i in 1:ncol(items)) {
 				t <- as.data.frame(table(grouping, as.integer(items[,i])))
-				#t <- as.data.frame(table(grouping, items[,i]))
-				t <- reshape::cast(t, Var2 ~ grouping, value='Freq', add.missing=TRUE)
-				t <- apply(t, 2, FUN=function(x) { x / sum(x) * 100 } )
-				t <- reshape::melt(t)
+				t <- reshape2::dcast(t, Var2 ~ grouping, value.var='Freq', add.missing=TRUE)
+				t <- cbind(Response=t[,1], 
+						   apply(t[,2:ncol(t)], 2, FUN=function(x) { x / sum(x) * 100 } )
+				)
+				t <- reshape2::melt(t)
 				results <- merge(results, t, 
-								 by.x=c('Group','Response'), by.y=c('X2','X1'), 
+								 by.x=c('Group','Response'), by.y=c('Var2','Var1'), 
 								 all.x=TRUE)
 				names(results)[ncol(results)] <- paste0('Col', i)
 			}
@@ -121,8 +131,8 @@ likert <- function(items, summary,
 			
 			results$Response <- factor(results$Response, levels=1:nlevels, 
 									  labels=levels(items[,i]))
-			results <- reshape::melt(results, id=c('Group', 'Response'))
-			results <- reshape::cast(results, Group + variable ~ Response)
+			results <- reshape2::melt(results, id=c('Group', 'Response'))
+			results <- reshape2::dcast(results, Group + variable ~ Response)
 			results <- as.data.frame(results)
 			names(results)[2] <- 'Item'
 			
@@ -160,10 +170,19 @@ likert <- function(items, summary,
 					results[narows, i] <- 0
 				}
 			}
+			
+			if(!is.null(factors)) {
+				if(length(factors) != nrow(results)) {
+					stop('length(factors) != ncol(items)')
+				}
+				results <- cbind(results[,1,drop=FALSE], 
+								 'Group'=factors, 
+								 results[,2:ncol(results)])
+			}
 		}
 		
-		r <- list(results=results, items=items, grouping=grouping, nlevels=nlevels,
-				  levels=levels(items[,1]))
+		r <- list(results=results, items=items, grouping=grouping, factors=factors,
+				  nlevels=nlevels, levels=levels(items[,1]))
 		if(!missing(importance)) {
 			names(importance) <- names(items)
 			r$importance <- likert(importance, grouping=grouping, nlevels=nlevels)

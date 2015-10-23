@@ -13,7 +13,7 @@ build('likert',vignettes=FALSE)
 
 release('likert')
 
-require(likert)
+library(likert)
 ls('package:likert')
 
 #Run shiny app. See also shinyLikert to run from the installed package.

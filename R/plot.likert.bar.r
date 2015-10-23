@@ -5,6 +5,7 @@ utils::globalVariables(c('value','Group','variable','low','Item','high',
 #' 
 #' Bar plot for the results of \code{\link{likert}}.
 #' 
+#' @param l results of \code{\link{likert}}.
 #' @param likert object of type likert.
 #' @param low.color color for low values.
 #' @param high.color color for high values.
@@ -47,7 +48,7 @@ utils::globalVariables(c('value','Group','variable','low','Item','high',
 #' @seealso likert.heat.plot
 #' @seealso likert.bar.plot
 #' @seealso likert.density.plot
-likert.bar.plot <- function(likert,
+likert.bar.plot <- function(l,
 							low.color='#D8B365',
 							high.color='#5AB4AC',
 							neutral.color='grey90',
@@ -60,10 +61,10 @@ likert.bar.plot <- function(likert,
 							text.size=3,
 							text.color='black',
 							centered=TRUE,
-							center=(likert$nlevels-1)/2 + 1,
+							center=(l$nlevels-1)/2 + 1,
 							include.center=TRUE,
 							ordered=TRUE,
-							wrap=ifelse(is.null(likert$grouping), 50, 100),
+							wrap=ifelse(is.null(l$grouping), 50, 100),
 							wrap.grouping=50,
 							legend='Response',
 							legend.position='bottom',
@@ -71,21 +72,21 @@ likert.bar.plot <- function(likert,
 							panel.strip.color='#F0F0F0',
 							group.order,
 							...) {
-	if(center < 1.5 | center > (likert$nlevels - 0.5) | center %% 0.5 != 0) {
+	if(center < 1.5 | center > (l$nlevels - 0.5) | center %% 0.5 != 0) {
 		stop(paste0('Invalid center. Values can range from 1.5 to ', 
-					(likert$nlevels - 0.5), ' in increments of 0.5'))
+					(l$nlevels - 0.5), ' in increments of 0.5'))
 	}
 	ymin <- 0
 	ymax <- 100
 	ybuffer <- 5
 	
 	lowrange <- 1 : floor(center - 0.5)
-	highrange <- ceiling(center + 0.5) : likert$nlevels
+	highrange <- ceiling(center + 0.5) : l$nlevels
 	cols <- NULL
-	if(!is.null(colors) & length(colors) == likert$nlevels) {
+	if(!is.null(colors) & length(colors) == l$nlevels) {
 		cols <- colors
 	} else {
-		if(!is.null(colors) & length(colors) != likert$nlevels) {
+		if(!is.null(colors) & length(colors) != l$nlevels) {
 			warning('The length of colors must be equal the number of levels.')
 		}
 		ramp <- colorRamp(c(low.color, neutral.color.ramp))
@@ -100,19 +101,19 @@ likert.bar.plot <- function(likert,
 		}		
 	}
 
-	lsum <- summary(likert, center=center)
+	lsum <- summary(l, center=center)
 	
 	p <- NULL
-	if(!is.null(likert$grouping)) {
+	if(!is.null(l$grouping)) { ##### Grouping ##################################
 		lsum$Item <- label_wrap_mod(lsum$Item, width=wrap)
-		likert$results$Item <- label_wrap_mod(likert$results$Item, width=wrap)
-		#names(likert$items) <- label_wrap_mod(names(likert$items), width=wrap)
+		l$results$Item <- label_wrap_mod(l$results$Item, width=wrap)
+		#names(l$items) <- label_wrap_mod(names(l$items), width=wrap)
 		lsum$Group <- label_wrap_mod(lsum$Group, width=wrap.grouping)
 		
-		results <- likert$results
-		results <- reshape::melt(results, id=c('Group', 'Item'))
+		results <- l$results
+		results <- reshape2::melt(results, id=c('Group', 'Item'))
 		results$variable <- factor(results$variable, ordered=TRUE)
-		if(TRUE | is.null(likert$items)) {
+		if(TRUE | is.null(l$items)) {
 			results$Item <- factor(as.character(results$Item),
 								   levels=unique(results$Item),
 								   labels=label_wrap_mod(
@@ -120,18 +121,18 @@ likert.bar.plot <- function(likert,
 								   ordered=TRUE)
 		} else {
 			results$Item <- factor(results$Item,
-								   levels=label_wrap_mod(names(likert$items), width=wrap),
+								   levels=label_wrap_mod(names(l$items), width=wrap),
 								   ordered=TRUE)
 		}
 		ymin <- 0
 
 		if(centered) {
 			ymin <- -100
-			rows <- which(results$variable %in% names(likert$results)[
+			rows <- which(results$variable %in% names(l$results)[
 				3:(length(lowrange)+2)])
 			results[rows,'value'] <- -1 * results[rows,'value']
 			if(center %% 1 == 0) { #Midpoint is a level
-				rows.mid <- which(results$variable %in% names(likert$results)[center+2])
+				rows.mid <- which(results$variable %in% names(l$results)[center+2])
 				if(include.center) {
 					tmp <- results[rows.mid,]
 					tmp$value <- tmp$value / 2 * -1
@@ -170,7 +171,7 @@ likert.bar.plot <- function(likert,
 							   label=paste0(round(high), '%'), 
 							   group=Item), size=text.size, hjust=-.2, color=text.color)			
 		}
-		if(plot.percent.neutral & likert$nlevels %% 2 == 1 & include.center) {
+		if(plot.percent.neutral & l$nlevels %% 2 == 1 & include.center) {
 			if(centered) {
 				p <- p + geom_text(data=lsum, y=0, aes(x=Group, group=Item,
 							  	   label=paste0(round(neutral), '%')),
@@ -216,20 +217,27 @@ likert.bar.plot <- function(likert,
 		if(!missing(group.order)) {
 			p <- p + scale_x_discrete(limits=rev(group.order), drop=FALSE)
 		}
-	} else { #No grouping
-		results <- reshape::melt(likert$results, id.vars='Item')
-		if(ordered) {
+	} else { ##### No grouping #################################################
+		factor.mapping <- NULL
+		if(!is.null(l$factors)) {
+			factor.mapping <- l$results[,1:2]
+			names(factor.mapping)[2] <- 'Factor'
+			results <- reshape2::melt(l$results[,-2], id.vars='Item')
+		} else {
+			results <- reshape2::melt(l$results, id.vars='Item')
+		}
+		if(ordered & is.null(results$factor)) {
 			order <- lsum[order(lsum$high),'Item']
 			results$Item <- factor(results$Item, levels=order)
 		}
 		ymin <- 0
 		if(centered) {
 			ymin <- -100
-			rows <- which(results$variable %in% names(likert$results)[
+			rows <- which(results$variable %in% names(l$results)[
 				2:(length(lowrange) + 1)])
 			results[rows, 'value'] <- -1 * results[rows, 'value']
 			if(center %% 1 == 0) { # Midpoint is a level (i.e. there are an odd number of levels)
-				rows.mid <- which(results$variable %in% names(likert$results)[center+1])
+				rows.mid <- which(results$variable %in% names(l$results)[center+1])
 				if(include.center) {
 					tmp <- results[rows.mid,]
 					tmp$value <- tmp$value/2 * -1
@@ -239,6 +247,13 @@ likert.bar.plot <- function(likert,
 					#results[rows.mid,'value'] <- 0
 					results <- results[-rows.mid,]
 				}
+			}
+			if(!is.null(factor.mapping)) {
+				results$order <- 1:nrow(results)
+				results <- merge(results, factor.mapping,
+								 by='Item', all.x=TRUE)
+				results <- results[order(results$order),]
+				results$order <- NULL
 			}
 			results.low <- results[results$value < 0,]
 			results.high <- results[results$value > 0,]
@@ -250,6 +265,13 @@ likert.bar.plot <- function(likert,
 			names(cols) <- levels(results$variable)
 			p <- p + scale_fill_manual(legend, breaks=names(cols), values=cols, drop=FALSE)
 		} else {
+			if(!is.null(factor.mapping)) {
+				results$order <- 1:nrow(results)
+				results <- merge(results, factor.mapping,
+								 by='Item', all.x=TRUE)
+				results <- results[order(results$order),]
+				results$order <- NULL
+			}
 			p <- ggplot(results, aes(y=value, x=Item, group=Item))
 			p <- p + geom_bar(stat='identity', aes(fill=variable))
 			p <- p + scale_fill_manual(legend, values=cols, 
@@ -267,7 +289,7 @@ likert.bar.plot <- function(likert,
 				  			label=paste0(round(high), '%')), 
 				  			size=text.size, hjust=-.2, color=text.color)
 		}
-		if(plot.percent.neutral & likert$nlevels %% 2 == 1 & include.center) {
+		if(plot.percent.neutral & l$nlevels %% 2 == 1 & include.center) {
 			if(centered) {
 				p <- p +
 					geom_text(data=lsum, y=0, 
@@ -302,12 +324,16 @@ likert.bar.plot <- function(likert,
 		p <- p +
 			coord_flip() + ylab('Percentage') + xlab('') + 
 			theme(axis.ticks=element_blank())
+		if(!is.null(factor.mapping)) {
+			# DOES NOT WORK! Not supported
+			# p + facet_wrap(~ Factor, ncol=1, scales='free')
+		}
 		if(!missing(group.order)) {
 			p <- p + scale_x_discrete(limits=rev(group.order),
 				labels=label_wrap_mod(rev(group.order), width=wrap), drop=FALSE)
 		} else {
-			p <- p + scale_x_discrete(breaks=likert$results$Item,
-				labels=label_wrap_mod(likert$results$Item, width=wrap), drop=FALSE)
+			p <- p + scale_x_discrete(breaks=l$results$Item,
+				labels=label_wrap_mod(l$results$Item, width=wrap), drop=FALSE)
 		}
 	}
 	p <- p + scale_y_continuous(label=abs_formatter, 

@@ -9,12 +9,10 @@
 #' @import ggplot2
 #' @import gridExtra
 #' @import grid
-#' @import plyr
-#' @importFrom reshape melt
-#' @importFrom reshape melt.data.frame
-#' @importFrom reshape cast
+#' @import reshape2
 #' @importFrom psych describe
 #' @importFrom psych describeBy
+#' @importFrom reshape rename
 NA
 
 #' Fictitious dataset with importance and satisfaction results across five different
@@ -27,6 +25,21 @@ NA
 #' @docType data
 #' @format a data frame with 68 ovservations of 11 variables.
 #' @keywords datasets
+NA
+
+#' Results from the Survey of Academic Self-Regulation (SASR).
+#' 
+#' The Survey of Academic Self-Regulation (SASR) is comprised of six factors:
+#' self-regulation, intrinsic motivation, extrinsic motivation, self-efficacy,
+#' metacognition, and personal relevance and control.
+#' 
+#' @name sasr
+#' @docType data
+#' @format a data frame with 860 ovservations of 63 variables.
+#' @keywords datasets
+#' @references Dugan, R., & Andrade, H. (2011). Exploring the construct validity 
+#' of academic self-regulation using a new self-report questionnaire. The 
+#' International Journal of Educational and Psychological Assessment, 7(1).
 NA
 
 #' Programme of International Student Assessment

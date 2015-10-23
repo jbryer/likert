@@ -6,6 +6,5 @@
 #' @export
 #' @references http://rstudio.com/shiny
 shinyLikert <- function() {
-	require(shiny)
 	shiny::runApp(system.file('shiny', package='likert'))
 }

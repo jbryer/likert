@@ -34,7 +34,7 @@ panel.smooth.ordered.categorical <- function (x, y, col = par("col"), bg = NA, p
 	x = x[!ymiss]
 	y = y[!ymiss]
 	
-	z <- merge(data.frame(x,y), reshape::melt(table(x,y)), sort=F)$value
+	z <- merge(data.frame(x,y), reshape2::melt(table(x,y)), sort=F)$value
 	z <- point.size.rescale*z/ (length(x)) # notice how we rescale the dots accourding to the maximum z could have gotten
 	
 	symbols(x, y,  circles = z,#rep(0.1, length(x)), #sample(1:2, length(x), replace = T) ,

@@ -16,7 +16,7 @@ data(pisaitems)
 ##### PISA Item 24: Reading Attitudes
 data(pisaitems)
 items24 <- pisaitems[,substr(names(pisaitems), 1,5) == 'ST24Q']
-items24 <- rename(items24, c(
+items24 <- reshape::rename(items24, c(
 	ST24Q01="I read only if I have to.",
 	ST24Q02="Reading is one of my favorite hobbies.",
 	ST24Q03="I like talking about books with other people.",

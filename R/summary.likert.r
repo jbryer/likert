@@ -158,7 +158,12 @@ summary.likert <- function(object, center=(object$nlevels-1)/2 + 1,
 			if(lowrange[length(lowrange)] + 1 != highrange[1]) {
 				results2$neutral <- results[,(highrange[1] - 1)]
 			}
-			row.names(results2) = 1:nrow(results2)	
+			row.names(results2) = 1:nrow(results2)
+			if(!is.null(object$factors)) {
+				results2 <- cbind(results2[,1,drop=FALSE],
+								  'Factor'=object$factors,
+								  results2[,2:ncol(results2),drop=FALSE])
+			}
 			if(ordered) {
 				results2 <- results2[order(results2$high, decreasing=TRUE),]
 			}
