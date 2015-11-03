@@ -1,4 +1,9 @@
-likert 1.3
+likert 1.3.1
+=========
+
+* Fix to work with the latest version of the xtable package.
+
+likert 1.3.0
 =========
 
 * Added ability to group items by factor.

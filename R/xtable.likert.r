@@ -8,6 +8,9 @@
 #' @param align column alignments.
 #' @param digits number of digits to use for numeric columns.
 #' @param display column formats.
+#' @param auto Logical, indicating whether to apply automatic format when no 
+#'        value is passed to align, digits, or display (see \code{\link{xtable}}
+#'        for more information.
 #' @param include.n option to include n
 #' @param include.mean option to include mean
 #' @param include.sd option to include sd
@@ -32,6 +35,7 @@ xtable.likert <- function(x, caption=NULL,
 						  align=NULL, 
 						  digits=NULL,
                           display=NULL, 
+						  auto=FALSE,
 						  include.n=TRUE, 
 						  include.mean=TRUE, 
 						  include.sd=TRUE, 
@@ -121,7 +125,7 @@ xtable.likert <- function(x, caption=NULL,
     #TODO include.levels
   #TODO: align should be defined, not passed through
     xtab <- xtable(tab, caption=caption, label=label, align=align, digits=digits,
-                 display=display, include.rownames=FALSE)
+                 display=display, auto=auto, include.rownames=FALSE)
     class(xtab) <- c('xlikert',class(xtab))
 	return(xtab)
 }
