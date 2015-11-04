@@ -1,5 +1,9 @@
 ### Analysis and Visualization of Likert Based Items
 
+[![Build Status](https://travis-ci.org/jbryer/likert?branch=master)](https://travis-ci.org/jbryer/likert)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/likert)](http://cran.r-project.org/package=likert)
+
+
 Jason Bryer [jason@bryer.org](mailto:jason@bryer.org)  
 Kim Speerschneider [kimkspeer@gmail.com](mailto:kimkspeer@gmail.com)
 
