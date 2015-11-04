@@ -1,6 +1,6 @@
 ### Analysis and Visualization of Likert Based Items
 
-[![Build Status](https://travis-ci.org/jbryer/likert?branch=master)](https://api.travis-ci.org/jbryer/likert.svg)
+[![Build Status](https://api.travis-ci.org/jbryer/likert.svg)](https://travis-ci.org/jbryer/likert?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/likert)](http://cran.r-project.org/package=likert)
 
 
