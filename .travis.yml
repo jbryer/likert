@@ -1,6 +1,5 @@
-language: r
+language: R
 sudo: required
-bioc_required: false
 warnings_are_errors: true
-r_binary_packages:
-  - knitr
+r_packages:
+  - rmarkdown
