@@ -16,8 +16,8 @@ Download the 2013 useR! Conference [abstract](https://github.com/jbryer/likert/b
 
 The latest development version can be downloaded using the `devtools` package.
 
-	require(devtools)
-	install_github('likert','jbryer')
+	if(!require(devtools)) install.packages("devtools")
+	devtools::install_github('jbryer/likert')
 
 To get started take a look at the [likert demo](https://github.com/jbryer/likert/blob/master/demo/likert.R) or from within R:
 
