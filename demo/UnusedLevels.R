@@ -33,3 +33,15 @@ plot(lgood)
 lgr <- likert(items, grouping=groups)
 summary(lgr)
 plot(lgr)
+
+# If level doesn't appear in any item, does it show in the legend?
+items2 <- data.frame('Item 1'=factor(sample(mylevels[1:4], 100, replace=TRUE)),
+					'Item 2'=factor(sample(mylevels[1:4], 100, replace=TRUE)),
+					'Item 3'=factor(sample(mylevels[1:4], 100, replace=TRUE)),
+					check.names=FALSE)
+for(i in seq_along(items2)) {
+	items2[,i] <- factor(items2[,i], levels=mylevels)
+}
+str(items2)
+l2 <- likert(items2)
+plot(l2) # YES!
