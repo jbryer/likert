@@ -3,7 +3,6 @@
 #' This will start a shiny app included with the package to show many of the features
 #' available in the likert package.
 #' 
-#' @export
 #' @references http://rstudio.com/shiny
 shinyLikert <- function() {
 	shiny::runApp(system.file('shiny', package='likert'))
