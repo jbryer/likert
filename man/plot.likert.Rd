@@ -6,7 +6,7 @@
 \usage{
 \method{plot}{likert}(x, type = c("bar", "heat", "density"),
   include.histogram = FALSE, panel.widths = c(3, 1), panel.arrange = "v",
-  panel.strip.color = "#F0F0F0", legend.position = "bottom",
+  panel.strip.color = "#F0F0F0", legend.position = "bottom", group.order,
   panel.background = element_rect(size = 1, color = "grey70", fill = NA), ...)
 }
 \arguments{
@@ -27,6 +27,9 @@ Possible values are \code{v} (vertical, the default), \code{h}
 
 \item{legend.position}{the position for the legend ("left", "right", "bottom",
 "top", or two-element numeric vector).}
+
+\item{group.order}{the order in which groups (for grouped items) or items
+(for non-grouped items) should be plotted.}
 
 \item{panel.background}{define background of the plot. See \code{\link{theme}}.}
 

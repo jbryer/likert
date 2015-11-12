@@ -1,5 +1,3 @@
-utils::globalVariables(c('llply'))
-
 ##### START zeroGrob FROM ggplot2 ##############################################
 # Copied from ggplot2. This is a non-exported function. To avoid R CMD CHECK
 # note for use ::: the functions were copied here.

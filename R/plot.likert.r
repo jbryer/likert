@@ -21,6 +21,8 @@
 #'        Possible values are \code{v} (vertical, the default), \code{h}
 #'        (horizontal), and \code{NULL} (auto fill horizontal and vertical)
 #' @param panel.strip.color the background color for panel labels.
+#' @param group.order the order in which groups (for grouped items) or items
+#'        (for non-grouped items) should be plotted.
 #' @export
 #' @seealso \link{likert.bar.plot}
 #' @seealso \link{likert.heat.plot}
@@ -33,13 +35,21 @@ plot.likert <- function(x, type=c('bar','heat','density'),
 						panel.arrange='v',
 						panel.strip.color='#F0F0F0',
 						legend.position='bottom',
+						group.order,
 						panel.background=element_rect(size=1, color='grey70', fill=NA),
 						...) {
+	if(missing(group.order) & !is.null(x$grouping) & include.histogram) {
+		# Fixes this issue: https://github.com/jbryer/likert/issues/40
+		# If the order is not explicitly set when plotting histograms too, then
+		# the groups may not align.
+		group.order <- unique(x$grouping)
+	}
 	if(type[1] == 'bar') {
 		p <- likert.bar.plot(x, 
 							 legend.position=legend.position, 
 							 panel.arrange=panel.arrange,
 							 panel.strip.color=panel.strip.color,
+							 group.order = group.order,
 							 ...)
 	} else if(type[1] == 'heat') {
 		p <- likert.heat.plot(x, legend.position=legend.position, ...)
@@ -61,6 +71,7 @@ plot.likert <- function(x, type=c('bar','heat','density'),
 										   order=item.order,
 										   panel.arrange=panel.arrange,
 										   panel.strip.color=panel.strip.color,
+										   group.order=group.order,
 										   ...)
 	 		phist <- phist + theme(panel.background=panel.background)
 			if(panel.arrange == 'v') {

@@ -16,7 +16,7 @@ data(pisaitems)
 ##### PISA Item 24: Reading Attitudes
 data(pisaitems)
 items24 <- pisaitems[,substr(names(pisaitems), 1,5) == 'ST24Q']
-items24 <- reshape::rename(items24, c(
+names(items24) <- c(
 	ST24Q01="I read only if I have to.",
 	ST24Q02="Reading is one of my favorite hobbies.",
 	ST24Q03="I like talking about books with other people.",
@@ -27,7 +27,7 @@ items24 <- reshape::rename(items24, c(
 	ST24Q08="I read only to get information that I need.",
 	ST24Q09="I cannot sit still and read for more than a few minutes.",
 	ST24Q10="I like to express my opinions about books I have read.",
-	ST24Q11="I like to exchange books with my friends."))
+	ST24Q11="I like to exchange books with my friends.")
 
 (l.orignal <- likert(items24))
 levels(items24[,1])

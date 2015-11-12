@@ -11,10 +11,10 @@
 #' @import grid
 #' @import reshape2
 #' @importFrom psych describe describeBy
-#' @importFrom reshape rename
 #' @importFrom grDevices colorRamp rgb
 #' @importFrom graphics hist lines pairs par rect strwidth symbols text
 #' @importFrom stats cor cor.test density sd symnum
+#' @importFrom plyr llply
 NA
 
 #' Fictitious dataset with importance and satisfaction results across five different
