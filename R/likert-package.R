@@ -105,4 +105,11 @@ NA
 .onAttach <- function(libname, pkgname) {
 	#pkgEnv = pos.to.env(match('package:likert', search()))
 	#assignInNamespace("sqlrepos", paste(system.file(package='likert'), '/data', sep=''), "irutils")
+	if('package:reshape' %in% search()) {
+		packageStartupMessage(
+"The reshape package was found on the search path. It is recommended
+that you detach this package as it causes conflicts with the reshape2
+package. You can detach using the following R command:
+    detach('package:reshape') ")
+	}
 }
