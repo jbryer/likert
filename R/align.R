@@ -13,7 +13,7 @@ zeroGrob <- function() .zeroGrob
 widthDetails.zeroGrob <-
 	heightDetails.zeroGrob <- 
 	grobWidth.zeroGrob <- 
-	grobHeight.zeroGrob <- function(x) unit(0, "cm")
+	grobHeight.zeroGrob <- function(x) grid::unit(0, "cm")
 
 drawDetails.zeroGrob <- function(x, recording) {}
 
@@ -128,7 +128,7 @@ align.plots <- function(gl, ...) {
 						  e2= lapply(ylabels, grobWidth), SIMPLIFY=FALSE)
 	widths.right <- lapply(legends, grobWidth)
 	#  heights.top <- lapply(plottitles, grobHeight)
-	heights.top <- lapply( plottitles, function(x) unit(0,"cm") )
+	heights.top <- lapply( plottitles, function(x) grid::unit(0,"cm") )
 	heights.bottom <- mapply(`+`, e1=lapply(xtitles, grobHeight), 
 							 e2=lapply(xlabels, grobHeight), SIMPLIFY=FALSE)
 	
@@ -138,30 +138,30 @@ align.plots <- function(gl, ...) {
 		# Left
 		valNew <- widths.left[[ i ]]
 		valOld <- stats.col[[ min(lstCur[[3]]) ]]$widths.left.max
-		if ( is.null( valOld ) ) valOld <- unit( 0, "cm" )
+		if ( is.null( valOld ) ) valOld <- grid::unit( 0, "cm" )
 		stats.col[[ min(lstCur[[3]]) ]]$widths.left.max <- 
-			max( do.call( unit.c, list(valOld, valNew) ) )
+			max( do.call( grid::unit.c, list(valOld, valNew) ) )
 		
 		# Right
 		valNew <- widths.right[[ i ]]
 		valOld <- stats.col[[ max(lstCur[[3]]) ]]$widths.right.max
-		if ( is.null( valOld ) ) valOld <- unit( 0, "cm" )
+		if ( is.null( valOld ) ) valOld <- grid::unit( 0, "cm" )
 		stats.col[[ max(lstCur[[3]]) ]]$widths.right.max <- 
-			max( do.call( unit.c, list(valOld, valNew) ) )
+			max( do.call( grid::unit.c, list(valOld, valNew) ) )
 		
 		# Top
 		valNew <- heights.top[[ i ]]
 		valOld <- stats.row[[ min(lstCur[[2]]) ]]$heights.top.max
-		if ( is.null( valOld ) ) valOld <- unit( 0, "cm" )
+		if ( is.null( valOld ) ) valOld <- grid::unit( 0, "cm" )
 		stats.row[[ min(lstCur[[2]]) ]]$heights.top.max <- 
-			max( do.call( unit.c, list(valOld, valNew) ) )
+			max( do.call( grid::unit.c, list(valOld, valNew) ) )
 		
 		# Bottom
 		valNew <- heights.bottom[[ i ]]
 		valOld <- stats.row[[ max(lstCur[[2]]) ]]$heights.bottom.max
-		if ( is.null( valOld ) ) valOld <- unit( 0, "cm" )
+		if ( is.null( valOld ) ) valOld <- grid::unit( 0, "cm" )
 		stats.row[[ max(lstCur[[2]]) ]]$heights.bottom.max <- 
-			max( do.call( unit.c, list(valOld, valNew) ) )
+			max( do.call( grid::unit.c, list(valOld, valNew) ) )
 	}
 	
 	for(i in seq_along(dots)){
@@ -173,11 +173,11 @@ align.plots <- function(gl, ...) {
 		pushViewport( viewport( layout.pos.row=lstCur[[2]],
 								layout.pos.col=lstCur[[3]], just=c("left","top") ) )
 		pushViewport(viewport(
-			x=unit(0, "npc") + nWidthLeftMax - widths.left[[i]],
-			y=unit(0, "npc") + nHeightBottomMax - heights.bottom[[i]],
-			width=unit(1, "npc") - nWidthLeftMax + widths.left[[i]] -
+			x=grid::unit(0, "npc") + nWidthLeftMax - widths.left[[i]],
+			y=grid::unit(0, "npc") + nHeightBottomMax - heights.bottom[[i]],
+			width=grid::unit(1, "npc") - nWidthLeftMax + widths.left[[i]] -
 				nWidthRightMax + widths.right[[i]],
-			height=unit(1, "npc") - nHeightBottomMax + heights.bottom[[i]] -
+			height=grid::unit(1, "npc") - nHeightBottomMax + heights.bottom[[i]] -
 				nHeightTopMax + heights.top[[i]],
 			just=c("left","bottom")))
 		grid.draw(dots[[i]])

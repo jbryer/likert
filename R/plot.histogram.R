@@ -82,7 +82,7 @@ likert.histogram.plot <- function(l,
 			geom_bar(data=hist[!hist$missing,], stat='identity') +
 			geom_hline(yintercept=0) +
 			geom_text(data=hist[!hist$missing,], hjust=1, size=text.size) +
-			scale_y_continuous(label=abs_formatter) +
+			scale_y_continuous(labels=abs_formatter) +
 			coord_flip() + ylab(xlab) + xlab('') +
 			theme(legend.position=legend.position) +
 			scale_fill_manual('',
@@ -111,7 +111,7 @@ likert.histogram.plot <- function(l,
 			geom_bar(data=hist[!hist$missing,], stat='identity') +
 			geom_hline(yintercept=0) +
 			geom_text(data=hist[!hist$missing,], hjust=1, size=text.size) +
-			scale_y_continuous(label=abs_formatter) +
+			scale_y_continuous(labels=abs_formatter) +
 			coord_flip() + ylab(xlab) + xlab('') +
 			scale_fill_manual('',
 							  limits=c(TRUE,FALSE),

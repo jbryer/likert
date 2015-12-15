@@ -336,7 +336,7 @@ likert.bar.plot <- function(l,
 				labels=label_wrap_mod(l$results$Item, width=wrap), drop=FALSE)
 		}
 	}
-	p <- p + scale_y_continuous(label=abs_formatter, 
+	p <- p + scale_y_continuous(labels=abs_formatter, 
 								limits=c(ymin - ybuffer, ymax + ybuffer))
 	p <- p + theme(legend.position=legend.position)
 	

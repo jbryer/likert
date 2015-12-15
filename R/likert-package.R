@@ -8,8 +8,9 @@
 #' @import xtable
 #' @import ggplot2
 #' @import gridExtra
-#' @import grid
 #' @import reshape2
+#' @importFrom grid grob editGrob vpPath viewport vpTree grid.layout getGrob gTree
+#'             grobWidth grobHeight pushViewport grid.draw upViewport grid.newpage
 #' @importFrom psych describe describeBy
 #' @importFrom grDevices colorRamp rgb
 #' @importFrom graphics hist lines pairs par rect strwidth symbols text
