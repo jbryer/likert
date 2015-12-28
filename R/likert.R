@@ -115,7 +115,7 @@ likert <- function(items, summary,
 				Response = rep(1:nlevels, length(unique(grouping)))
 				)
 			for(i in 1:ncol(items)) {
-				t <- as.data.frame(table(grouping, as.integer(items[,i])))
+				t <- as.data.frame(table(grouping, items[,i]))
 				t <- reshape2::dcast(t, Var2 ~ grouping, value.var='Freq', add.missing=TRUE)
 				t <- cbind(Response=t[,1], 
 						   apply(t[,2:ncol(t)], 2, FUN=function(x) { x / sum(x) * 100 } )
