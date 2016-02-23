@@ -39,6 +39,7 @@ plot(l24, center=2, wrap=30)
 plot(l24, center=2, include.center=FALSE, wrap=30)
 plot(l24, center=2, include.center=FALSE, wrap=20)
 plot(l24, plot.percents=TRUE, plot.percent.low=FALSE, plot.percent.high=FALSE)
+plot(l24, center=2, plot.percents=TRUE, plot.percent.low=FALSE, plot.percent.high=FALSE)
 
 plot(l24, colors=c('orange','darkorange','darkblue','blue'))
 

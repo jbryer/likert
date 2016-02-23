@@ -289,7 +289,7 @@ likert.bar.plot <- function(l,
 				  			label=paste0(round(high), '%')), 
 				  			size=text.size, hjust=-.2, color=text.color)
 		}
-		if(plot.percent.neutral & l$nlevels %% 2 == 1 & include.center) {
+		if(plot.percent.neutral & l$nlevels %% 2 == 1 & include.center & !plot.percents) {
 			if(centered) {
 				p <- p +
 					geom_text(data=lsum, y=0, 
@@ -304,9 +304,14 @@ likert.bar.plot <- function(l,
 			}
 		}
 		if(plot.percents) {
+			center.label <- ''
+			if(center %% 1 == 0) { # Midpoint is a level (i.e. there are an odd number of levels)
+				center.label <- names(l$results)[center+1]
+			}
 			lpercentpos <- ddply(results[results$value > 0,], .(Item), transform, 
 								 pos = cumsum(value) - 0.5*value)
-			p <- p + geom_text(data=lpercentpos, aes(x=Item, y=pos, 
+			p <- p + geom_text(data=lpercentpos[lpercentpos$variable != center.label,], 
+							   aes(x=Item, y=pos, 
 						label=paste0(round(value), '%')),
 						size=text.size, color=text.color)
 			lpercentneg <- results[results$value < 0,]
@@ -316,9 +321,17 @@ likert.bar.plot <- function(l,
 				lpercentneg <- ddply(lpercentneg, .(Item), transform, 
 									 pos = cumsum(value) - 0.5*value)	
 				lpercentneg$pos <- lpercentneg$pos * -1
-				p <- p + geom_text(data=lpercentneg, aes(x=Item, y=pos, 
+				p <- p + geom_text(data=lpercentneg[lpercentneg$variable != center.label,], 
+								   aes(x=Item, y=pos, 
 							label=paste0(round(abs(value)), '%')),
 							size=text.size, color=text.color)
+			}
+			lpercentneutral <- results[results$variable == center.label,]
+			if(nrow(lpercentneutral) > 0) {
+				p <- p + geom_text(data=lpercentneutral, 
+								   aes(x=Item, y=0, 
+								   	label=paste0(round(abs(value * 2)), '%')),
+								   size=text.size, color=text.color)
 			}
 		}
 		p <- p +

@@ -1,6 +1,7 @@
 likert 1.3.4
 =========
 
+* Fixed a bug where the neutral labels would be printed twice when there were an odd number of levels and plot.percents = TRUE.
 * Fixed a bug where the results for a grouped analysis with missing levels may not be correct in the print function.
 
 likert 1.3.3
