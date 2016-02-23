@@ -2,7 +2,7 @@
 
 [![Build Status](https://api.travis-ci.org/jbryer/likert.svg)](https://travis-ci.org/jbryer/likert?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/likert)](http://cran.r-project.org/package=likert)
-
+![Downloads](http://cranlogs.r-pkg.org/badges/likert)
 
 Jason Bryer [jason@bryer.org](mailto:jason@bryer.org)  
 Kim Speerschneider [kimkspeer@gmail.com](mailto:kimkspeer@gmail.com)
