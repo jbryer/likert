@@ -44,13 +44,13 @@ summary.likert <- function(object, center=(object$nlevels-1)/2 + 1,
 			neutral <- NA
 		}
 		if(is.null(object$grouping)) {
-			lowCols <- startCol:floor(center + 0.5) ## insert floor
+			lowCols <- startCol:floor(center + 0.5)
 			if(length(lowCols) == 1) {
 				low <- results[,lowCols]
 			} else {
 				low <- apply(results[,lowCols], 1, sum)
 			}
-			highCols <- (floor(center)+startCol):ncol(results) ## insert floor, remove -0.5
+			highCols <- (floor(center)+startCol):ncol(results)
 			if(length(highCols) == 1) {
 				high <- results[,highCols]
 			} else {
@@ -63,13 +63,13 @@ summary.likert <- function(object, center=(object$nlevels-1)/2 + 1,
 								   mean=tmp[,1],
 								   sd=tmp[,2]  )
 		} else {
-			lowCols <- startCol:(ceiling(center) + 1) ## insert ceiling
+			lowCols <- startCol:(ceiling(center) + 1)
 			if(length(lowCols) == 1) {
 				low <- results[,lowCols]
 			} else {
 				low <- apply(results[,lowCols], 1, sum)
 			}
-			highCols <- (floor(center)+startCol):ncol(results) ## insert floor
+			highCols <- (floor(center)+startCol):ncol(results)
 			if(length(highCols) == 1) {
 				high <- results[,highCols]
 			} else {
