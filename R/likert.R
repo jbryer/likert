@@ -68,7 +68,7 @@ likert <- function(items, summary,
 		class(r) <- 'likert'
 		return(r)
 	} else {
-		if(!('data.frame' %in% class(items))) {
+		if(!inherits(items, 'data.frame')) {
 			stop(paste0('The items parameter must be a data frame. If trying ',
 						'to subset a data frame to analyze only one column, try: ',
 						'items=mydf[,1, drop=FALSE].'))
