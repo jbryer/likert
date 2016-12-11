@@ -33,6 +33,7 @@ utils::globalVariables(c('value','Group','variable','low','Item','high',
 #' @param ordered reorder items from high to low.
 #' @param wrap width to wrap label text for item labels
 #' @param wrap.grouping width to wrap label text for group labels.
+#' @param ylabel label for the Y axis.
 #' @param legend title for the legend.
 #' @param legend.position the position for the legend ("left", "right", "bottom",
 #'        "top", or two-element numeric vector).
@@ -66,6 +67,7 @@ likert.bar.plot <- function(l,
 							ordered=TRUE,
 							wrap=ifelse(is.null(l$grouping), 50, 100),
 							wrap.grouping=50,
+							ylabel='Percentage',
 							legend='Response',
 							legend.position='bottom',
 							panel.arrange='v',
@@ -202,7 +204,7 @@ likert.bar.plot <- function(l,
 # 			}
 		}
 		p <- p +
-			coord_flip() +	ylab('Percentage') + xlab('') +
+			coord_flip() +	ylab(ylabel) + xlab('') +
 			theme(axis.ticks=element_blank(), 
 				  strip.background=element_rect(fill=panel.strip.color, 
 				  							    color=panel.strip.color))
@@ -335,7 +337,7 @@ likert.bar.plot <- function(l,
 			}
 		}
 		p <- p +
-			coord_flip() + ylab('Percentage') + xlab('') + 
+			coord_flip() + ylab(ylabel) + xlab('') + 
 			theme(axis.ticks=element_blank())
 		if(!is.null(factor.mapping)) {
 			# DOES NOT WORK! Not supported
