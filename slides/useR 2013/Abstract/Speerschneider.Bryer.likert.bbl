@@ -1,0 +1,29 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Dahl}{Dahl}{2012}]{xtable}
+Dahl, D.~B. (2012).
+\newblock {\em xtable: Export tables to LaTeX or HTML}.
+\newblock R package version 1.7-0.
+
+\bibitem[\protect\citeauthoryear{Likert}{Likert}{1932}]{Likert1932}
+Likert, R. (1932).
+\newblock A technique for the measurement of attitudes.
+\newblock {\em Archives of Psychology\/}~{\em 142}, 1--55.
+
+\bibitem[\protect\citeauthoryear{OECD}{OECD}{2010}]{pisa}
+OECD (2010).
+\newblock Programme of international student assessment (pisa).
+
+\bibitem[\protect\citeauthoryear{Wakita, Ueshima, and Noguchi}{Wakita
+  et~al.}{2012}]{Wakita2012}
+Wakita, T., N.~Ueshima, and H.~Noguchi (2012).
+\newblock Psychological distance between categories in the likert scale :
+  Comparing different numbers of options.
+\newblock {\em Educational and Psychological\/}~{\em 72}.
+
+\bibitem[\protect\citeauthoryear{Wickham}{Wickham}{2009}]{ggplot2}
+Wickham, H. (2009).
+\newblock {\em ggplot2: elegant graphics for data analysis}.
+\newblock Springer New York.
+
+\end{thebibliography}

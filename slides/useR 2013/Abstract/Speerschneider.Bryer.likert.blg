@@ -1,0 +1,56 @@
+This is BibTeX, Version 0.99d (TeX Live 2012)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Speerschneider.Bryer.likert.aux
+The style file: chicago.bst
+Database file #1: likert.bib
+I was expecting an "="---line 31 of file likert.bib
+ :    issue 
+ :          {533}
+I'm skipping whatever remains of this entry
+Warning--empty organization in xtable
+Warning--no journal in pisa
+Warning--no number and no volume in pisa
+Warning--page numbers missing in pisa
+Warning--page numbers missing in Wakita2012
+You've used 5 entries,
+            2861 wiz_defined-function locations,
+            640 strings with 5450 characters,
+and the built_in function-call counts, 2663 in all, are:
+= -- 212
+> -- 165
+< -- 0
++ -- 44
+- -- 58
+* -- 204
+:= -- 523
+add.period$ -- 14
+call.type$ -- 5
+change.case$ -- 30
+chr.to.int$ -- 5
+cite$ -- 10
+duplicate$ -- 81
+empty$ -- 175
+format.name$ -- 62
+if$ -- 467
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 5
+newline$ -- 27
+num.names$ -- 50
+pop$ -- 22
+preamble$ -- 1
+purify$ -- 62
+quote$ -- 0
+skip$ -- 89
+stack$ -- 0
+substring$ -- 118
+swap$ -- 25
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 90
+warning$ -- 5
+while$ -- 48
+width$ -- 0
+write$ -- 65
+(There was 1 error message)

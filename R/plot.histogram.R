@@ -1,4 +1,5 @@
-utils::globalVariables(c('group'))
+utils::globalVariables(c('group', 'legend.position', 'wrap', 'panel.arrange', 'panel.strip.color',
+						 'text.size'))
 
 #' Histogram of number of responses.
 #' 
@@ -17,6 +18,11 @@ utils::globalVariables(c('group'))
 #' @param label.missing the label to use in the legend representing the count of
 #'        missing values.
 #' @param order the order of the items.
+#' @param legend.position location of the legend.
+#' @param wrap number of characters before warping the text in the panel strips.
+#' @param panel.arrange v for vertical or h for horizontal.
+#' @param panel.strip.color the color for panels.
+#' @param text.size text size.
 #' @param ... other ggplot2 parameters.
 #' @inheritParams likert.bar.plot
 #' @export

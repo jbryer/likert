@@ -1,8 +1,8 @@
 Package: likert
 Type: Package
 Title: Functions to Analyze and Visualize Likert Type Items
-Version: 1.3.4
-Date: 2015-12-27
+Version: 1.3.5
+Date: 2016-12-29
 Author: Jason Bryer <jason@bryer.org>, Kimberly Speerschneider
     <kimkspeer@gmail.com>
 Maintainer: Jason Bryer <jason@bryer.org>

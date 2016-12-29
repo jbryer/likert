@@ -4,45 +4,13 @@
 \alias{likert.bar.plot}
 \title{Bar Plot for Likert Items.}
 \usage{
-likert.bar.plot(l, low.color = "#D8B365", high.color = "#5AB4AC",
-  neutral.color = "grey90", neutral.color.ramp = "white", colors = NULL,
-  plot.percent.low = TRUE, plot.percent.high = TRUE,
-  plot.percent.neutral = TRUE, plot.percents = FALSE, text.size = 3,
-  text.color = "black", centered = TRUE, center = (l$nlevels - 1)/2 + 1,
-  include.center = TRUE, ordered = TRUE,
-  wrap = ifelse(is.null(l$grouping), 50, 100), wrap.grouping = 50,
-  legend = "Response", legend.position = "bottom", panel.arrange = "v",
-  panel.strip.color = "#F0F0F0", group.order, ...)
+likert.bar.plot(l, group.order, center = (l$nlevels - 1)/2 + 1, ...)
 }
 \arguments{
 \item{l}{results of \code{\link{likert}}.}
 
-\item{low.color}{color for low values.}
-
-\item{high.color}{color for high values.}
-
-\item{neutral.color}{color for middle values (if odd number of levels).}
-
-\item{neutral.color.ramp}{second color used when calling \code{\link{colorRamp}}
-with \code{low.color} and \code{high.color} to define the color palettes.}
-
-\item{colors}{vector specifying the colors to use. This must be equal to 
-the number of likert levels.}
-
-\item{plot.percent.low}{whether to plot low percentages.}
-
-\item{plot.percent.high}{whether to plot high percentages.}
-
-\item{plot.percent.neutral}{whether to plot netural percentages.}
-
-\item{plot.percents}{whether to label each category/bar.}
-
-\item{text.size}{size of text attributes.}
-
-\item{text.color}{color of text attributes.}
-
-\item{centered}{if true, the bar plot will be centered around zero such that
-the lower half of levels will be negative.}
+\item{group.order}{the order in which groups (for grouped items) or items
+(for non-grouped items) should be plotted.}
 
 \item{center}{specifies which level should be treated as the center. For example,
 \code{center = 3} would use the third level as the center whereas
@@ -51,30 +19,7 @@ the lower half of levels will be negative.}
 items or those without a neutral option). This also influences where the
 color breaks from low to high.}
 
-\item{include.center}{if TRUE, include the center level in the plot otherwise
-the center will be excluded.}
-
-\item{ordered}{reorder items from high to low.}
-
-\item{wrap}{width to wrap label text for item labels}
-
-\item{wrap.grouping}{width to wrap label text for group labels.}
-
-\item{legend}{title for the legend.}
-
-\item{legend.position}{the position for the legend ("left", "right", "bottom",
-"top", or two-element numeric vector).}
-
-\item{panel.arrange}{how panels for grouped likert items should be arrange.
-Possible values are \code{v} (vertical, the default), \code{h}
-(horizontal), and \code{NULL} (auto fill horizontal and vertical)}
-
-\item{panel.strip.color}{the background color for panel labels.}
-
-\item{group.order}{the order in which groups (for grouped items) or items
-(for non-grouped items) should be plotted.}
-
-\item{...}{currently unused.}
+\item{...}{passed to \code{\link{likert.options}}}
 
 \item{likert}{object of type likert.}
 }

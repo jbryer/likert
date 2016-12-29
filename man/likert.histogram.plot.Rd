@@ -29,23 +29,20 @@ complete values.}
 \item{label.missing}{the label to use in the legend representing the count of
 missing values.}
 
-\item{legend.position}{the position for the legend ("left", "right", "bottom",
-"top", or two-element numeric vector).}
+\item{legend.position}{location of the legend.}
 
-\item{wrap}{width to wrap label text for item labels}
+\item{wrap}{number of characters before warping the text in the panel strips.}
 
 \item{order}{the order of the items.}
 
 \item{group.order}{the order in which groups (for grouped items) or items
 (for non-grouped items) should be plotted.}
 
-\item{panel.arrange}{how panels for grouped likert items should be arrange.
-Possible values are \code{v} (vertical, the default), \code{h}
-(horizontal), and \code{NULL} (auto fill horizontal and vertical)}
+\item{panel.arrange}{v for vertical or h for horizontal.}
 
-\item{panel.strip.color}{the background color for panel labels.}
+\item{panel.strip.color}{the color for panels.}
 
-\item{text.size}{size of text attributes.}
+\item{text.size}{text size.}
 
 \item{...}{other ggplot2 parameters.}
 }

@@ -1,5 +1,10 @@
 utils::globalVariables(c('value','Group','variable','low','Item','high',
-						 'neutral','x','y','pos','ddply','.'))
+						 'neutral','x','y','pos','ddply','.','colors','low.color',
+						 'neutral.color.ramp','high.color','neutral.color','wrap',
+						 'wrap.grouping','centered','include.center','legend',
+						 'plot.percent.low','text.size','text.color','plot.percent.high',
+						 'plot.percent.neutral','plot.percents','panel.strip.color',
+						 'panel.arrange','legend.position'))
 
 #' Bar Plot for Likert Items.
 #' 
@@ -7,71 +12,30 @@ utils::globalVariables(c('value','Group','variable','low','Item','high',
 #' 
 #' @param l results of \code{\link{likert}}.
 #' @param likert object of type likert.
-#' @param low.color color for low values.
-#' @param high.color color for high values.
-#' @param neutral.color color for middle values (if odd number of levels).
-#' @param neutral.color.ramp second color used when calling \code{\link{colorRamp}}
-#'        with \code{low.color} and \code{high.color} to define the color palettes.
-#' @param colors vector specifying the colors to use. This must be equal to 
-#'        the number of likert levels.
-#' @param plot.percent.low whether to plot low percentages.
-#' @param plot.percent.high whether to plot high percentages.
-#' @param plot.percent.neutral whether to plot netural percentages.
-#' @param plot.percents whether to label each category/bar.
-#' @param text.size size of text attributes.
-#' @param text.color color of text attributes.
-#' @param centered if true, the bar plot will be centered around zero such that
-#'        the lower half of levels will be negative.
+#' @param group.order the order in which groups (for grouped items) or items
+#'        (for non-grouped items) should be plotted.
 #' @param center specifies which level should be treated as the center. For example,
 #'        \code{center = 3} would use the third level as the center whereas
 #'        \code{center = 3.5} would indicate no specific level is the center but
 #'        <= 3 are low levels and >= 4 are high levels (i.e. used for forced choice 
 #'        items or those without a neutral option). This also influences where the
 #'        color breaks from low to high.
-#' @param include.center if TRUE, include the center level in the plot otherwise
-#'        the center will be excluded.
-#' @param ordered reorder items from high to low.
-#' @param wrap width to wrap label text for item labels
-#' @param wrap.grouping width to wrap label text for group labels.
-#' @param legend title for the legend.
-#' @param legend.position the position for the legend ("left", "right", "bottom",
-#'        "top", or two-element numeric vector).
-#' @param panel.arrange how panels for grouped likert items should be arrange.
-#'        Possible values are \code{v} (vertical, the default), \code{h}
-#'        (horizontal), and \code{NULL} (auto fill horizontal and vertical)
-#' @param panel.strip.color the background color for panel labels.
-#' @param group.order the order in which groups (for grouped items) or items
-#'        (for non-grouped items) should be plotted.
-#' @param ... currently unused.
+#' @param ... passed to \code{\link{likert.options}}
 #' @export
 #' @seealso plot.likert
 #' @seealso likert.heat.plot
 #' @seealso likert.bar.plot
 #' @seealso likert.density.plot
 likert.bar.plot <- function(l,
-							low.color='#D8B365',
-							high.color='#5AB4AC',
-							neutral.color='grey90',
-							neutral.color.ramp='white',
-							colors=NULL,
-							plot.percent.low=TRUE,
-							plot.percent.high=TRUE,
-							plot.percent.neutral=TRUE,
-							plot.percents=FALSE,
-							text.size=3,
-							text.color='black',
-							centered=TRUE,
-							center=(l$nlevels-1)/2 + 1,
-							include.center=TRUE,
-							ordered=TRUE,
-							wrap=ifelse(is.null(l$grouping), 50, 100),
-							wrap.grouping=50,
-							legend='Response',
-							legend.position='bottom',
-							panel.arrange='v',
-							panel.strip.color='#F0F0F0',
 							group.order,
+							center=(l$nlevels-1)/2 + 1,
 							...) {
+	opts <- likert.options(...)
+	for(i in names(opts)) {
+		# TODO: Eventually references to these options should happen through the list.
+		assign(i, opts[[i]], environment())
+	}
+	
 	if(center < 1.5 | center > (l$nlevels - 0.5) | center %% 0.5 != 0) {
 		stop(paste0('Invalid center. Values can range from 1.5 to ', 
 					(l$nlevels - 0.5), ' in increments of 0.5'))
@@ -144,11 +108,20 @@ likert.bar.plot <- function(l,
 			}
 			results.low <- results[results$value < 0,]
 			results.high <- results[results$value > 0,]
+			
+			# HACK: This is to fix an issue introduced in ggplot2 version 2.2.0
+			ggplot2.version <- as.integer(unlist(strsplit(
+				as.character(utils::packageVersion('ggplot2')), split='.', fixed=TRUE)))
+			if(ggplot2.version[1] == 2 & ggplot2.version[2] >= 2 | ggplot2.version[1] > 2) {
+				results.high$variable <- factor(as.character(results.high$variable),
+												levels = rev(levels(results.high$variable)))
+			}
 			p <- ggplot(results, aes(y=value, x=Group, group=variable)) + 
 				geom_hline(yintercept=0) +
 				geom_bar(data=results.low[nrow(results.low):1,], 
 						 aes(fill=variable), stat='identity') + 
 				geom_bar(data=results.high, aes(fill=variable), stat='identity')
+			
 			names(cols) <- levels(results$variable)
 			p <- p + scale_fill_manual(legend, breaks=names(cols), values=cols, drop=FALSE)
 		} else {

@@ -1,0 +1,188 @@
+---
+title: "The likert Package"
+author: "Jason Bryer, Ph.D."
+date: "2016-12-15"
+output:
+  ioslides_presentation:
+    self_contained: true
+    widescreen: true
+    smaller: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(digits=3)
+options(width=120)
+library(grid)
+```
+
+## Likert Scales
+
+Invented by Rensis Likert (1932).
+
+Questionaire items where respondents respond to a question on a sequence of ordered responses. Common response types include:
+
+* Agreement (e.g. Strongly Disagree, Disagree, Neither agree nor disagree, Agree, Strongly Agree)
+* Frequency (e.g. Almost Never, Not Very Often, Somewhat Often, Pretty Often, Almost Often)
+* Quality (e.g. Very Good, Good, Acceptable, Poor, Very Poor )
+* Relevance (e.g. Excellent, Somewhat, Poor)
+* Value (e.g. High, Moderate, Low, None)
+* Importance (e.g. Very Important, Important, Moderately Important, Slightly Important, Not Important)
+
+Likert, R (1932). [A technique for the measurement of attitudes](http://www.voteview.com/pdf/Likert_1932.pdf). *Archives of Psychology. 140*: 1–55.
+
+## Categorical vs. Continuous
+
+A key question to ask when using Likert items: Is the variable categorical or contiuous?
+
+When considering the response to be continuous you are assuming the intervals are equal? That is:
+
+$$ Strongly Agree - Agree = Disagree - Neutral $$
+
+## Motivation
+
+This package aims to provide the necessary tools to allow the user to make his/her own decisions about how the data should be treated, while also providing figures that may help clarify how well the assumptions discussed here hold up.
+
+* summarize likert type items
+* provide tabular results
+* provide visualizations
+* allow flexibility (e.g. ggplot2 annotate)
+* have a consistent aesthetic
+* use familiar S3 generics (i.e. print, plot, summary)
+
+## Example: PISA Reading Attitudes
+
+The Programme of International Student Assessment (PISA; 2009) assess ~15 year-old students about their reading attitudes:
+
+* I read only if I have to.
+* Reading is one of my favorite hobbies.
+* I like talking about books with other people.
+* I find it hard to finish books.
+* I feel happy if I receive a book as a present.
+* For me, reading is a waste of time.
+* I enjoy going to a bookstore or a library.
+* I read only to get information that I need.
+* I cannot sit still and read for more than a few minutes. 
+* I like to express my opinions about books I have read. 
+* I like to exchange books with my friends.
+
+Students respond to one of four options: Strongly disagree, Disagree, Agree, Strongly Agree
+
+## Example: PISA Reading Attitudes
+
+```{r, message=FALSE}
+library(likert)
+```
+
+Demo included in the package:
+
+```{r, eval=FALSE}
+demo('likert', package='likert')
+```
+
+Data preparation: 
+
+```{r, message=FALSE}
+data(pisaitems)
+items24 <- pisaitems[,substr(names(pisaitems), 1,5) == 'ST24Q']
+names(items24) <- c(ST24Q01 = "I read only if I have to.",
+			        ST24Q02 = "Reading is one of my favorite hobbies.",
+			        ST24Q03 = "I like talking about books with other people.",
+			        ST24Q04 = "I find it hard to finish books.",
+			        ST24Q05 = "I feel happy if I receive a book as a present.",
+			        ST24Q06 = "For me, reading is a waste of time.",
+			        ST24Q07 = "I enjoy going to a bookstore or a library.",
+			        ST24Q08 = "I read only to get information that I need.",
+			        ST24Q09 = "I cannot sit still and read for more than a few minutes.",
+			        ST24Q10 = "I like to express my opinions about books I have read.",
+			        ST24Q11 = "I like to exchange books with my friends.")
+```
+
+## Example: PISA Reading Attitudes
+
+```{r}
+str(items24)
+```
+
+## Using the `likert` function
+
+```{r}
+l24 <- likert(items24)
+l24 #print(l24)
+```
+
+## Numeric Results
+
+```{r}
+summary(l24)
+```
+
+## Plotting Likert Results {.flexbox .vcenter}
+
+```{r}
+plot(l24)
+```
+
+## Plotting Likert Results (center) {.flexbox .vcenter}
+
+The `center` option will define what category is considered to be the center.
+
+```{r}
+plot(l24, center=2)
+```
+
+## Plotting Likert Results (ordering) {.flexbox .vcenter}
+
+```{r}
+plot(l24, ordered=FALSE, group.order=names(items24)) #Specify the exact order of the y-axis
+```
+
+## Plotting Likert Results (changing colors) {.flexbox .vcenter}
+
+```{r}
+plot(l24, colors=c('orange','darkorange','darkblue','blue'))
+```
+
+## Plotting Likert Results (response histograms) {.flexbox .vcenter}
+
+```{r}
+plot(l24, include.histogram=TRUE)
+```
+
+## Density Plots {.flexbox .vcenter}
+
+```{r}
+plot(l24, type='density', facet=FALSE)
+```
+
+## Heatmap Plots {.flexbox .vcenter}
+
+```{r}
+plot(l24, type='heat', wrap=30, text.size=4)
+```
+
+## Grouping Responses
+
+```{r}
+l24g <- likert(items24[,1:5], grouping=pisaitems$CNT)
+print(l24g)
+```
+
+
+## Grouping Responses: Summary
+
+```{r}
+summary(l24g)
+```
+
+## Grouping Responses: Plotting {.flexbox .vcenter}
+
+```{r}
+plot(l24g)
+```
+
+## Example 2: DAACS Pre-Pilot
+
+**[daacs.net/shiny/PrePilot](http://daacs.net/shiny/PrePilot)**
+
+

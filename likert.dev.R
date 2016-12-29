@@ -1,14 +1,13 @@
-require(devtools)
+library(devtools)
 
 setwd("~/Dropbox/Projects") #Mac
 #setwd("C:/Dropbox/Projects") #Windows
 
 #Package building
 document("likert")
-check_doc("likert")
 install("likert")
 build('likert')
-build('likert',vignettes=FALSE)
+#Rbuild('likert',vignettes=FALSE)
 build_vignettes('likert')
 check("likert", cran=TRUE)
 
