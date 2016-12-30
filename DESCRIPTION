@@ -8,7 +8,11 @@ Author: Jason Bryer <jason@bryer.org>, Kimberly Speerschneider
 Maintainer: Jason Bryer <jason@bryer.org>
 URL: http://jason.bryer.org/likert, http://github.com/jbryer/likert
 BugReports: https://github.com/jbryer/likert/issues
-Description: Functions to analyze and visualize likert type items.
+Description: This package provides a set of functions to analyze Likert type items, with an 
+    emphasis on visualizations. The stacked bar plot is the preferred method for presenting
+    Likert results. Tabular results are also implemented along with density plots to assist
+    researchers in determining whether Likert responses can be used quantitatively instead
+    of qualitatively. See the likert, summary.likert, and plot.likert functions to get started.
 License: GPL
 LazyLoad: yes
 VignetteBuilder: utils
