@@ -29,6 +29,8 @@ is.zero <- function(x) is.null(x) || inherits(x, "zeroGrob")
 #' @param ... graphic elements to combine.
 #' @references 	http://groups.google.com/group/ggplot2/browse_thread/thread/1b859d6b4b441c90
 #'              http://ggextra.googlecode.com/svn/trunk/R/align.r
+#' @importFrom grid gList vpList
+#' @import plyr
 align.plots <- function(gl, ...) {
 	#With ggplot2 version .9.2 these functions were removed. This is a bit of
 	#a hack copying them from an older version, but seems to still work!
