@@ -61,4 +61,3 @@ Crate a LaTeX or HTML table of the \code{\link{likert}} results.
 \seealso{
 \link{xtable}, \link{print.xtable}
 }
-

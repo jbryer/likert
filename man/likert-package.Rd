@@ -14,4 +14,3 @@ Likert Analysis and Visualization
 \keyword{likert}
 \keyword{package}
 \keyword{research}
-

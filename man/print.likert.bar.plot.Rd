@@ -20,4 +20,3 @@ suppress the "Stacking not well defined when ymin != 0" warning printed
 by \code{ggplot2} for bar plots that have negative bars (i.e. the centered
 plots).
 }
-

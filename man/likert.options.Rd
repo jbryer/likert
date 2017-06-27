@@ -66,4 +66,3 @@ Possible values are \code{v} (vertical, the default), \code{h}
 \description{
 Builds an object with options for plotting \code{\link{likert}} results.
 }
-

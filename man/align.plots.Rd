@@ -22,4 +22,3 @@ the two individual distributions.
 http://groups.google.com/group/ggplot2/browse_thread/thread/1b859d6b4b441c90
              http://ggextra.googlecode.com/svn/trunk/R/align.r
 }
-

@@ -27,4 +27,3 @@ or \code{\link{factor}} vector with new values.
 test <- letters[sample(5, 10, replace=TRUE)]
 recode(test, from=letters[1:5], to=paste('Letter', letters[1:5]))
 }
-

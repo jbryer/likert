@@ -16,4 +16,3 @@ of academic self-regulation using a new self-report questionnaire. The
 International Journal of Educational and Psychological Assessment, 7(1).
 }
 \keyword{datasets}
-

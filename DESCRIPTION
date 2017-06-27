@@ -1,8 +1,8 @@
 Package: likert
 Type: Package
 Title: Analysis and Visualization Likert Items
-Version: 1.3.5
-Date: 2016-12-29
+Version: 1.3.6
+Date: 2017-06-26
 Author: Jason Bryer <jason@bryer.org>, Kimberly Speerschneider
     <kimkspeer@gmail.com>
 Maintainer: Jason Bryer <jason@bryer.org>
@@ -17,9 +17,9 @@ License: GPL
 LazyLoad: yes
 VignetteBuilder: utils
 Depends:
-    R (>= 3.0),ggplot2,xtable
+    R (>= 3.0), ggplot2 (>= 2.2.0), xtable
 Imports:
     psych,reshape2,gridExtra,grid,plyr
 Suggests:
     devtools,shiny
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

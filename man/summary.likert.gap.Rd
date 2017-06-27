@@ -24,4 +24,3 @@ neutral, and columns 'mean' and 'sd' corresponding to the mean and
 standard deviation, respectively, of the results. The numeric values
 are determined by as.numeric which will use the values of the factors.
 }
-

@@ -114,4 +114,11 @@ that you detach this package as it causes conflicts with the reshape2
 package. You can detach using the following R command:
     detach('package:reshape') ")
 	}
+	
+	ggplot2.version <- as.integer(unlist(strsplit(
+		as.character(utils::packageVersion('ggplot2')), split='.', fixed=TRUE)))
+	if( (ggplot2.version[1] == 2 & ggplot2.version[2] < 2) | ggplot2.version[1] < 2) {
+		warning(paste0('Version ', ggplot2.version, ' of ggplot2 package detected. It is recommended ',
+					   'that use version 2.2.0 or newer.'))
+	}
 }

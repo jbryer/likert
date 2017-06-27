@@ -51,4 +51,3 @@ Plots a histogram of the number of responses for each item and group (if specifi
 Negative values (in maroon by default) indicate the number of missing values
 for that item and group.
 }
-

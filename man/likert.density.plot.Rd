@@ -27,4 +27,3 @@ a continuous variable.
 \seealso{
 plot.likert
 }
-

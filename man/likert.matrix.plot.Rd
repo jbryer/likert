@@ -18,4 +18,3 @@ a random subsample allows for quicker development.}
 \description{
 Matrix plot (experimental)
 }
-

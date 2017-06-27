@@ -61,4 +61,3 @@ plot.likert
 
 summary.likert
 }
-

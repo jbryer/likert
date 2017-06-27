@@ -58,4 +58,3 @@ we recommend call the generic \code{plot} function.
 
 \link{likert.histogram.plot}
 }
-

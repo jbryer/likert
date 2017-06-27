@@ -9,11 +9,10 @@ zeroGrob()
 \description{
 The zero grob draws nothing and has zero size.
 }
-\author{
-hadley
-}
 \references{
 https://github.com/hadley/ggplot2/blob/master/R/grob-null.r
 }
+\author{
+hadley
+}
 \keyword{internal}
-

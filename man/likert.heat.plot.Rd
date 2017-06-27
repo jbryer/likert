@@ -30,4 +30,3 @@ plot.likert
 
 likert.bar.plot
 }
-

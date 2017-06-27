@@ -13,4 +13,3 @@ available in the likert package.
 \references{
 http://rstudio.com/shiny
 }
-

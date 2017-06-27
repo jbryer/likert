@@ -16,4 +16,3 @@ Adapted from https://github.com/hadley/ggplot2/wiki/labeller}
 \description{
 Wrap label text.
 }
-

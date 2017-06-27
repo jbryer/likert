@@ -16,4 +16,3 @@ anxiety: Psychometric analysis of a bidimensional affective scale. Journal of
 Instructional Psychology, 36 (3), 185- 193.
 }
 \keyword{datasets}
-

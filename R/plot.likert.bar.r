@@ -92,8 +92,7 @@ likert.bar.plot <- function(l,
 
 		if(centered) {
 			ymin <- -100
-			rows <- which(results$variable %in% names(l$results)[
-				3:(length(lowrange)+2)])
+			rows <- which(results$variable %in% names(l$results)[3:(length(lowrange)+2)])
 			results[rows,'value'] <- -1 * results[rows,'value']
 			if(center %% 1 == 0) { #Midpoint is a level
 				rows.mid <- which(results$variable %in% names(l$results)[center+2])
@@ -109,13 +108,11 @@ likert.bar.plot <- function(l,
 			results.low <- results[results$value < 0,]
 			results.high <- results[results$value > 0,]
 			
-			# HACK: This is to fix an issue introduced in ggplot2 version 2.2.0
-			ggplot2.version <- as.integer(unlist(strsplit(
-				as.character(utils::packageVersion('ggplot2')), split='.', fixed=TRUE)))
-			if(ggplot2.version[1] == 2 & ggplot2.version[2] >= 2 | ggplot2.version[1] > 2) {
-				results.high$variable <- factor(as.character(results.high$variable),
-												levels = rev(levels(results.high$variable)))
-			}
+			# NOTE: This is to fix an issue introduced in ggplot2 version 2.2.0. As of version
+			# 1.3.6 ggplot2 package version of 2.2.0 or newer is required.
+			results.high$variable <- factor(as.character(results.high$variable),
+											levels = rev(levels(results.high$variable)))
+
 			p <- ggplot(results, aes(y=value, x=Group, group=variable)) + 
 				geom_hline(yintercept=0) +
 				geom_bar(data=results.low[nrow(results.low):1,], 
@@ -126,8 +123,9 @@ likert.bar.plot <- function(l,
 			p <- p + scale_fill_manual(legend, breaks=names(cols), values=cols, drop=FALSE)
 		} else {
 			ymin <- 0
+			names(cols) <- rev(names(cols))
 			p <- ggplot(results, aes(y=value, x=Group, group=variable))
-			p <- p + geom_bar(stat='identity', aes(fill=variable)) +
+			p <- p + geom_bar(stat='identity', aes(fill=variable), position = position_stack(reverse = TRUE)) +
 				scale_fill_manual(legend, 
 							values=cols, 
 							breaks=levels(results$variable),
@@ -156,7 +154,7 @@ likert.bar.plot <- function(l,
 							       size=text.size, hjust=.5, color=text.color)				
 			}
 		}
-		if(FALSE & plot.percents) { #TODO: implement for grouping
+		if(plot.percents) { #TODO: implement for grouping
 			warning('plot.percents is not currenlty supported for grouped analysis.')
 # 			lpercentpos <- ddply(results[results$value > 0,], .(Item), transform, 
 # 								 pos = cumsum(value) - 0.5*value)
@@ -174,8 +172,7 @@ likert.bar.plot <- function(l,
 # 								   size=text.size)
 # 			}
 		}
-		p <- p +
-			coord_flip() +	ylab('Percentage') + xlab('') +
+		p <- p + coord_flip() + ylab('Percentage') + xlab('') +
 			theme(axis.ticks=element_blank(), 
 				  strip.background=element_rect(fill=panel.strip.color, 
 				  							    color=panel.strip.color))
@@ -321,7 +318,7 @@ likert.bar.plot <- function(l,
 			p <- p + scale_x_discrete(breaks=l$results$Item,
 				labels=label_wrap_mod(l$results$Item, width=wrap), drop=FALSE)
 		}
-	}
+	} ##### End: No grouping
 	p <- p + scale_y_continuous(labels=abs_formatter, 
 								limits=c(ymin - ybuffer, ymax + ybuffer))
 	p <- p + theme(legend.position=legend.position)

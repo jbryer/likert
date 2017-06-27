@@ -19,4 +19,3 @@
 \description{
 Print method for \code{\link{xtable.likert}}.
 }
-

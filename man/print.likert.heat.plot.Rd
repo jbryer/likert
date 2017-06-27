@@ -14,4 +14,3 @@
 \description{
 Print method for \code{\link{likert.heat.plot}}.
 }
-

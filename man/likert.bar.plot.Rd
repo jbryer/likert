@@ -35,4 +35,3 @@ likert.bar.plot
 
 likert.density.plot
 }
-
