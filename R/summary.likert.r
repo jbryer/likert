@@ -194,6 +194,11 @@ summary.likert <- function(object, center=(object$nlevels-1)/2 + 1,
 			results2[narows,]$high <- 0
 		}
 		
+		#Check for factor order in original object and apply to the summary
+		if(is.factor(object$results$Item)) {
+		  results2$Item <- factor(results2$Item, levels=levels(object$results$Item))
+		}
+		
 		return(results2)
 	}
 }
