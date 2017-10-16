@@ -69,8 +69,11 @@ likert.bar.plot <- function(l,
 	
 	p <- NULL
 	if(!is.null(l$grouping)) { ##### Grouping ##################################
-		lsum$Item <- label_wrap_mod(lsum$Item, width=wrap)
+		item_levels <- levels(l$results$Item)
+	  lsum$Item <- label_wrap_mod(lsum$Item, width=wrap)
+		lsum$Item <- factor(lsum$Item,item_levels)
 		l$results$Item <- label_wrap_mod(l$results$Item, width=wrap)
+		lsum$Item <- factor(lsum$Item,item_levels)
 		#names(l$items) <- label_wrap_mod(names(l$items), width=wrap)
 		lsum$Group <- label_wrap_mod(lsum$Group, width=wrap.grouping)
 		
@@ -79,9 +82,9 @@ likert.bar.plot <- function(l,
 		results$variable <- factor(results$variable, ordered=TRUE)
 		if(TRUE | is.null(l$items)) {
 			results$Item <- factor(as.character(results$Item),
-								   levels=unique(results$Item),
+								   levels=item_levels,
 								   labels=label_wrap_mod(
-								   	as.character(unique(results$Item)), width=wrap),
+								   	item_levels),
 								   ordered=TRUE)
 		} else {
 			results$Item <- factor(results$Item,
@@ -132,6 +135,16 @@ likert.bar.plot <- function(l,
 							labels=levels(results$variable),
 							drop=FALSE)
 		}
+		
+		# if(is.null(panel.arrange)) { #move up wrapping code to before adding data from lsum - DELETE
+		#   p <- p + facet_wrap(~ Item)
+		# } else if(panel.arrange == 'v') {
+		#   p <- p + facet_wrap(~ Item, ncol=1)
+		#   #p <- p + facet_grid(Item ~ .)
+		# } else if(panel.arrange == 'h') {
+		#   p <- p + facet_wrap(~ Item, nrow=1)
+		# }
+		
 		if(plot.percent.low) {
 			p <- p + geom_text(data=lsum, y=ymin, aes(x=Group, 
 	  						   label=paste0(round(low), '%'), group=Item), 
