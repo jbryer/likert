@@ -136,15 +136,6 @@ likert.bar.plot <- function(l,
 							drop=FALSE)
 		}
 		
-		# if(is.null(panel.arrange)) { #move up wrapping code to before adding data from lsum - DELETE
-		#   p <- p + facet_wrap(~ Item)
-		# } else if(panel.arrange == 'v') {
-		#   p <- p + facet_wrap(~ Item, ncol=1)
-		#   #p <- p + facet_grid(Item ~ .)
-		# } else if(panel.arrange == 'h') {
-		#   p <- p + facet_wrap(~ Item, nrow=1)
-		# }
-		
 		if(plot.percent.low) {
 			p <- p + geom_text(data=lsum, y=ymin, aes(x=Group, 
 	  						   label=paste0(round(low), '%'), group=Item), 
