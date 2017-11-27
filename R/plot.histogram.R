@@ -95,6 +95,12 @@ likert.histogram.plot <- function(l,
 							  limits=c(TRUE,FALSE),
 							  labels=c(label.missing, label.completed),
 							  values=c(missing.bar.color, bar.color))
+		
+		if(!missing(group.order)){
+		  p <- p + scale_x_discrete(limits=rev(group.order),
+		                            labels=label_wrap_mod(rev(group.order), width=wrap), drop=FALSE)
+		}
+		
 	} else {
 		hist <- data.frame( )
 		for(g in unique(l$grouping)) {

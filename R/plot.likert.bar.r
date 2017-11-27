@@ -204,6 +204,12 @@ likert.bar.plot <- function(l,
 			order <- lsum[order(lsum$high),'Item']
 			results$Item <- factor(results$Item, levels=order)
 		}
+		
+		
+		if(!ordered & !missing(group.order)) { 
+		  results$Item <- factor(results$Item , levels = group.order)
+		}
+		
 		ymin <- 0
 		if(centered) {
 			ymin <- -100
