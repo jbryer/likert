@@ -11,8 +11,8 @@ Kim Speerschneider [kimkspeer@gmail.com](mailto:kimkspeer@gmail.com)
 
 Download the 2013 useR! Conference [abstract](https://github.com/jbryer/likert/blob/master/useR%202013/Abstract/Speerschneider.Bryer.likert.pdf?raw=true) and [slides](https://github.com/jbryer/likert/blob/master/useR%202013/Slides/Slides.pdf?raw=true).
 
-![Reading Attitude](http://jason.bryer.org/images/likert/centeredPlot1.png)
-![Reading Attitude with Histogram](http://jason.bryer.org/images/likert/centeredPlot2.png)
+![Reading Attitude](http://bryer.org/images/likert/centeredPlot1.png)
+![Reading Attitude with Histogram](http://bryer.org/images/likert/centeredPlot2.png)
 
 The latest development version can be downloaded using the `devtools` package.
 
