@@ -4,7 +4,8 @@ utils::globalVariables(c('value','Group','variable','low','Item','high',
 						 'wrap.grouping','centered','include.center','legend',
 						 'plot.percent.low','text.size','text.color','plot.percent.high',
 						 'plot.percent.neutral','plot.percents','panel.strip.color',
-						 'panel.arrange','legend.position'))
+						 'panel.arrange','legend.position', 'plot.low.hjust',
+						 'plot.high.hjust','plot.neutral.hjust'))
 
 #' Bar Plot for Likert Items.
 #' 
@@ -139,23 +140,23 @@ likert.bar.plot <- function(l,
 		if(plot.percent.low) {
 			p <- p + geom_text(data=lsum, y=ymin, aes(x=Group, 
 	  						   label=paste0(round(low), '%'), group=Item), 
-			  				   size=text.size, hjust=1, color=text.color)
+			  				   size=text.size, hjust=plot.low.hjust, color=text.color)
 		}
 		if(plot.percent.high) {
 			p <- p + geom_text(data=lsum, aes(x=Group, y=100, 
 							   label=paste0(round(high), '%'), 
-							   group=Item), size=text.size, hjust=-.2, color=text.color)			
+							   group=Item), size=text.size, hjust=plot.high.hjust, color=text.color)			
 		}
 		if(plot.percent.neutral & l$nlevels %% 2 == 1 & include.center) {
 			if(centered) {
 				p <- p + geom_text(data=lsum, y=0, aes(x=Group, group=Item,
 							  	   label=paste0(round(neutral), '%')),
-							       size=text.size, hjust=.5, color=text.color)
+							       size=text.size, hjust=plot.neutral.hjust, color=text.color)
 			} else {
 				lsum$y <- lsum$low + (lsum$neutral/2)
 				p <- p + geom_text(data=lsum, aes(x=Group, y=y, group=Item,
 							  	   label=paste0(round(neutral), '%')),
-							       size=text.size, hjust=.5, color=text.color)				
+							       size=text.size, hjust=plot.neutral.hjust, color=text.color)				
 			}
 		}
 		if(plot.percents) {
@@ -266,25 +267,25 @@ likert.bar.plot <- function(l,
 		if(plot.percent.low) {
 			p <- p + geom_text(data=lsum, y=ymin, aes(x=Item, 
 					  			label=paste0(round(low), '%')), 
-					  			size=text.size, hjust=1, color=text.color)
+					  			size=text.size, hjust=plot.low.hjust, color=text.color)
 		}
 		if(plot.percent.high) {
 			p <- p + geom_text(data=lsum, y=100, aes(x=Item,
 				  			label=paste0(round(high), '%')), 
-				  			size=text.size, hjust=-.2, color=text.color)
+				  			size=text.size, hjust=plot.high.hjust, color=text.color)
 		}
 		if(plot.percent.neutral & l$nlevels %% 2 == 1 & include.center & !plot.percents) {
 			if(centered) {
 				p <- p +
 					geom_text(data=lsum, y=0, 
 							  aes(x=Item, label=paste0(round(neutral), '%')),
-							  size=text.size, hjust=.5, color=text.color)
+							  size=text.size, hjust=plot.neutral.hjust, color=text.color)
 			} else {
 				lsum$y <- lsum$low + (lsum$neutral/2)
 				p <- p +
 					geom_text(data=lsum,
 							  aes(x=Item, y=y, label=paste0(round(neutral), '%')),
-							  size=text.size, hjust=.5, color=text.color)				
+							  size=text.size, hjust=plot.neutral.hjust, color=text.color)				
 			}
 		}
 		if(plot.percents) {

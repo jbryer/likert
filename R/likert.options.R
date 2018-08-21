@@ -52,6 +52,12 @@ likert.options <- function(
 	legend.position='bottom',
 	panel.arrange='v',
 	panel.strip.color='#F0F0F0',
+
+	plot.low.hjust = 1,
+	plot.high.hjust = -.2,
+	plot.neutral.hjust = 0.5,
+
+
 	...
 ) {
 	opts <- list(
@@ -74,7 +80,11 @@ likert.options <- function(
 		legend = legend,
 		legend.position = legend.position,
 		panel.arrange = panel.arrange,
-		panel.strip.color = panel.strip.color
+		panel.strip.color = panel.strip.color,
+
+		plot.low.hjust = plot.low.hjust,
+		plot.high.hjust = plot.high.hjust,
+		plot.neutral.hjust = plot.neutral.hjust
 	)
 	
 	return(opts)
