@@ -11,8 +11,9 @@ likert.options(low.color = "#D8B365", high.color = "#5AB4AC",
   text.color = "black", centered = TRUE, include.center = TRUE,
   ordered = TRUE, wrap = 50, wrap.grouping = 50, legend = "Response",
   legend.position = "bottom", panel.arrange = "v",
+  panel.strip.color = "#F0F0F0", 
   plot.low.hjust = 1, plot.high.hjust = -.2, plot.neutral.hjust = 0.5,
-  panel.strip.color = "#F0F0F0", ...)
+  ...)
 }
 \arguments{
 \item{low.color}{color for low values.}
@@ -34,12 +35,6 @@ the number of likert levels.}
 \item{plot.percent.neutral}{whether to plot netural percentages.}
 
 \item{plot.percents}{whether to label each category/bar.}
-
-\item{plot.low.hjust}{sets the hjust of the low percentages (default=1).}
-
-\item{plot.high.hjust}{sets the hjust of the high percentages (default=-.2).}
-
-\item{plot.neutral.hjust}{sets the hjust of the neutral percentages (default=0.5).}
 
 \item{text.size}{size of text attributes.}
 
@@ -67,6 +62,12 @@ Possible values are \code{v} (vertical, the default), \code{h}
 (horizontal), and \code{NULL} (auto fill horizontal and vertical)}
 
 \item{panel.strip.color}{the background color for panel labels.}
+
+\item{plot.low.hjust}{sets the hjust of the low percentages (default=1).}
+
+\item{plot.high.hjust}{sets the hjust of the high percentages (default=-.2).}
+
+\item{plot.neutral.hjust}{sets the hjust of the neutral percentages (default=0.5).}
 
 \item{...}{included for future expansion.}
 }
