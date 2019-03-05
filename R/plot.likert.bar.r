@@ -70,26 +70,25 @@ likert.bar.plot <- function(l,
 	p <- NULL
 	if(!is.null(l$grouping)) { ##### Grouping ##################################
 		item_levels <- levels(l$results$Item)
-	  lsum$Item <- label_wrap_mod(lsum$Item, width=wrap)
+		item_levels <- label_wrap_mod(item_levels, width=wrap)
+		lsum$Item <- label_wrap_mod(lsum$Item, width=wrap)
 		lsum$Item <- factor(lsum$Item,item_levels)
-		l$results$Item <- label_wrap_mod(l$results$Item, width=wrap)
+		levels(l$results$Item) <- levels(lsum$Item)
+		#l$results$Item <- label_wrap_mod(l$results$Item, width=wrap)
 		lsum$Item <- factor(lsum$Item,item_levels)
 		#names(l$items) <- label_wrap_mod(names(l$items), width=wrap)
 		lsum$Group <- label_wrap_mod(lsum$Group, width=wrap.grouping)
-		
 		results <- l$results
 		results <- reshape2::melt(results, id=c('Group', 'Item'))
 		results$variable <- factor(results$variable, ordered=TRUE)
 		if(TRUE | is.null(l$items)) {
-			results$Item <- factor(as.character(results$Item),
-								   levels=item_levels,
-								   labels=label_wrap_mod(
-								   	item_levels),
-								   ordered=TRUE)
+		results$Item <- factor(as.character(results$Item),
+				   levels=item_levels,
+				   ordered=TRUE)
 		} else {
-			results$Item <- factor(results$Item,
-								   levels=label_wrap_mod(names(l$items), width=wrap),
-								   ordered=TRUE)
+		results$Item <- factor(results$Item,
+				   levels=label_wrap_mod(names(l$items), width=wrap),
+				   ordered=TRUE)
 		}
 		ymin <- 0
 
