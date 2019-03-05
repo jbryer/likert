@@ -45,7 +45,12 @@ likert <- function(items, summary,
 				   factors=NULL,
 				   importance,
 				   nlevels=length(levels(items[[1]]))) {
-  items <- as.data.frame(items)
+ 	items <- as.data.frame(items)
+ 	if(!missing(grouping)) {
+ 		if(sum(is.na(grouping)) > 0) {
+ 			stop('Grouping variable cannot have any missing values.')
+ 		}
+ 	}
 	if(!missing(summary)) { #Pre-summarized data
 		if(!is.null(grouping) & length(grouping) != nrow(summary)) {
 			stop('The length of grouping must be equal to the number of rows in summary.')
