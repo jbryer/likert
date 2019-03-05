@@ -51,6 +51,11 @@ likert <- function(items, summary,
  			stop('Grouping variable cannot have any missing values.')
  		}
  	}
+ 	for(i in 1:ncol(items)) {
+ 		if(!is.factor(items[,i])) {
+ 			warning(paste0('Variable ', names(items)[i], ' is not a factor.'))
+ 		}
+ 	}
 	if(!missing(summary)) { #Pre-summarized data
 		if(!is.null(grouping) & length(grouping) != nrow(summary)) {
 			stop('The length of grouping must be equal to the number of rows in summary.')
