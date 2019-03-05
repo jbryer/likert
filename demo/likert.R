@@ -49,9 +49,12 @@ plot(l24, include.histogram=TRUE)
 # Density plot
 plot(l24, type='density')
 plot(l24, type='density', facet=FALSE)
+plot(l24, type='density', facet=FALSE) + guides(color = guide_legend(title="New Legend Title"),
+												fill = guide_legend(title="New Legend Title"))
 
 # Heat map
-plot(l24, type='heat', wrap=30, text.size=4)
+plot(l24, type='heat', wrap=30, text.size=4, digits = 0)
+plot(l24, type='heat', wrap=30, text.size=4, digits = 3)
 
 # Reverse the levels
 items24.reverse <- reverse.levels(items24)

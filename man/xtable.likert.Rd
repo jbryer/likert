@@ -4,12 +4,12 @@
 \alias{xtable.likert}
 \title{Prints a LaTeX table of the likert items.}
 \usage{
-\method{xtable}{likert}(x, caption = NULL, label = NULL, align = NULL,
-  digits = NULL, display = NULL, auto = FALSE, include.n = TRUE,
-  include.mean = TRUE, include.sd = TRUE, include.low = TRUE,
-  include.neutral = (x$nlevels\%\%2 != 0), include.high = TRUE,
-  include.levels = TRUE, include.missing = TRUE, center = (x$nlevels -
-  1)/2 + 1, ordered = TRUE, ...)
+\method{xtable}{likert}(x, caption = NULL, label = NULL,
+  align = NULL, digits = NULL, display = NULL, auto = FALSE,
+  include.n = TRUE, include.mean = TRUE, include.sd = TRUE,
+  include.low = TRUE, include.neutral = (x$nlevels\%\%2 != 0),
+  include.high = TRUE, include.levels = TRUE, include.missing = TRUE,
+  center = (x$nlevels - 1)/2 + 1, ordered = TRUE, ...)
 }
 \arguments{
 \item{x}{likert class object.}

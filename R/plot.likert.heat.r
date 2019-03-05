@@ -5,6 +5,7 @@
 #' @param high.color color for high values.
 #' @param text.size size of text attributes.
 #' @param text.color color of text attributes.
+#' @param digits the number of significant digits to print.
 #' @param wrap width to wrap label text for non-grouped likert objects.
 #' @param ... currently unused.
 #' @seealso plot.likert
@@ -15,6 +16,7 @@ likert.heat.plot <- function(likert,
 							 high.color='blue', 
 							 text.color='black',
 							 text.size=4,
+							 digits = 2,
 							 wrap=50,
 							 ...) {
 	if(!is.null(likert$grouping)) {
@@ -22,21 +24,23 @@ likert.heat.plot <- function(likert,
 	}
 	
 	lsum <- summary(likert)
-	results = reshape2::melt(likert$results, id.vars='Item')
-	results$variable = as.character(results$variable)
-	results$label = paste(format(results$value, digits=2, drop0trailing=FALSE), '%', sep='')
-	tmp = data.frame(Item=lsum$Item, 
+	results <- reshape2::melt(likert$results, id.vars='Item')
+	results$variable <- as.character(results$variable)
+	results$label <- paste(format(results$value, digits=digits, drop0trailing=FALSE), '%', sep='')
+	tmp <- data.frame(Item=lsum$Item, 
 					 variable=rep('Mean (SD)', nrow(lsum)),
 					 value=rep(-100, nrow(lsum)),
 					 label=paste(format(lsum$mean, digits=3, drop0trailing=FALSE), 
 					 			' (', format(lsum$sd, digits=2, drop0trailing=FALSE), 
 					 			')', sep=''),
 					 stringsAsFactors=FALSE)
-	results = rbind(tmp, results)
+	results <- rbind(tmp, results)
 	
-	p = ggplot(results, aes(x=Item, y=variable, fill=value, label=label)) + 
+	p <- ggplot(results, aes(x=Item, y=variable, fill=value, label=label)) + 
 		scale_y_discrete(limits=c('Mean (SD)', names(likert$results)[2:ncol(likert$results)]) ) +
-		geom_tile() + geom_text(size=text.size, colour=text.color) + coord_flip() + 
+		geom_tile() + 
+		geom_text(size=text.size, colour=text.color) + 
+		coord_flip() + 
 		scale_fill_gradient2("Percent", low='white', mid=low.color, high=high.color, limits=c(0,100)) + 
 		xlab('') + ylab('') + 
 		theme(panel.grid.major=element_blank(), 

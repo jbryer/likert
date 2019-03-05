@@ -1,17 +1,14 @@
 library(devtools)
 
-setwd("~/Dropbox/Projects") #Mac
-#setwd("C:/Dropbox/Projects") #Windows
-
 #Package building
-document("likert")
-install("likert")
-build('likert')
+document()
+install()
+build()
 #Rbuild('likert',vignettes=FALSE)
-build_vignettes('likert')
-check("likert", cran=TRUE)
+build_vignettes()
+check(cran=TRUE)
 
-release('likert')
+release()
 
 library(likert)
 ls('package:likert')

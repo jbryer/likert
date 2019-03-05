@@ -5,13 +5,13 @@
 \title{Builds an object with options for plotting \code{\link{likert}} results.}
 \usage{
 likert.options(low.color = "#D8B365", high.color = "#5AB4AC",
-  neutral.color = "grey90", neutral.color.ramp = "white", colors = NULL,
-  plot.percent.low = TRUE, plot.percent.high = TRUE,
+  neutral.color = "grey90", neutral.color.ramp = "white",
+  colors = NULL, plot.percent.low = TRUE, plot.percent.high = TRUE,
   plot.percent.neutral = TRUE, plot.percents = FALSE, text.size = 3,
   text.color = "black", centered = TRUE, include.center = TRUE,
-  ordered = TRUE, wrap = 50, wrap.grouping = 50, legend = "Response",
-  legend.position = "bottom", panel.arrange = "v",
-  panel.strip.color = "#F0F0F0", ...)
+  ordered = TRUE, wrap = 50, wrap.grouping = 50,
+  legend = "Response", legend.position = "bottom",
+  panel.arrange = "v", panel.strip.color = "#F0F0F0", ...)
 }
 \arguments{
 \item{low.color}{color for low values.}

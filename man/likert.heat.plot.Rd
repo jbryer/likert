@@ -5,7 +5,7 @@
 \title{Internal method.}
 \usage{
 likert.heat.plot(likert, low.color = "white", high.color = "blue",
-  text.color = "black", text.size = 4, wrap = 50, ...)
+  text.color = "black", text.size = 4, digits = 2, wrap = 50, ...)
 }
 \arguments{
 \item{likert}{object of type likert.}
@@ -17,6 +17,8 @@ likert.heat.plot(likert, low.color = "white", high.color = "blue",
 \item{text.color}{color of text attributes.}
 
 \item{text.size}{size of text attributes.}
+
+\item{digits}{the number of significant digits to print.}
 
 \item{wrap}{width to wrap label text for non-grouped likert objects.}
 
