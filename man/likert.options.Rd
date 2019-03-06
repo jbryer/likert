@@ -11,7 +11,8 @@ likert.options(low.color = "#D8B365", high.color = "#5AB4AC",
   text.color = "black", centered = TRUE, include.center = TRUE,
   ordered = TRUE, wrap = 50, wrap.grouping = 50,
   legend = "Response", legend.position = "bottom",
-  panel.arrange = "v", panel.strip.color = "#F0F0F0", ...)
+  panel.arrange = "v", panel.strip.color = "#F0F0F0", digits = 0,
+  drop0trailing = FALSE, zero.print = TRUE, ...)
 }
 \arguments{
 \item{low.color}{color for low values.}
@@ -60,6 +61,12 @@ Possible values are \code{v} (vertical, the default), \code{h}
 (horizontal), and \code{NULL} (auto fill horizontal and vertical)}
 
 \item{panel.strip.color}{the background color for panel labels.}
+
+\item{digits}{the number of significant digits to print.}
+
+\item{drop0trailing}{logical, indicating if trailing zeros, i.e., "0" after the decimal mark, should be removed}
+
+\item{zero.print}{logical, character string or NULL specifying if and how zeros should be formatted specially.}
 
 \item{...}{included for future expansion.}
 }

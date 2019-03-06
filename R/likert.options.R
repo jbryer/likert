@@ -28,6 +28,9 @@
 #'        Possible values are \code{v} (vertical, the default), \code{h}
 #'        (horizontal), and \code{NULL} (auto fill horizontal and vertical)
 #' @param panel.strip.color the background color for panel labels.
+#' @param digits the number of significant digits to print.
+#' @param drop0trailing logical, indicating if trailing zeros, i.e., "0" after the decimal mark, should be removed
+#' @param zero.print logical, character string or NULL specifying if and how zeros should be formatted specially.
 #' @param ... included for future expansion.
 #'        
 #' @export
@@ -52,6 +55,9 @@ likert.options <- function(
 	legend.position='bottom',
 	panel.arrange='v',
 	panel.strip.color='#F0F0F0',
+	digits = 0,
+	drop0trailing = FALSE,
+	zero.print = TRUE,
 	...
 ) {
 	opts <- list(
@@ -74,7 +80,10 @@ likert.options <- function(
 		legend = legend,
 		legend.position = legend.position,
 		panel.arrange = panel.arrange,
-		panel.strip.color = panel.strip.color
+		panel.strip.color = panel.strip.color,
+		digits = digits,
+		drop0trailing = drop0trailing,
+		zero.print = zero.print
 	)
 	
 	return(opts)
