@@ -16,9 +16,9 @@
 #' @export
 #' @param items data frame containing the likert based items. The variables
 #'        in the data frame should be factors.
-#' @param summary a pre-summarized data frame. The first column must be the
-#'        items and the remaining columns are the levels (e.g. strongly disagree,
-#'        disagree, etc).
+#' @param summary a pre-summarized data frame. The first column must named \code{Item}
+#'        and contain the items and the remaining columns are the levels (e.g. strongly
+#'        disagree, disagree, etc).
 #' @param grouping (optional) should the results be summarized by the given
 #'        grouping variable.
 #' @param factors a vector with \code{length(factors) == ncol(items)}
