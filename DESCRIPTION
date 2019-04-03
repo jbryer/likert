@@ -2,9 +2,8 @@ Package: likert
 Type: Package
 Title: Analysis and Visualization Likert Items
 Version: 1.3.6
-Date: 2017-06-26
-Author: Jason Bryer <jason@bryer.org>, Kimberly Speerschneider
-    <kimkspeer@gmail.com>
+Date: 2019-03-06
+Author: Jason Bryer <jason@bryer.org>
 Maintainer: Jason Bryer <jason@bryer.org>
 URL: http://jason.bryer.org/likert, http://github.com/jbryer/likert
 BugReports: https://github.com/jbryer/likert/issues
