@@ -248,10 +248,13 @@ likert.bar.plot <- function(l,
 			results.high <- results[results$value > 0,]
 			p <- ggplot(results, aes(y=value, x=Item, group=Item)) + 
 				geom_hline(yintercept=0) +
-				geom_bar(data=results.low[nrow(results.low):1,], 
-						 aes(fill=variable), stat='identity') + 
 				geom_bar(data=results.high, aes(fill=variable), stat='identity')
 			names(cols) <- levels(results$variable)
+			
+			if(nrow(results.low) > 0) {
+			  p <- p + geom_bar(data=results.low[nrow(results.low):1,], 
+			                    aes(fill=variable), stat='identity')  
+			}
 			p <- p + scale_fill_manual(legend, breaks=names(cols), values=cols, drop=FALSE)
 		} else {
 			if(!is.null(factor.mapping)) {
@@ -334,10 +337,10 @@ likert.bar.plot <- function(l,
 		}
 		if(!missing(group.order)) {
 			p <- p + scale_x_discrete(limits=rev(group.order),
-				labels=label_wrap_mod(rev(group.order), width=wrap), drop=FALSE)
+				labels=label_wrap_mod(rev(group.order), width=wrap), drop=TRUE)
 		} else {
 			p <- p + scale_x_discrete(breaks=l$results$Item,
-				labels=label_wrap_mod(l$results$Item, width=wrap), drop=FALSE)
+				labels=label_wrap_mod(l$results$Item, width=wrap), drop=TRUE)
 		}
 	} ##### End: No grouping
 	p <- p + scale_y_continuous(labels=abs_formatter, 
@@ -346,6 +349,7 @@ likert.bar.plot <- function(l,
 	
 	attr(p, 'item.order') <- levels(results$Item)
 	class(p) <- c('likert.bar.plot', class(p))
+
 	return(p)
 }
 
