@@ -116,10 +116,13 @@ likert.bar.plot <- function(l,
 											levels = rev(levels(results.high$variable)))
 
 			p <- ggplot(results, aes(y=value, x=Group, group=variable)) + 
-				geom_hline(yintercept=0) +
-				geom_bar(data=results.low[nrow(results.low):1,], 
-						 aes(fill=variable), stat='identity') + 
+				geom_hline(yintercept=0) + 
 				geom_bar(data=results.high, aes(fill=variable), stat='identity')
+			
+			if(nrow(results.low)>0){
+			p <- p + geom_bar(data=results.low[nrow(results.low):1,], 
+			           aes(fill=variable), stat='identity')   
+			}
 			
 			names(cols) <- levels(results$variable)
 			p <- p + scale_fill_manual(legend, breaks=names(cols), values=cols, drop=FALSE)
