@@ -337,10 +337,10 @@ likert.bar.plot <- function(l,
 		}
 		if(!missing(group.order)) {
 			p <- p + scale_x_discrete(limits=rev(group.order),
-				labels=label_wrap_mod(rev(group.order), width=wrap), drop=TRUE)
+				labels=label_wrap_mod(rev(group.order), width=wrap), drop=FALSE)
 		} else {
 			p <- p + scale_x_discrete(breaks=l$results$Item,
-				labels=label_wrap_mod(l$results$Item, width=wrap), drop=TRUE)
+				labels=label_wrap_mod(l$results$Item, width=wrap), drop=FALSE)
 		}
 	} ##### End: No grouping
 	p <- p + scale_y_continuous(labels=abs_formatter, 
