@@ -50,11 +50,6 @@ likert <- function(items, summary,
  			stop('Grouping variable cannot have any missing values.')
  		}
  	}
- 	for(i in 1:ncol(items)) {
- 		if(!is.factor(items[,i])) {
- 			warning(paste0('Variable ', names(items)[i], ' is not a factor.'))
- 		}
- 	}
 	if(!missing(summary)) { #Pre-summarized data
 		names(summary)[1] <- 'Items'
 		if(!is.null(grouping) & length(grouping) != nrow(summary)) {
@@ -79,6 +74,11 @@ likert <- function(items, summary,
 		class(r) <- 'likert'
 		return(r)
 	} else {
+		for(i in 1:ncol(items)) {
+			if(!is.factor(items[,i])) {
+				warning(paste0('Variable ', names(items)[i], ' is not a factor.'))
+			}
+		}
 		if(missing(nlevels)) {
 			nlevels <- length(levels(items[[1]]))
 		}
