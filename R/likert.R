@@ -45,7 +45,6 @@ likert <- function(items, summary,
 				   factors=NULL,
 				   importance,
 				   nlevels=length(levels(items[[1]]))) {
- 	items <- as.data.frame(items) # Handle tibbles
  	if(!missing(grouping)) {
  		if(sum(is.na(grouping)) > 0) {
  			stop('Grouping variable cannot have any missing values.')
@@ -80,6 +79,7 @@ likert <- function(items, summary,
 		class(r) <- 'likert'
 		return(r)
 	} else {
+		items <- as.data.frame(items) # Handle tibbles
 		if(!inherits(items, 'data.frame')) {
 			stop(paste0('The items parameter must be a data frame. If trying ',
 						'to subset a data frame to analyze only one column, try: ',
