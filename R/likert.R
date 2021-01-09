@@ -51,7 +51,7 @@ likert <- function(items, summary,
  		}
  	}
 	if(!missing(summary)) { #Pre-summarized data
-		names(summary)[1] <- 'Items'
+		names(summary)[1] <- 'Item'
 		if(!is.null(grouping) & length(grouping) != nrow(summary)) {
 			stop('The length of grouping must be equal to the number of rows in summary.')
 		}
