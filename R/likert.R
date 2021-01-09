@@ -58,6 +58,26 @@ likert <- function(items, summary,
 		if(!missing(importance)) {
 			stop('Pre-summarized data with importance is not currently supported')
 		}
+		
+		# Check to see if the pre-summarized data is percentages or counts.
+		# First, if the sum of all values for any row is greater thatn 1.1,
+		# then we presume the data could represents counts unless ALL the totals
+		# close to 100, in which case they are likely percentages.
+		totals <- apply(summary[,2:ncol(summary)], 1, sum)
+		if(all(totals < 1.1)) {
+			for(i in 2:ncol(summary)) {
+				summary[,i] <- summary[,i] * 100
+			}
+		} else {
+			threshold <- 1.5 # How far around 100 is considered 100. That is,
+			# allow for rounding errors (sums of 99 or 101 are probably ok)
+			if(any(totals < 100 - threshold | totals > 100 + threshold)) {
+				for(i in 2:ncol(summary)) {
+					summary[,i] <- summary[,i] / totals * 100
+				}
+			}
+		}
+		
 		if(is.null(grouping)) {
 			r <- list(results=summary, 
 					  items=NULL, 
