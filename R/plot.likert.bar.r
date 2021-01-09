@@ -28,7 +28,7 @@ utils::globalVariables(c('value','Group','variable','low','Item','high',
 #' @seealso likert.density.plot
 likert.bar.plot <- function(l,
 							group.order,
-							center=(l$nlevels-1)/2 + 1,
+							center = (l$nlevels-1)/2 + 1,
 							...) {
 	opts <- likert.options(...)
 	for(i in names(opts)) {
@@ -59,7 +59,8 @@ likert.bar.plot <- function(l,
 		bamp <- rgb( bamp(seq(0, 1, length=length(highrange)+1)), maxColorValue=255)
 		cols <- NULL
 		if(center %% 1 != 0) {
-			cols <- c(ramp[1:(length(ramp)-1)], bamp[2:length(bamp)])		
+			cols <- c(ramp[1:(length(ramp)-1)], bamp[2:length(bamp)])
+			# cols <- c(ramp, bamp)
 		} else {
 			cols <- c(ramp[1:(length(ramp)-1)], neutral.color, bamp[2:length(bamp)])
 		}		
@@ -69,15 +70,15 @@ likert.bar.plot <- function(l,
 	
 	p <- NULL
 	if(!is.null(l$grouping)) { ##### Grouping ##################################
-		item_levels <- levels(l$results$Item)
-		item_levels <- label_wrap_mod(item_levels, width=wrap)
-		lsum$Item <- label_wrap_mod(lsum$Item, width=wrap)
-		lsum$Item <- factor(lsum$Item,item_levels)
+		item_levels <- unique(l$results$Item)
+		item_levels <- likert:::label_wrap_mod(item_levels, width = wrap)
+		lsum$Item <- likert:::label_wrap_mod(lsum$Item, width = wrap)
+		lsum$Item <- factor(lsum$Item, item_levels)
 		levels(l$results$Item) <- levels(lsum$Item)
 		#l$results$Item <- label_wrap_mod(l$results$Item, width=wrap)
 		lsum$Item <- factor(lsum$Item,item_levels)
 		#names(l$items) <- label_wrap_mod(names(l$items), width=wrap)
-		lsum$Group <- label_wrap_mod(lsum$Group, width=wrap.grouping)
+		lsum$Group <- likert:::label_wrap_mod(lsum$Group, width=wrap.grouping)
 		results <- l$results
 		results <- reshape2::melt(results, id=c('Group', 'Item'))
 		results$variable <- factor(results$variable, ordered=TRUE)

@@ -85,11 +85,11 @@ likert <- function(items, summary,
 					  nlevels=(ncol(summary)-1),
 					  levels=names(summary[,2:ncol(summary)]))
 		} else {
-			r <- list(results=cbind(Group=grouping, summary[,-1]), 
+			r <- list(results=cbind(Group=grouping, summary), 
 					  items=NULL, 
 					  grouping=grouping, 
-					  nlevels=(ncol(summary)-2),
-					  levels=names(summary[,3:ncol(summary)]))
+					  nlevels=(ncol(summary)-1),
+					  levels=names(summary[,2:ncol(summary)]))
 		}
 		class(r) <- 'likert'
 		return(r)
