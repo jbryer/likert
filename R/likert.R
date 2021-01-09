@@ -44,7 +44,7 @@ likert <- function(items, summary,
 				   grouping=NULL, 
 				   factors=NULL,
 				   importance,
-				   nlevels=length(levels(items[[1]]))) {
+				   nlevels) {
  	if(!missing(grouping)) {
  		if(sum(is.na(grouping)) > 0) {
  			stop('Grouping variable cannot have any missing values.')
@@ -79,6 +79,9 @@ likert <- function(items, summary,
 		class(r) <- 'likert'
 		return(r)
 	} else {
+		if(missing(nlevels)) {
+			nlevels <- length(levels(items[[1]]))
+		}
 		items <- as.data.frame(items) # Handle tibbles
 		if(!inherits(items, 'data.frame')) {
 			stop(paste0('The items parameter must be a data frame. If trying ',
