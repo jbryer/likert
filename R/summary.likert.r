@@ -38,10 +38,9 @@ summary.likert <- function(object, center=(object$nlevels-1)/2 + 1,
 			tmp <- rep(1:length(x), x)
 			return(c(mean=mean(tmp), sd=sd(tmp)))
 		}))
+		neutral <- NA
 		if(center %% 1 == 0) {
 			neutral <- results[,(center+(startCol-1))]
-		} else {
-			neutral <- NA
 		}
 		if(is.null(object$grouping)) {
 			lowCols <- startCol:floor(center + 0.5)
