@@ -24,6 +24,7 @@
 #' @param legend title for the legend.
 #' @param legend.position the position for the legend ("left", "right", "bottom",
 #'        "top", or two-element numeric vector).
+#' @param ylabel label for the y-axis
 #' @param panel.arrange how panels for grouped likert items should be arrange.
 #'        Possible values are \code{v} (vertical, the default), \code{h}
 #'        (horizontal), and \code{NULL} (auto fill horizontal and vertical)
