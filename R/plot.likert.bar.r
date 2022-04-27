@@ -21,6 +21,7 @@ utils::globalVariables(c('value','Group','variable','low','Item','high',
 #'        items or those without a neutral option). This also influences where the
 #'        color breaks from low to high.
 #' @param ... passed to \code{\link{likert.options}}
+#' @importFrom plyr ddply
 #' @export
 #' @seealso plot.likert
 #' @seealso likert.heat.plot
