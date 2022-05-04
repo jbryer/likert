@@ -118,10 +118,13 @@ likert.bar.plot <- function(l,
 											levels = rev(levels(results.high$variable)))
 
 			p <- ggplot(results, aes(y=value, x=Group, group=variable)) + 
-				geom_hline(yintercept=0) +
-				geom_bar(data=results.low[nrow(results.low):1,], 
-						 aes(fill=variable), stat='identity') + 
+				geom_hline(yintercept=0) + 
 				geom_bar(data=results.high, aes(fill=variable), stat='identity')
+			
+			if(nrow(results.low)>0){
+			p <- p + geom_bar(data=results.low[nrow(results.low):1,], 
+			           aes(fill=variable), stat='identity')   
+			}
 			
 			names(cols) <- levels(results$variable)
 			p <- p + scale_fill_manual(legend, breaks=names(cols), values=cols, drop=FALSE)
@@ -247,10 +250,13 @@ likert.bar.plot <- function(l,
 			results.high <- results[results$value > 0,]
 			p <- ggplot(results, aes(y=value, x=Item, group=Item)) + 
 				geom_hline(yintercept=0) +
-				geom_bar(data=results.low[nrow(results.low):1,], 
-						 aes(fill=variable), stat='identity') + 
 				geom_bar(data=results.high, aes(fill=variable), stat='identity')
 			names(cols) <- levels(results$variable)
+			
+			if(nrow(results.low) > 0) {
+			  p <- p + geom_bar(data=results.low[nrow(results.low):1,], 
+			                    aes(fill=variable), stat='identity')  
+			}
 			p <- p + scale_fill_manual(legend, breaks=names(cols), values=cols, drop=FALSE)
 		} else {
 			if(!is.null(factor.mapping)) {
@@ -317,11 +323,17 @@ likert.bar.plot <- function(l,
 							size=text.size, color=text.color)
 			}
 			lpercentneutral <- results[results$variable == center.label,]
-			if(nrow(lpercentneutral) > 0) {
+			if(nrow(lpercentneutral) > 0 & centered) {
 				p <- p + geom_text(data=lpercentneutral, 
 								   aes(x=Item, y=0, 
 								   	label=paste0(prettyNum(abs(value * 2), digits=digits, drop0trailing=drop0trailing, zero.print=zero.print), '%')),
 								   size=text.size, color=text.color)
+			}
+			if(nrow(lpercentneutral) > 0 & !centered) {
+			  p <- p + geom_text(data=lpercentpos[lpercentpos$variable == center.label,], 
+			                     aes(x=Item, y=pos, 
+			                         label=paste0(prettyNum(value, digits=digits, drop0trailing=drop0trailing, zero.print=zero.print), '%')),
+			                         size=text.size, color=text.color)
 			}
 		}
 		p <- p +
@@ -345,6 +357,7 @@ likert.bar.plot <- function(l,
 	
 	attr(p, 'item.order') <- levels(results$Item)
 	class(p) <- c('likert.bar.plot', class(p))
+
 	return(p)
 }
 
