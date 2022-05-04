@@ -4,7 +4,9 @@
 \name{pisaitems}
 \alias{pisaitems}
 \title{Programme of International Student Assessment}
-\format{a data frame 66,690 ovservations of 81 variables from North America.}
+\format{
+a data frame 66,690 ovservations of 81 variables from North America.
+}
 \source{
 Organization for Economic Co-operation and Development
 }

@@ -4,8 +4,7 @@
 \alias{summary.likert}
 \title{Prints summary table of a Likert analysis.}
 \usage{
-\method{summary}{likert}(object, center = (object$nlevels - 1)/2 + 1,
-  ordered = TRUE, ...)
+\method{summary}{likert}(object, center = (object$nlevels - 1)/2 + 1, ordered = TRUE, ...)
 }
 \arguments{
 \item{object}{the likert class to summarize.}

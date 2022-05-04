@@ -4,7 +4,9 @@
 \name{sasr}
 \alias{sasr}
 \title{Results from the Survey of Academic Self-Regulation (SASR).}
-\format{a data frame with 860 ovservations of 63 variables.}
+\format{
+a data frame with 860 ovservations of 63 variables.
+}
 \description{
 The Survey of Academic Self-Regulation (SASR) is comprised of six factors:
 self-regulation, intrinsic motivation, extrinsic motivation, self-efficacy,

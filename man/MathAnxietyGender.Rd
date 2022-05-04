@@ -5,7 +5,9 @@
 \alias{MathAnxietyGender}
 \title{Pre-summarized results from an administration of the Math Anxiety Scale Survey 
 grouped by gender.}
-\format{data frame with 28 rows and 7 columns.}
+\format{
+data frame with 28 rows and 7 columns.
+}
 \description{
 A data frame of presummarized results of the Math Anxiety Scale Survey administered
 to 20 students in a statistics course grouped by gender.

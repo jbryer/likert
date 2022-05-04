@@ -4,12 +4,23 @@
 \alias{likert.histogram.plot}
 \title{Histogram of number of responses.}
 \usage{
-likert.histogram.plot(l, xlab = "n", plot.missing = TRUE,
-  bar.color = "grey70", missing.bar.color = "maroon",
-  label.completed = "Completed", label.missing = "Missing",
-  legend.position = "bottom", wrap = ifelse(is.null(l$grouping), 50,
-  100), order, group.order, panel.arrange = "v",
-  panel.strip.color = "#F0F0F0", text.size = 2.5, ...)
+likert.histogram.plot(
+  l,
+  xlab = "n",
+  plot.missing = TRUE,
+  bar.color = "grey70",
+  missing.bar.color = "maroon",
+  label.completed = "Completed",
+  label.missing = "Missing",
+  legend.position = "bottom",
+  wrap = ifelse(is.null(l$grouping), 50, 100),
+  order,
+  group.order,
+  panel.arrange = "v",
+  panel.strip.color = "#F0F0F0",
+  text.size = 2.5,
+  ...
+)
 }
 \arguments{
 \item{l}{results of \code{\link{likert}}.}

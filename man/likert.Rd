@@ -4,8 +4,7 @@
 \alias{likert}
 \title{Analyze Likert type items.}
 \usage{
-likert(items, summary, grouping = NULL, factors = NULL, importance,
-  nlevels = length(levels(items[[1]])))
+likert(items, summary, grouping = NULL, factors = NULL, importance, nlevels)
 }
 \arguments{
 \item{items}{data frame containing the likert based items. The variables

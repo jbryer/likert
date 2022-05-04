@@ -1,9 +1,13 @@
 Package: likert
 Type: Package
 Title: Analysis and Visualization Likert Items
-Version: 1.3.6
-Date: 2019-03-06
-Author: Jason Bryer <jason@bryer.org>
+Version: 2.0.0
+Date: 2022-05-03
+Authors@R: c(
+    person("Jason", "Bryer", , "jason@bryer.org", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-2454-0402")),
+    person("Kim", "Speerschneider", , "kimkspeer@gmail.com", role = "ctb")
+  )
 Maintainer: Jason Bryer <jason@bryer.org>
 URL: http://jason.bryer.org/likert, http://github.com/jbryer/likert
 BugReports: https://github.com/jbryer/likert/issues
@@ -14,11 +18,20 @@ Description: An approach to analyzing Likert response items, with an emphasis on
     summary.likert(), and plot.likert() functions to get started.
 License: GPL
 LazyLoad: yes
-VignetteBuilder: utils
+VignetteBuilder: knitr
 Depends:
-    R (>= 3.0), ggplot2 (>= 2.2.0), xtable
+    R (>= 3.0), ggplot2 (>= 2.2.0)
 Imports:
-    psych,reshape2,gridExtra,grid,plyr
+    psych,
+    reshape2,
+    gridExtra,
+    grid,
+    plyr,
+    xtable,
+    colourpicker,
+    shiny
 Suggests:
-    devtools,shiny
-RoxygenNote: 6.1.1
+    devtools,
+    knitr,
+    rmarkdown
+RoxygenNote: 7.1.2

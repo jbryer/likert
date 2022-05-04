@@ -4,7 +4,9 @@
 \name{mass}
 \alias{mass}
 \title{Results from an administration of the Math Anxiety Scale Survey.}
-\format{data frame with 14 rows and 6 columns.}
+\format{
+data frame with 14 rows and 6 columns.
+}
 \description{
 A data frame of results of the Math Anxiety Scale Survey administered
 to 20 students in a statistics course. This data frame contains the original

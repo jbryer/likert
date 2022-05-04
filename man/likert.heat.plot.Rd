@@ -4,8 +4,16 @@
 \alias{likert.heat.plot}
 \title{Internal method.}
 \usage{
-likert.heat.plot(likert, low.color = "white", high.color = "blue",
-  text.color = "black", text.size = 4, digits = 2, wrap = 50, ...)
+likert.heat.plot(
+  likert,
+  low.color = "white",
+  high.color = "blue",
+  text.color = "black",
+  text.size = 4,
+  digits = 2,
+  wrap = 50,
+  ...
+)
 }
 \arguments{
 \item{likert}{object of type likert.}

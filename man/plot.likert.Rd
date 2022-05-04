@@ -4,12 +4,18 @@
 \alias{plot.likert}
 \title{Plots a set of likert items.}
 \usage{
-\method{plot}{likert}(x, type = c("bar", "heat", "density"),
-  include.histogram = FALSE, panel.widths = c(3, 1),
-  panel.arrange = "v", panel.strip.color = "#F0F0F0",
-  legend.position = "bottom", group.order,
+\method{plot}{likert}(
+  x,
+  type = c("bar", "heat", "density"),
+  include.histogram = FALSE,
+  panel.widths = c(3, 1),
+  panel.arrange = "v",
+  panel.strip.color = "#F0F0F0",
+  legend.position = "bottom",
+  group.order,
   panel.background = element_rect(size = 1, color = "grey70", fill = NA),
-  ...)
+  ...
+)
 }
 \arguments{
 \item{x}{the likert items to plot}

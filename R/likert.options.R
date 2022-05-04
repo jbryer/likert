@@ -52,7 +52,7 @@ likert.options <- function(
 	wrap=50,
 	wrap.grouping=50,
 	legend='Response',
-	legend.position='bottom',
+	legend.position = c('bottom', 'top', 'left', 'right', 'none'),
 	panel.arrange='v',
 	panel.strip.color='#F0F0F0',
 	digits = 0,

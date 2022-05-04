@@ -4,12 +4,20 @@
 \alias{plot.likert.gap}
 \title{Plots a set of likert items.}
 \usage{
-\method{plot}{likert.gap}(x, type = c("bar", "density"),
-  include.histogram = FALSE, panel.widths = c(3, 1),
-  panel.arrange = "v", panel.strip.color = "#F0F0F0",
-  legend.position = "bottom", panel.background = element_rect(size = 1,
-  color = "grey70", fill = NA), satisfaction.label = "Satisfaction",
-  importance.label = "Importance", legend, ...)
+\method{plot}{likert.gap}(
+  x,
+  type = c("bar", "density"),
+  include.histogram = FALSE,
+  panel.widths = c(3, 1),
+  panel.arrange = "v",
+  panel.strip.color = "#F0F0F0",
+  legend.position = "bottom",
+  panel.background = element_rect(size = 1, color = "grey70", fill = NA),
+  satisfaction.label = "Satisfaction",
+  importance.label = "Importance",
+  legend,
+  ...
+)
 }
 \arguments{
 \item{x}{the likert items to plot}

@@ -4,8 +4,7 @@
 \alias{print.xlikert}
 \title{Prints the results of \code{\link{xtable.likert}}.}
 \usage{
-\method{print}{xlikert}(x, tabular.environment = "longtable",
-  floating = FALSE, ...)
+\method{print}{xlikert}(x, tabular.environment = "longtable", floating = FALSE, ...)
 }
 \arguments{
 \item{x}{results of \code{\link{xtable.likert}}.}
