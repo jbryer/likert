@@ -118,10 +118,13 @@ likert.bar.plot <- function(l,
 											levels = rev(levels(results.high$variable)))
 
 			p <- ggplot(results, aes(y=value, x=Group, group=variable)) + 
-				geom_hline(yintercept=0) +
-				geom_bar(data=results.low[nrow(results.low):1,], 
-						 aes(fill=variable), stat='identity') + 
+				geom_hline(yintercept=0) + 
 				geom_bar(data=results.high, aes(fill=variable), stat='identity')
+			
+			if(nrow(results.low)>0){
+			p <- p + geom_bar(data=results.low[nrow(results.low):1,], 
+			           aes(fill=variable), stat='identity')   
+			}
 			
 			names(cols) <- levels(results$variable)
 			p <- p + scale_fill_manual(legend, breaks=names(cols), values=cols, drop=FALSE)
@@ -247,10 +250,13 @@ likert.bar.plot <- function(l,
 			results.high <- results[results$value > 0,]
 			p <- ggplot(results, aes(y=value, x=Item, group=Item)) + 
 				geom_hline(yintercept=0) +
-				geom_bar(data=results.low[nrow(results.low):1,], 
-						 aes(fill=variable), stat='identity') + 
 				geom_bar(data=results.high, aes(fill=variable), stat='identity')
 			names(cols) <- levels(results$variable)
+			
+			if(nrow(results.low) > 0) {
+			  p <- p + geom_bar(data=results.low[nrow(results.low):1,], 
+			                    aes(fill=variable), stat='identity')  
+			}
 			p <- p + scale_fill_manual(legend, breaks=names(cols), values=cols, drop=FALSE)
 		} else {
 			if(!is.null(factor.mapping)) {
@@ -351,6 +357,7 @@ likert.bar.plot <- function(l,
 	
 	attr(p, 'item.order') <- levels(results$Item)
 	class(p) <- c('likert.bar.plot', class(p))
+
 	return(p)
 }
 
