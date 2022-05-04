@@ -24,6 +24,7 @@
 #' @param legend title for the legend.
 #' @param legend.position the position for the legend ("left", "right", "bottom",
 #'        "top", or two-element numeric vector).
+#' @param ylabel label for the y-axis
 #' @param panel.arrange how panels for grouped likert items should be arrange.
 #'        Possible values are \code{v} (vertical, the default), \code{h}
 #'        (horizontal), and \code{NULL} (auto fill horizontal and vertical)
@@ -52,6 +53,7 @@ likert.options <- function(
 	wrap=50,
 	wrap.grouping=50,
 	legend='Response',
+	ylabel='Percentage',
 	legend.position = c('bottom', 'top', 'left', 'right', 'none'),
 	panel.arrange='v',
 	panel.strip.color='#F0F0F0',
@@ -79,6 +81,7 @@ likert.options <- function(
 		wrap.grouping = wrap.grouping,
 		legend = legend,
 		legend.position = legend.position,
+		ylabel = ylabel,
 		panel.arrange = panel.arrange,
 		panel.strip.color = panel.strip.color,
 		digits = digits,

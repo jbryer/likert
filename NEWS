@@ -5,6 +5,7 @@ likert 2.0
 * Added digits parameter to plot for heatmaps.
 * Now check to ensure grouping variable does not have any missing values.
 * Print a warning if any variables are not factors.
+* New Shiny app that allows for interactively manipulate Likert options.
 
 likert 1.3.6
 =========

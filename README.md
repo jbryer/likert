@@ -2,7 +2,7 @@
 
 <img src="man/figures/likert.png" align="right" width="120" />
 
-**Authors: Jason Bryer, Ph.D.**  
+**Author: [Jason Bryer, Ph.D.](mailto:jason@bryer.org)**  
 **Website: <https://jbryer.github.io/likert/>**
 
 [![Build Status](https://api.travis-ci.org/jbryer/likert.svg)](https://travis-ci.org/jbryer/likert?branch=master)
@@ -19,14 +19,17 @@ Download the 2013 useR! Conference [abstract](https://github.com/jbryer/likert/r
 The latest development version can be downloaded using the `devtools` package.
 
 ```
-if(!require(devtools)) install.packages("devtools")
-devtools::install_github('jbryer/likert')
+remotes::install_github('jbryer/likert')
 ```
 
 To get started take a look at the [likert demo](https://github.com/jbryer/likert/blob/master/demo/likert.R) or from within R:
 
+```
 demo('likert', package='likert')
+```
 
 Or run the [Shiny app](http://rstudio.com/shiny):
 
+```
 shinyLikert()
+``

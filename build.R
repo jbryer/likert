@@ -8,10 +8,13 @@ build()
 build_vignettes()
 check(cran=TRUE)
 
+# Build website
 pkgdown::build_site()
 
+# Ready for CRAN?
 release()
 
+##### Basic testing
 library(likert)
 ls('package:likert')
 

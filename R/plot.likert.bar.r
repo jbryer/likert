@@ -184,7 +184,7 @@ likert.bar.plot <- function(l,
 								   size = text.size)
 			}
 		}
-		p <- p + coord_flip() + ylab('Percentage') + xlab('') +
+		p <- p + coord_flip() + ylab(ylabel) + xlab('') +
 			theme(axis.ticks=element_blank(), 
 				  strip.background=element_rect(fill=panel.strip.color, 
 				  							    color=panel.strip.color))
@@ -325,7 +325,7 @@ likert.bar.plot <- function(l,
 			}
 		}
 		p <- p +
-			coord_flip() + ylab('Percentage') + xlab('') + 
+			coord_flip() + ylab(ylabel) + xlab('') + 
 			theme(axis.ticks=element_blank())
 		if(!is.null(factor.mapping)) {
 			# DOES NOT WORK! Not supported

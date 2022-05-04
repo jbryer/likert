@@ -22,6 +22,7 @@ likert.options(
   wrap = 50,
   wrap.grouping = 50,
   legend = "Response",
+  ylabel = "Percentage",
   legend.position = c("bottom", "top", "left", "right", "none"),
   panel.arrange = "v",
   panel.strip.color = "#F0F0F0",
@@ -69,6 +70,8 @@ the center will be excluded.}
 \item{wrap.grouping}{width to wrap label text for group labels.}
 
 \item{legend}{title for the legend.}
+
+\item{ylabel}{label for the y-axis}
 
 \item{legend.position}{the position for the legend ("left", "right", "bottom",
 "top", or two-element numeric vector).}

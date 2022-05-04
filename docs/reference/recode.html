@@ -79,8 +79,8 @@ as.character, as.numeric, as.logical, as.numeric).</p></dd>
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">test</span> <span class="op">&lt;-</span> <span class="va">letters</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">10</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">]</span></span>
 <span class="r-in"><span class="fu">recode</span><span class="op">(</span><span class="va">test</span>, from<span class="op">=</span><span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, to<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">'Letter'</span>, <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "Letter c" "Letter e" "Letter b" "Letter b" "Letter d" "Letter d"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "Letter a" "Letter b" "Letter a" "Letter d"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "Letter c" "Letter d" "Letter c" "Letter e" "Letter d" "Letter e"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "Letter d" "Letter e" "Letter a" "Letter c"</span>
 </code></pre></div>
     </div>
   </div>
