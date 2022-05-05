@@ -1,5 +1,6 @@
-
 #' Builds an object with options for plotting \code{\link{likert}} results.
+#' 
+#' This function specifies all the plotting options for Likert plots.
 #' 
 #' @param low.color color for low values.
 #' @param high.color color for high values.
@@ -36,27 +37,27 @@
 #'        
 #' @export
 likert.options <- function(
-	low.color='#D8B365',
-	high.color='#5AB4AC',
-	neutral.color='grey90',
-	neutral.color.ramp='white',
-	colors=NULL,
-	plot.percent.low=TRUE,
-	plot.percent.high=TRUE,
-	plot.percent.neutral=TRUE,
-	plot.percents=FALSE,
-	text.size=3,
-	text.color='black',
-	centered=TRUE,
-	include.center=TRUE,
-	ordered=TRUE,
-	wrap=50,
-	wrap.grouping=50,
-	legend='Response',
-	ylabel='Percentage',
+	low.color = '#D8B365',
+	high.color = '#5AB4AC',
+	neutral.color = 'grey90',
+	neutral.color.ramp = 'white',
+	colors = NULL,
+	plot.percent.low = TRUE,
+	plot.percent.high = TRUE,
+	plot.percent.neutral = TRUE,
+	plot.percents = FALSE,
+	text.size = 3,
+	text.color = 'black',
+	centered = TRUE,
+	include.center = TRUE,
+	ordered = TRUE,
+	wrap = 50,
+	wrap.grouping = 50,
+	legend = 'Response',
+	ylabel = 'Percentage',
 	legend.position = c('bottom', 'top', 'left', 'right', 'none'),
-	panel.arrange='v',
-	panel.strip.color='#F0F0F0',
+	panel.arrange = 'v',
+	panel.strip.color = '#F0F0F0',
 	digits = 0,
 	drop0trailing = FALSE,
 	zero.print = TRUE,

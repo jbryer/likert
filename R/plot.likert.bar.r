@@ -164,7 +164,7 @@ likert.bar.plot <- function(l,
 			}
 		}
 		if(plot.percents) {
-			#warning('plot.percents is not currenlty supported for grouped analysis.')
+			#warning('plot.percents is not currently supported for grouped analysis.')
 			lpercentpos <- ddply(results[results$value > 0,], .(Group, Item), transform,
 								 pos = cumsum(value) - 0.5 * value)
 			p <- p + geom_text(data = lpercentpos, 

@@ -30,27 +30,27 @@
 #' @seealso \link{xtable}, \link{print.xtable}
 #' @export
 #' @method xtable likert
-xtable.likert <- function(x, caption=NULL, 
-						  label=NULL, 
-						  align=NULL, 
-						  digits=NULL,
-                          display=NULL, 
-						  auto=FALSE,
-						  include.n=TRUE, 
-						  include.mean=TRUE, 
-						  include.sd=TRUE, 
-                          include.low=TRUE, 
-						  include.neutral=(x$nlevels %% 2 != 0), 
-						  include.high=TRUE, 
-                          include.levels=TRUE, 
-						  include.missing=TRUE, 
-                          center=(x$nlevels-1)/2 + 1, 
-						  ordered=TRUE,
+xtable.likert <- function(x, caption = NULL, 
+						  label = NULL, 
+						  align = NULL, 
+						  digits = NULL,
+                          display = NULL, 
+						  auto = FALSE,
+						  include.n = TRUE, 
+						  include.mean = TRUE, 
+						  include.sd = TRUE, 
+                          include.low = TRUE, 
+						  include.neutral = (x$nlevels %% 2 != 0), 
+						  include.high = TRUE, 
+                          include.levels = TRUE, 
+						  include.missing = TRUE, 
+                          center = (x$nlevels-1)/2 + 1, 
+						  ordered = TRUE,
 						  ...) {
 	if(!is.null(x$grouping)) {
 		tab <- data.frame()
 		for(g in unique(x$results$Group)){
-			s <- summary(x, center=center,ordered=ordered) 
+			s <- summary(x, center = center,ordered = ordered) 
 			s <- s[which(s$Group==g),]
 			gtab <- as.data.frame(cbind(as.character(s$Group),as.character(s$Item)))
 			names(gtab) <- c('Group','Item')
@@ -86,7 +86,7 @@ xtable.likert <- function(x, caption=NULL,
 			#       hline  <-  c(-1,0, nrow(tab))
 		}
 	} else {
-		s  <-  summary(x, center=center, ordered=ordered)
+		s  <-  summary(x, center = center, ordered = ordered)
 		tab <- as.data.frame(as.character(s$Item))
 		names(tab) <- 'Item'
 		missing <- as.numeric()

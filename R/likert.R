@@ -40,7 +40,8 @@
 #' l29 <- likert(items29)
 #' summary(l29)
 #' plot(l29)
-likert <- function(items, summary,
+likert <- function(items, 
+				   summary,
 				   grouping=NULL, 
 				   factors=NULL,
 				   importance,
