@@ -58,7 +58,7 @@ likert.options <- function(
 	legend.position = c('bottom', 'top', 'left', 'right', 'none'),
 	panel.arrange = 'v',
 	panel.strip.color = '#F0F0F0',
-	digits = 0,
+	digits = 2,
 	drop0trailing = FALSE,
 	zero.print = TRUE,
 	...
