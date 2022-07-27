@@ -33,6 +33,9 @@ Imports:
 Suggests:
     devtools,
     knitr,
-    rmarkdown
-RoxygenNote: 7.1.2
+    rmarkdown,
+    testthat (>= 3.0.0),
+    vdiffr
+RoxygenNote: 7.2.1
 Encoding: UTF-8
+Config/testthat/edition: 3

@@ -26,7 +26,7 @@ likert.options(
   legend.position = c("bottom", "top", "left", "right", "none"),
   panel.arrange = "v",
   panel.strip.color = "#F0F0F0",
-  digits = 0,
+  digits = 2,
   drop0trailing = FALSE,
   zero.print = TRUE,
   ...
@@ -91,5 +91,5 @@ Possible values are \code{v} (vertical, the default), \code{h}
 \item{...}{included for future expansion.}
 }
 \description{
-Builds an object with options for plotting \code{\link{likert}} results.
+This function specifies all the plotting options for Likert plots.
 }

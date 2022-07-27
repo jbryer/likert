@@ -4,6 +4,7 @@ library(devtools)
 document()
 install()
 build()
+test()
 #Rbuild('likert',vignettes=FALSE)
 build_vignettes()
 check(cran=TRUE)
@@ -21,8 +22,9 @@ ls('package:likert')
 #Run shiny app. See also shinyLikert to run from the installed package.
 shiny::runApp('likert/inst/shiny')
 
-
-
+##### testthat
+usethis::use_testthat()
+usethis::use_test('duplicate_gruops_124')
 
 ##### Data setup. We will use a few of the student items from North America PISA
 require(pisa)
