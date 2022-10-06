@@ -15,6 +15,9 @@
 #' @param plot.percents whether to label each category/bar.
 #' @param text.size size of text attributes.
 #' @param text.color color of text attributes.
+#' @param text.color.manual.pos individual color specification of positive text attributes.
+#' @param text.color.manual.neg individual color specification of negative text attributes.
+#' @param text.color.manual.neg individual color specification of neutral text attributes.
 #' @param centered if true, the bar plot will be centered around zero such that
 #'        the lower half of levels will be negative.
 #' @param include.center if TRUE, include the center level in the plot otherwise
@@ -48,6 +51,9 @@ likert.options <- function(
 	plot.percents = FALSE,
 	text.size = 3,
 	text.color = 'black',
+  text.color.manual.pos = NULL,
+  text.color.manual.neg = NULL,
+  text.color.manual.neutral = NULL,
 	centered = TRUE,
 	include.center = TRUE,
 	ordered = TRUE,
@@ -75,6 +81,9 @@ likert.options <- function(
 		plot.percents = plot.percents,
 		text.size = text.size,
 		text.color = text.color,
+    text.color.manual.pos = text.color.manual.pos,
+    text.color.manual.neg = text.color.manual.neg,
+    text.color.manual.neutral = text.color.manual.neutral,
 		centered = centered,
 		include.center = include.center,
 		ordered = ordered,

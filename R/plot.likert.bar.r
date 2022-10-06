@@ -1,10 +1,13 @@
 utils::globalVariables(c('value','Group','variable','low','Item','high',
-						 'neutral','x','y','pos','ddply','.','colors','low.color',
-						 'neutral.color.ramp','high.color','neutral.color','wrap',
-						 'wrap.grouping','centered','include.center','legend',
-						 'plot.percent.low','text.size','text.color','plot.percent.high',
-						 'plot.percent.neutral','plot.percents','panel.strip.color',
-						 'panel.arrange','legend.position'))
+                         'neutral','x','y','pos','ddply','.','colors',
+                         'low.color', 'neutral.color.ramp','high.color',
+                         'neutral.color','wrap', 'wrap.grouping','centered',
+                         'include.center','legend', 'plot.percent.low',
+                         'text.size','text.color', 'text.color.manual.pos',
+                         'text.color.manual.neutral', 'text.color.manual.neg',
+                         'plot.percent.high', 'plot.percent.neutral',
+                         'plot.percents','panel.strip.color', 'panel.arrange',
+                         'legend.position'))
 
 #' Bar Plot for Likert Items.
 #' 
@@ -66,6 +69,14 @@ likert.bar.plot <- function(l,
 			cols <- c(ramp[1:(length(ramp)-1)], neutral.color, bamp[2:length(bamp)])
 		}		
 	}
+
+  if (!any(nzchar(text.color.manual.pos))) {
+    text.color.manual.pos <- text.color
+  }
+
+  if(!any(nzchar(text.color.manual.neg))) {
+    text.color.manual.neg <- text.color
+  }
 
 	lsum <- summary(l, center=center)
 	
@@ -167,6 +178,7 @@ likert.bar.plot <- function(l,
 			#warning('plot.percents is not currently supported for grouped analysis.')
 			lpercentpos <- ddply(results[results$value > 0,], .(Group, Item), transform,
 								 pos = cumsum(value) - 0.5 * value)
+      lpercentpos$text.color.manual.pos <- text.color.manual.pos
 			p <- p + geom_text(data = lpercentpos, 
 							   aes(x = Group, y = pos, 
 							   	label = paste0(prettyNum(value, digits=digits, drop0trailing=drop0trailing, zero.print=zero.print), '%'),
@@ -180,6 +192,7 @@ likert.bar.plot <- function(l,
 						  .(Group, Item),
 						  transform,
 						  pos = cumsum(value) - 0.5 * value)
+				lpercentneg$text.color.manual.neg <- text.color.manual.neg
 				lpercentneg$pos <- lpercentneg$pos * -1
 				p <- p + geom_text(data = lpercentneg,
 								   aes(x = Group, y = pos, 
@@ -308,8 +321,9 @@ likert.bar.plot <- function(l,
 								 pos = cumsum(value) - 0.5*value)
 			p <- p + geom_text(data=lpercentpos[lpercentpos$variable != center.label,], 
 							   aes(x=Item, y=pos, 
+                             color=text.color.manual.pos, 
 						label=paste0(prettyNum(value, digits=digits, drop0trailing=drop0trailing, zero.print=zero.print), '%')),
-						size=text.size, color=text.color)
+						size=text.size)
 			lpercentneg <- results[results$value < 0,]
 			if(nrow(lpercentneg) > 0) {
 				lpercentneg <- lpercentneg[nrow(lpercentneg):1,]
@@ -318,22 +332,23 @@ likert.bar.plot <- function(l,
 									 pos = cumsum(value) - 0.5*value)	
 				lpercentneg$pos <- lpercentneg$pos * -1
 				p <- p + geom_text(data=lpercentneg[lpercentneg$variable != center.label,], 
-								   aes(x=Item, y=pos, 
+								   aes(x=Item, y=pos, color=text.color.manual.neg, 
 							label=paste0(prettyNum(abs(value), digits=digits, drop0trailing=drop0trailing, zero.print=zero.print), '%')),
-							size=text.size, color=text.color)
+							size=text.size)
 			}
 			lpercentneutral <- results[results$variable == center.label,]
+      lpercentneutral$text.color.manual.neutral <- text.color.manual.neutral
 			if(nrow(lpercentneutral) > 0 & centered) {
 				p <- p + geom_text(data=lpercentneutral, 
-								   aes(x=Item, y=0, 
+								   aes(x=Item, y=0, color=text.color.manual.neutral, 
 								   	label=paste0(prettyNum(abs(value * 2), digits=digits, drop0trailing=drop0trailing, zero.print=zero.print), '%')),
-								   size=text.size, color=text.color)
+								   size=text.size)
 			}
 			if(nrow(lpercentneutral) > 0 & !centered) {
 			  p <- p + geom_text(data=lpercentpos[lpercentpos$variable == center.label,], 
-			                     aes(x=Item, y=pos, 
+			                     aes(x=Item, y=pos, color=text.color.manual.neutral, 
 			                         label=paste0(prettyNum(value, digits=digits, drop0trailing=drop0trailing, zero.print=zero.print), '%')),
-			                         size=text.size, color=text.color)
+			                         size=text.size)
 			}
 		}
 		p <- p +
@@ -354,6 +369,7 @@ likert.bar.plot <- function(l,
 	p <- p + scale_y_continuous(labels=abs_formatter, 
 								limits=c(ymin - ybuffer, ymax + ybuffer))
 	p <- p + theme(legend.position=legend.position)
+  p <- p + scale_color_identity()
 	
 	attr(p, 'item.order') <- levels(results$Item)
 	class(p) <- c('likert.bar.plot', class(p))
