@@ -8,7 +8,7 @@
 #' we recommend call the generic \code{plot} function.
 #'
 #' @param x the likert items to plot
-#' @param type the type of plot to create. Current values are bar and heat.
+#' @param type the type of plot to create. Current values are bar, density, and heat.
 #' @param ... other parameters passed passed to \code{\link{likert.bar.plot}} or 
 #'        \code{\link{likert.heat.plot}}.
 #' @param panel.background define background of the plot. See \code{\link{theme}}.
