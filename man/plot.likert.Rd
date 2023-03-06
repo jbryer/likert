@@ -20,7 +20,7 @@
 \arguments{
 \item{x}{the likert items to plot}
 
-\item{type}{the type of plot to create. Current values are bar and heat.}
+\item{type}{the type of plot to create. Current values are bar, density, and heat.}
 
 \item{include.histogram}{if TRUE, a histogram of count of responses is also plotted.}
 
