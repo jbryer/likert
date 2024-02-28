@@ -7,6 +7,9 @@
 \format{
 data frame with 14 rows and 6 columns.
 }
+\usage{
+MathAnxiety
+}
 \description{
 A data frame of presummarized results of the Math Anxiety Scale Survey administered
 to 20 students in a statistics course.

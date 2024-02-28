@@ -3,12 +3,29 @@
 \docType{package}
 \name{likert-package}
 \alias{likert-package}
-\title{Likert Analysis and Visualization}
+\title{likert: Analysis and Visualization Likert Items}
 \description{
-Likert Analysis and Visualization
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
+An approach to analyzing Likert response items, with an emphasis on visualizations. The stacked bar plot is the preferred method for presenting Likert results. Tabular results are also implemented along with density plots to assist researchers in determining whether Likert responses can be used quantitatively instead of qualitatively. See the likert(), summary.likert(), and plot.likert() functions to get started.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://jbryer.github.io/likert/}
+  \item \url{https://github.com/jbryer/likert}
+  \item Report bugs at \url{https://github.com/jbryer/likert/issues}
+}
+
 }
 \author{
-\email{jason@bryer.org}
+\strong{Maintainer}: Jason Bryer \email{jason@bryer.org} (\href{https://orcid.org/0000-0002-2454-0402}{ORCID})
+
+Other contributors:
+\itemize{
+  \item Kim Speerschneider \email{kimkspeer@gmail.com} [contributor]
+}
+
 }
 \keyword{institutional}
 \keyword{likert}

@@ -7,6 +7,9 @@
 \format{
 data frame with 14 rows and 6 columns.
 }
+\usage{
+mass
+}
 \description{
 A data frame of results of the Math Anxiety Scale Survey administered
 to 20 students in a statistics course. This data frame contains the original

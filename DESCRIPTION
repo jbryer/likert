@@ -20,7 +20,7 @@ License: GPL
 LazyLoad: yes
 VignetteBuilder: knitr
 Depends:
-    R (>= 3.0), ggplot2 (>= 2.2.0)
+    R (>= 3.0), ggplot2 (>= 3.4.0)
 Imports:
     psych,
     reshape2,
@@ -36,6 +36,6 @@ Suggests:
     rmarkdown,
     testthat (>= 3.0.0),
     vdiffr
-RoxygenNote: 7.2.1
+RoxygenNote: 7.3.1
 Encoding: UTF-8
 Config/testthat/edition: 3

@@ -56,7 +56,7 @@ panel.hist <- function(x, ...) {
 	rect(breaks[-nB], 0, breaks[-1], y, col="orange", ...)
 }
 
-
+#' @exportS3Method NULL
 pairs.ordered.categorical <- function(xx,...) {
 	pairs(xx, 
 		  diag.panel = panel.hist ,
