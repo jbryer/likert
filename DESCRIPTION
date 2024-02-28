@@ -1,7 +1,7 @@
 Package: likert
 Type: Package
 Title: Analysis and Visualization Likert Items
-Version: 2.0.0
+Version: 2.0.0.9000
 Date: 2022-05-03
 Authors@R: c(
     person("Jason", "Bryer", , "jason@bryer.org", role = c("aut", "cre"),
@@ -9,7 +9,7 @@ Authors@R: c(
     person("Kim", "Speerschneider", , "kimkspeer@gmail.com", role = "ctb")
   )
 Maintainer: Jason Bryer <jason@bryer.org>
-URL: http://jason.bryer.org/likert, http://github.com/jbryer/likert
+URL: https://jbryer.github.io/likert/, https://github.com/jbryer/likert
 BugReports: https://github.com/jbryer/likert/issues
 Description: An approach to analyzing Likert response items, with an emphasis on visualizations. 
     The stacked bar plot is the preferred method for presenting Likert results. Tabular results
