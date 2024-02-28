@@ -1,5 +1,6 @@
-likert 2.0
-=========
+# likert (development)
+
+# likert 2.0
 
 * Many fixed to be compatible with the latest version of ggplot2.
 * Added digits parameter to plot for heatmaps.
@@ -7,55 +8,54 @@ likert 2.0
 * Print a warning if any variables are not factors.
 * New Shiny app that allows for interactively manipulate Likert options.
 
-likert 1.3.6
-=========
+# likert 1.3.6
+
 
 * Fixed a bug where the labels were placed on the wrong side.
 * Now require ggplot2 versions greater than 2.2.0.
 
-likert 1.3.5
-=========
+# likert 1.3.5
 
 * Fixed a bug where stacked bars were in the wrong order in grouped plots.
 * Plotting options are now passed as a list. The likert.options returns the default set of plotting options.
 
-likert 1.3.4
-=========
+# likert 1.3.4
+
 
 * Fixed a bug where the neutral labels would be printed twice when there were an odd number of levels and plot.percents = TRUE.
 * Fixed a bug where the results for a grouped analysis with missing levels may not be correct in the print function.
 
-likert 1.3.3
-=========
+# likert 1.3.3
+
 
 * Update for ggplot2 version 2.0
 
-likert 1.3.2
-=========
+# likert 1.3.2
+
 
 * Removed all use of the reshape package.
 * Fixes issue 40 where the histogram bars may not match the likert bars.
 
-likert 1.3.1
-=========
+# likert 1.3.1
+
 
 * Fix to work with the latest version of the xtable package.
 
-likert 1.3.0
-=========
+# likert 1.3.0
+
 
 * Added ability to group items by factor.
 * Converted all uses of reshape to reshape2.
 * Other fixes to pass R CMD CHECK.
 
-likert 1.2.1
-=========
+# likert 1.2.1
+
 
 * Added colors parameter to plot.likert.bar to define custom colors for levels.
 * Fixed bug where an unused factor level would not appear in the legend.
 
-likert 1.2
-=========
+# likert 1.2
+
 
 * Added initial support for conducting gap analysis. A demo, GapAnalysis has
   also been added.
@@ -71,8 +71,8 @@ likert 1.2
 * Fixed a bug where plot.likert(..., include.histogram=TRUE) would not work with a group and only one item (i.e. one column).
 * Updates for newer version of R and Roxygen.
 
-likert 1.1
-=========
+# likert 1.1
+
 
 Released September 25, 2013.
 
