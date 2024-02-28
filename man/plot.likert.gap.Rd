@@ -12,7 +12,7 @@
   panel.arrange = "v",
   panel.strip.color = "#F0F0F0",
   legend.position = "bottom",
-  panel.background = element_rect(size = 1, color = "grey70", fill = NA),
+  panel.background = element_rect(linewidth = 1, color = "grey70", fill = NA),
   satisfaction.label = "Satisfaction",
   importance.label = "Importance",
   legend,

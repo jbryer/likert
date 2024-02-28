@@ -337,8 +337,8 @@ plot(l24g, type="density")
 \begin{itemize}
 \item release version 1.1 to CRAN (probably next week, currently available on GitHub)
 <<eval=FALSE>>=
-require(devtools)
-install_github("likert","jbryer")
+require(remotes)
+install_github("jbryer/likert")
 @
 \item \texttt{xtable} functions
 \item ability to analyze and visualize gap analysis (e.g. items with importance and satisfaction)

@@ -8,8 +8,8 @@
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/jbryer/likert/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jbryer/likert/actions/workflows/R-CMD-check.yaml)
-[![Build Status](https://api.travis-ci.org/jbryer/likert.svg)](https://travis-ci.org/jbryer/likert?branch=master)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/likert)](http://cran.r-project.org/package=likert)
+[![Build Status](https://api.travis-ci.org/jbryer/likert.svg)](https://app.travis-ci.com/jbryer/likert?branch=master)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/likert)](https://cran.r-project.org/package=likert)
 ![Downloads](http://cranlogs.r-pkg.org/badges/likert)
 <!-- badges: end -->
 
@@ -34,7 +34,7 @@ To get started take a look at the [likert demo](https://github.com/jbryer/likert
 demo('likert', package='likert')
 ```
 
-Or run the [Shiny app](http://rstudio.com/shiny):
+Or run the [Shiny app](https://shiny.posit.co/):
 
 ```r
 shinyLikert()

@@ -31,11 +31,12 @@ Imports:
     colourpicker,
     shiny
 Suggests:
-    devtools,
+    remotes,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0),
     vdiffr
 RoxygenNote: 7.3.1
 Encoding: UTF-8
+LazyData: true
 Config/testthat/edition: 3

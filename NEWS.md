@@ -1,5 +1,7 @@
 # likert (development)
 
+* fixes for compatibility with ggplot2 (>= 3.4.0)
+
 # likert 2.0
 
 * Many fixed to be compatible with the latest version of ggplot2.
