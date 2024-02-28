@@ -7,6 +7,9 @@
 \format{
 a data frame with 860 ovservations of 63 variables.
 }
+\usage{
+sasr
+}
 \description{
 The Survey of Academic Self-Regulation (SASR) is comprised of six factors:
 self-regulation, intrinsic motivation, extrinsic motivation, self-efficacy,

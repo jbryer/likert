@@ -8,6 +8,9 @@ grouped by gender.}
 \format{
 data frame with 28 rows and 7 columns.
 }
+\usage{
+MathAnxietyGender
+}
 \description{
 A data frame of presummarized results of the Math Anxiety Scale Survey administered
 to 20 students in a statistics course grouped by gender.

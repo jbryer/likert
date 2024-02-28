@@ -45,11 +45,11 @@ l24g <- likert(items24, grouping=pisaitems$CNT)
 \clearpage
 
 <<results=tex>>=
-xtable(l24)
+xtable::xtable(l24)
 @
 
 <<results=tex,eval=FALSE,echo=FALSE>>=
-xtable(l24g)
+xtable::xtable(l24g)
 @
 
 \end{landscape}

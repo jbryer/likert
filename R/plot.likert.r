@@ -36,7 +36,7 @@ plot.likert <- function(x, type=c('bar','heat','density'),
 						panel.strip.color='#F0F0F0',
 						legend.position='bottom',
 						group.order,
-						panel.background=element_rect(size=1, color='grey70', fill=NA),
+						panel.background=element_rect(linewidth=1, color='grey70', fill=NA),
 						...) {
 	if(missing(group.order) & !is.null(x$grouping) & include.histogram) {
 		# Fixes this issue: https://github.com/jbryer/likert/issues/40

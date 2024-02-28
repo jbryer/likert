@@ -16,3 +16,8 @@ cran-comments.md
 tests/*
 .travis.yml
 build.R
+^likert\.Rproj$
+^\.github$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

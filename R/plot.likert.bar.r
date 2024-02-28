@@ -72,14 +72,14 @@ likert.bar.plot <- function(l,
 	p <- NULL
 	if(!is.null(l$grouping)) { ##### Grouping ##################################
 		item_levels <- unique(l$results$Item)
-		item_levels <- likert:::label_wrap_mod(item_levels, width = wrap)
-		lsum$Item <- likert:::label_wrap_mod(lsum$Item, width = wrap)
+		item_levels <- label_wrap_mod(item_levels, width = wrap)
+		lsum$Item <- label_wrap_mod(lsum$Item, width = wrap)
 		lsum$Item <- factor(lsum$Item, item_levels)
 		levels(l$results$Item) <- levels(lsum$Item)
 		#l$results$Item <- label_wrap_mod(l$results$Item, width=wrap)
 		lsum$Item <- factor(lsum$Item,item_levels)
 		#names(l$items) <- label_wrap_mod(names(l$items), width=wrap)
-		lsum$Group <- likert:::label_wrap_mod(lsum$Group, width=wrap.grouping)
+		lsum$Group <- label_wrap_mod(lsum$Group, width=wrap.grouping)
 		results <- l$results
 		results <- reshape2::melt(results, id=c('Group', 'Item'))
 		results$variable <- factor(results$variable, ordered=TRUE)
