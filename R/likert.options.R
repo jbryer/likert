@@ -1,11 +1,11 @@
-#' Builds an object with options for plotting \code{\link{likert}} results.
+#' Builds an object with options for plotting `likert` results.
 #' 
 #' This function specifies all the plotting options for Likert plots.
 #' 
 #' @param low.color color for low values.
 #' @param high.color color for high values.
 #' @param neutral.color color for middle values (if odd number of levels).
-#' @param neutral.color.ramp second color used when calling \code{\link{colorRamp}}
+#' @param neutral.color.ramp second color used when calling [colorRamp()].
 #'        with \code{low.color} and \code{high.color} to define the color palettes.
 #' @param colors vector specifying the colors to use. This must be equal to 
 #'        the number of likert levels.

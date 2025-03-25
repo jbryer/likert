@@ -7,7 +7,7 @@ utils::globalVariables(c('group', 'legend.position', 'wrap', 'panel.arrange', 'p
 #' Negative values (in maroon by default) indicate the number of missing values
 #' for that item and group.
 #' 
-#' @param l results of \code{\link{likert}}.
+#' @param l results of [likert()].
 #' @param xlab label used for the x-axis.
 #' @param plot.missing if TRUE, missing values will be plotted to the left of the
 #'        x-axis.

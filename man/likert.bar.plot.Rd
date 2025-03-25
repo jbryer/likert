@@ -7,7 +7,7 @@
 likert.bar.plot(l, group.order, center = (l$nlevels - 1)/2 + 1, ...)
 }
 \arguments{
-\item{l}{results of \code{\link{likert}}.}
+\item{l}{results of [likert()].}
 
 \item{group.order}{the order in which groups (for grouped items) or items
 (for non-grouped items) should be plotted.}
@@ -19,12 +19,12 @@ likert.bar.plot(l, group.order, center = (l$nlevels - 1)/2 + 1, ...)
 items or those without a neutral option). This also influences where the
 color breaks from low to high.}
 
-\item{...}{passed to \code{\link{likert.options}}}
+\item{...}{passed to [likert.options()]}
 
 \item{likert}{object of type likert.}
 }
 \description{
-Bar plot for the results of \code{\link{likert}}.
+Bar plot for the results of `likert`.
 }
 \seealso{
 plot.likert

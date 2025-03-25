@@ -1,0 +1,25 @@
+---
+title: "The Visual Display of Likert Data"
+author: "Jason Bryer"
+output: rmarkdown::html_vignette
+bibliography:  REFERENCES.bib
+abstract: The Likert (Likert, 1932) item format has become the defacto standard in survey research. In the most common format of Likert-items, respondents rate their agreement with a statement from strongly disagree to strongly agree, usually with four to seven levels. Rensis Likert assumed that the distance between each response category are equal, and as such, analysis has typically treated the responses to Likert-items as continuous variables. However, this assumption often does not hold (see e.g. Wakita et al., 2012), although can often easily be verified with the use of visualizations. This paper introduces the likert package that provides a set of functions for analyzing Likert-items, visualizing results using the ggplot2 (Wickham, 2009) package, and reporting results with the xtable (Dahl, 2012) package.
+vignette: >
+  %\VignetteIndexEntry{The Visual Display of Likert Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(likert)
+```
+
+
+The Likert scale was first introduced by Rensis Likert in 1932 [@Likert1932] and has become a widely used for assessment and survey designs. The primary feature of Likert items

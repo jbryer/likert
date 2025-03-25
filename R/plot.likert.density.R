@@ -10,7 +10,7 @@
 #'        but this is often inadequate for Likert type items. The value of 0.5
 #'        is used since the difference between any two adjacent levels is one.
 #' @param legend title for the legend.
-#' @param ... parameters passed to \code{\link{density}}.
+#' @param ... parameters passed to [density()].
 #' @export
 #' @seealso plot.likert
 likert.density.plot <- function(likert, 
@@ -18,6 +18,7 @@ likert.density.plot <- function(likert,
 								bw=0.5, 
 								legend, 
 								...) {
+	.Deprecated(msg = 'Likert density plots have been depcrated and will be removed in a future version.')
 	lsum <- summary(likert)
 	items <- likert$items
 	items.density <- data.frame()

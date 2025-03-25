@@ -1,0 +1,33 @@
+---
+title: "Liker Scale Anchors"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Liker Scale Anchors}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This list of sample anchors for Likert scales was adapted from: Vagias, Wade M. (2006). *Likert-type scale response anchors*. Clemson International Institute for Tourism & Research Development, Department of Parks, Recreation and Tourism Management. Clemson University.
+
+```{r, message=FALSE}
+library(likert)
+data("likert_anchors", package = 'likert')
+length(likert_anchors)
+```
+
+```{r, echo=FALSE, results='asis'}
+for(i in 1:length(likert_anchors)) {
+	cat(paste0(
+		'## ', names(likert_anchors)[i], '\n\n',
+		paste0('1. ', likert_anchors[[i]], collapse = '\n'),
+		'\n\n'
+	))
+}
+```

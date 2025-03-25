@@ -20,8 +20,8 @@ as.character, as.numeric, as.logical, as.numeric).}
 a vector with same length of x with recoded values.
 }
 \description{
-This utility function will recode values from an original \code{\link{character}}
-or \code{\link{factor}} vector with new values.
+This utility function will recode values from an original `character`
+or `factor` vector with new values.
 }
 \examples{
 test <- letters[sample(5, 10, replace=TRUE)]

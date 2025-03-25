@@ -1,30 +1,28 @@
-library(devtools)
-
 #Package building
-document()
-install()
-build()
-test()
-#Rbuild('likert',vignettes=FALSE)
-build_vignettes()
-check(cran=TRUE)
+devtools::document()
+devtools::install(upgrade = 'never')
+devtools::install()
+devtools::build()
+devtools::test()
+devtools::build_vignettes()
+devtools::check(cran=TRUE)
 
 # Build website
 pkgdown::build_site()
 
 # Ready for CRAN?
-release()
+devtools::release()
 
 ##### Basic testing
 library(likert)
 ls('package:likert')
 
 #Run shiny app. See also shinyLikert to run from the installed package.
-shiny::runApp('likert/inst/shiny')
+shiny::runApp('inst/shiny')
 
 ##### testthat
 usethis::use_testthat()
-usethis::use_test('duplicate_gruops_124')
+usethis::use_test('duplicate_groups_124')
 
 ##### Data setup. We will use a few of the student items from North America PISA
 require(pisa)

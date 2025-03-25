@@ -1,114 +1,44 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/likert.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/MathAnxiety.html</loc>
-  </url>
-  <url>
-    <loc>/reference/MathAnxietyGender.html</loc>
-  </url>
-  <url>
-    <loc>/reference/abs_formatter.html</loc>
-  </url>
-  <url>
-    <loc>/reference/align.plots.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gap.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/label_wrap_mod.html</loc>
-  </url>
-  <url>
-    <loc>/reference/likert-package.html</loc>
-  </url>
-  <url>
-    <loc>/reference/likert.bar.plot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/likert.density.plot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/likert.heat.plot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/likert.histogram.plot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/likert.html</loc>
-  </url>
-  <url>
-    <loc>/reference/likert.matrix.plot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/likert.options.html</loc>
-  </url>
-  <url>
-    <loc>/reference/mass.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pisaitems.html</loc>
-  </url>
-  <url>
-    <loc>/reference/plot.likert.gap.html</loc>
-  </url>
-  <url>
-    <loc>/reference/plot.likert.html</loc>
-  </url>
-  <url>
-    <loc>/reference/print.likert.bar.plot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/print.likert.gap.html</loc>
-  </url>
-  <url>
-    <loc>/reference/print.likert.heat.plot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/print.likert.html</loc>
-  </url>
-  <url>
-    <loc>/reference/print.xlikert.html</loc>
-  </url>
-  <url>
-    <loc>/reference/recode.html</loc>
-  </url>
-  <url>
-    <loc>/reference/reverse.levels.html</loc>
-  </url>
-  <url>
-    <loc>/reference/sasr.html</loc>
-  </url>
-  <url>
-    <loc>/reference/shinyLikert.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summary.likert.gap.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summary.likert.html</loc>
-  </url>
-  <url>
-    <loc>/reference/xtable.likert.html</loc>
-  </url>
-  <url>
-    <loc>/reference/zeroGrob.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/articles/anchors.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/articles/likert-xtable.html</loc></url>
+<url><loc>/articles/likert.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/news/index.html</loc></url>
+<url><loc>/reference/MathAnxiety.html</loc></url>
+<url><loc>/reference/MathAnxietyGender.html</loc></url>
+<url><loc>/reference/abs_formatter.html</loc></url>
+<url><loc>/reference/align.plots.html</loc></url>
+<url><loc>/reference/gap.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/label_wrap_mod.html</loc></url>
+<url><loc>/reference/likert-package.html</loc></url>
+<url><loc>/reference/likert.bar.plot.html</loc></url>
+<url><loc>/reference/likert.density.plot.html</loc></url>
+<url><loc>/reference/likert.heat.plot.html</loc></url>
+<url><loc>/reference/likert.histogram.plot.html</loc></url>
+<url><loc>/reference/likert.html</loc></url>
+<url><loc>/reference/likert.matrix.plot.html</loc></url>
+<url><loc>/reference/likert.options.html</loc></url>
+<url><loc>/reference/likert_anchors.html</loc></url>
+<url><loc>/reference/mass.html</loc></url>
+<url><loc>/reference/pisaitems.html</loc></url>
+<url><loc>/reference/plot.likert.gap.html</loc></url>
+<url><loc>/reference/plot.likert.html</loc></url>
+<url><loc>/reference/print.likert.bar.plot.html</loc></url>
+<url><loc>/reference/print.likert.gap.html</loc></url>
+<url><loc>/reference/print.likert.heat.plot.html</loc></url>
+<url><loc>/reference/print.likert.html</loc></url>
+<url><loc>/reference/print.xlikert.html</loc></url>
+<url><loc>/reference/recode.html</loc></url>
+<url><loc>/reference/reverse.levels.html</loc></url>
+<url><loc>/reference/sasr.html</loc></url>
+<url><loc>/reference/shinyLikert.html</loc></url>
+<url><loc>/reference/summary.likert.gap.html</loc></url>
+<url><loc>/reference/summary.likert.html</loc></url>
+<url><loc>/reference/xtable.likert.html</loc></url>
+<url><loc>/reference/zeroGrob.html</loc></url>
 </urlset>
+

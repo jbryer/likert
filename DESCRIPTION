@@ -1,15 +1,14 @@
 Package: likert
 Type: Package
 Title: Analysis and Visualization Likert Items
-Version: 2.0.0
-Date: 2022-05-03
+Version: 2.0.1
+Date: 2025-03-24
 Authors@R: c(
     person("Jason", "Bryer", , "jason@bryer.org", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-2454-0402")),
     person("Kim", "Speerschneider", , "kimkspeer@gmail.com", role = "ctb")
   )
-Maintainer: Jason Bryer <jason@bryer.org>
-URL: http://jason.bryer.org/likert, http://github.com/jbryer/likert
+URL: http://jbryer.github.io/likert/, https://github.com/jbryer/likert
 BugReports: https://github.com/jbryer/likert/issues
 Description: An approach to analyzing Likert response items, with an emphasis on visualizations. 
     The stacked bar plot is the preferred method for presenting Likert results. Tabular results
@@ -28,14 +27,15 @@ Imports:
     grid,
     plyr,
     xtable,
-    colourpicker,
-    shiny
+    shiny,
+    DT
 Suggests:
     devtools,
     knitr,
+    colourpicker,
     rmarkdown,
     testthat (>= 3.0.0),
     vdiffr
-RoxygenNote: 7.2.1
+RoxygenNote: 7.3.2
 Encoding: UTF-8
 Config/testthat/edition: 3

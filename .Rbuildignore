@@ -16,3 +16,5 @@ cran-comments.md
 tests/*
 .travis.yml
 build.R
+docs/
+^\.github$

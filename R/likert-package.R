@@ -1,7 +1,6 @@
 #' Likert Analysis and Visualization
 #' 
 #' @name likert-package
-#' @docType package
 #' @title Likert Analysis and Visualization
 #' @author \email{jason@@bryer.org}
 #' @keywords package institutional research likert
@@ -17,7 +16,7 @@
 #' @importFrom stats cor cor.test density sd symnum
 #' @importFrom plyr llply
 #' @importFrom utils packageVersion
-NA
+"_PACKAGE"
 
 #' Fictitious dataset with importance and satisfaction results across five different
 #' offices.
@@ -103,6 +102,7 @@ NA
 #' Instructional Psychology, 36 (3), 185- 193.
 #' @keywords datasets
 NA
+
 
 .onAttach <- function(libname, pkgname) {
 	#pkgEnv = pos.to.env(match('package:likert', search()))

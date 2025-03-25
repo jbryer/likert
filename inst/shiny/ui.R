@@ -2,6 +2,7 @@ shinyUI(pageWithSidebar(
   headerPanel("Likert Package Demo"),
   
   sidebarPanel(
+    style = "height: 90vh; overflow-y: auto;",
     tabsetPanel(
       tabPanel('Data',
                uiOutput('dataset_ui'),
@@ -32,7 +33,8 @@ shinyUI(pageWithSidebar(
       tabPanel("Plot", plotOutput("plot", height = '800px')), 
       # tabPanel("Summary", verbatimTextOutput("summary")),
       # tabPanel("Print", tableOutput('print')),
-      tabPanel("Data", shiny::dataTableOutput('table'))
+      tabPanel("Data", DT::dataTableOutput('table')),
+      tabPanel("Code", shiny::verbatimTextOutput('code'))
     )
   )
 ))

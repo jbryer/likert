@@ -23,7 +23,7 @@ likert.histogram.plot(
 )
 }
 \arguments{
-\item{l}{results of \code{\link{likert}}.}
+\item{l}{results of [likert()].}
 
 \item{xlab}{label used for the x-axis.}
 

@@ -2,6 +2,7 @@ shinyServer(function(input, output) {
 	##### Utility reactive functions ###########################################
 	getData <- reactive({
 		req(input$dataset)
+		
 		dataset <- datasets[[input$dataset]]$data
 		if(!is.null(input$columns) & all(input$columns %in% names(dataset))) {
 			dataset <- dataset[,input$columns,drop=FALSE]
@@ -113,16 +114,24 @@ shinyServer(function(input, output) {
 		opt <- getOptions()
 		opt$x <- l
 		opt$type <- 'bar'
-		do.call(likert:::plot.likert, opt)
-		
-		# p <- plot(l
-		# 		  # include.center = input$include.center, 
-		# 		  # centered = input$centered,
-		# 		  # ordered = input$ordered,
-		# 		  # center = input$center,
-		# 		  # wrap = input$wrap
-		# )
-		# p
+		do.call(plot.likert, opt)
+	})
+	
+	output$code <- renderText({
+		options <- formals(likert.options)
+		opt <- c()
+		for(param in names(options)) {
+			if('...' == param) {
+				next;
+			}
+			inputId <- paste0('param_', param)
+			quote <- ifelse(is.character(input[[inputId]]), '"', '')
+			opt <- c(
+				opt,
+				paste0('\t', param, ' = ', quote, input[[inputId]], quote)
+			)
+		}
+		return(paste0(opt, collapse = ',\n'))
 	})
 	
 	output$summary <- renderPrint({
@@ -137,7 +146,7 @@ shinyServer(function(input, output) {
 		print(dataset)
 	})
 	
-	output$table <- shiny::renderDataTable({
+	output$table <- DT::renderDT({
 		getData()
 	})	
 })

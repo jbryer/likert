@@ -18,7 +18,7 @@ is used since the difference between any two adjacent levels is one.}
 
 \item{legend}{title for the legend.}
 
-\item{...}{parameters passed to \code{\link{density}}.}
+\item{...}{parameters passed to [density()].}
 }
 \description{
 This funciton will create a visualization that treats the likert items as

@@ -39,7 +39,7 @@
 \item{display}{column formats.}
 
 \item{auto}{Logical, indicating whether to apply automatic format when no 
-value is passed to align, digits, or display (see \code{\link{xtable}}
+value is passed to align, digits, or display (see [xtable::xtable()]
 for more information.}
 
 \item{include.n}{option to include n}
@@ -65,13 +65,13 @@ for more information.}
 items or those without a neutral option). This also influences which levels
 are summarized in the low and high groups.}
 
-\item{ordered}{whether the results should be ordered. See \code{\link{summary.likert}}}
+\item{ordered}{whether the results should be ordered. See [summary.likert()]}
 
-\item{...}{other parameters passed to \link{xtable}.}
+\item{...}{other parameters passed to `xtable`.}
 }
 \description{
-Crate a LaTeX or HTML table of the \code{\link{likert}} results.
+Create a LaTeX or HTML table of the [likert()] results.
 }
 \seealso{
-\link{xtable}, \link{print.xtable}
+xtable, print.xtable
 }

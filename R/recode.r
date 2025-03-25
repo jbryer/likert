@@ -1,7 +1,7 @@
 #' Recode a vector.
 #' 
-#' This utility function will recode values from an original \code{\link{character}}
-#' or \code{\link{factor}} vector with new values.
+#' This utility function will recode values from an original `character`
+#' or `factor` vector with new values.
 #' 
 #' @param x the vector whose values will be recoded.
 #' @param from the old values in x to be recoded. 

@@ -11,9 +11,9 @@ utils::globalVariables(c('value','Group','variable','low','Item','high',
 
 #' Bar Plot for Likert Items.
 #' 
-#' Bar plot for the results of \code{\link{likert}}.
+#' Bar plot for the results of `likert`.
 #' 
-#' @param l results of \code{\link{likert}}.
+#' @param l results of [likert()].
 #' @param likert object of type likert.
 #' @param group.order the order in which groups (for grouped items) or items
 #'        (for non-grouped items) should be plotted.
@@ -23,7 +23,7 @@ utils::globalVariables(c('value','Group','variable','low','Item','high',
 #'        <= 3 are low levels and >= 4 are high levels (i.e. used for forced choice 
 #'        items or those without a neutral option). This also influences where the
 #'        color breaks from low to high.
-#' @param ... passed to \code{\link{likert.options}}
+#' @param ... passed to [likert.options()]
 #' @importFrom plyr ddply
 #' @export
 #' @seealso plot.likert
@@ -83,25 +83,25 @@ likert.bar.plot <- function(l,
 	p <- NULL
 	if(!is.null(l$grouping)) { ##### Grouping ##################################
 		item_levels <- unique(l$results$Item)
-		item_levels <- likert:::label_wrap_mod(item_levels, width = wrap)
-		lsum$Item <- likert:::label_wrap_mod(lsum$Item, width = wrap)
+		item_levels <- label_wrap_mod(item_levels, width = wrap)
+		lsum$Item <- label_wrap_mod(lsum$Item, width = wrap)
 		lsum$Item <- factor(lsum$Item, item_levels)
 		levels(l$results$Item) <- levels(lsum$Item)
 		#l$results$Item <- label_wrap_mod(l$results$Item, width=wrap)
 		lsum$Item <- factor(lsum$Item,item_levels)
 		#names(l$items) <- label_wrap_mod(names(l$items), width=wrap)
-		lsum$Group <- likert:::label_wrap_mod(lsum$Group, width=wrap.grouping)
+		lsum$Group <- label_wrap_mod(lsum$Group, width=wrap.grouping)
 		results <- l$results
 		results <- reshape2::melt(results, id=c('Group', 'Item'))
 		results$variable <- factor(results$variable, ordered=TRUE)
 		if(TRUE | is.null(l$items)) {
-		results$Item <- factor(as.character(results$Item),
-				   levels=item_levels,
-				   ordered=TRUE)
+			results$Item <- factor(as.character(results$Item),
+								   levels = item_levels,
+								   ordered = TRUE)
 		} else {
-		results$Item <- factor(results$Item,
-				   levels=label_wrap_mod(names(l$items), width=wrap),
-				   ordered=TRUE)
+			results$Item <- factor(results$Item,
+								   levels = label_wrap_mod(names(l$items), width=wrap),
+								   ordered = TRUE)
 		}
 		ymin <- 0
 
@@ -377,11 +377,11 @@ likert.bar.plot <- function(l,
 	return(p)
 }
 
-#' Print method for \code{\link{likert.bar.plot}}. The primary purpose is to 
+#' Print method for [likert.bar.plot()]. The primary purpose is to 
 #' suppress the "Stacking not well defined when ymin != 0" warning printed
 #' by \code{ggplot2} for bar plots that have negative bars (i.e. the centered
 #' plots).
-#' @param x a plot from \code{\link{likert.bar.plot}}.
+#' @param x a plot from [likert.bar.plot()].
 #' @param ... other parameters passed to ggplot2.
 #' @export
 #' @method print likert.bar.plot

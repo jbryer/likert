@@ -51,7 +51,7 @@ likert <- function(items,
  			stop('Grouping variable cannot have any missing values.')
  		}
  	}
-	if(!missing(summary)) { #Pre-summarized data
+	if(!missing(summary)) { # Pre-summarized data
 		names(summary)[1] <- 'Item'
 		if(!is.null(grouping) & length(grouping) != nrow(summary)) {
 			stop('The length of grouping must be equal to the number of rows in summary.')
@@ -61,7 +61,7 @@ likert <- function(items,
 		}
 		
 		# Check to see if the pre-summarized data is percentages or counts.
-		# First, if the sum of all values for any row is greater thatn 1.1,
+		# First, if the sum of all values for any row is greater than 1.1,
 		# then we presume the data could represents counts unless ALL the totals
 		# close to 100, in which case they are likely percentages.
 		totals <- apply(summary[,2:ncol(summary)], 1, sum)
@@ -107,7 +107,7 @@ likert <- function(items,
 		if(!inherits(items, 'data.frame')) {
 			stop(paste0('The items parameter must be a data frame. If trying ',
 						'to subset a data frame to analyze only one column, try: ',
-						'items=mydf[,1, drop=FALSE].'))
+						'items=mydf[,1,drop=FALSE].'))
 		}
 		if(!all(sapply(items, function(x) 'factor' %in% class(x)))) {
 			warning('items parameter contains non-factors. Will convert to factors')

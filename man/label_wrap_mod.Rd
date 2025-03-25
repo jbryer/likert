@@ -7,7 +7,7 @@
 label_wrap_mod(value, width = 25)
 }
 \arguments{
-\item{value}{vector (converted using \code{\link{as.character}}) to be wrapped.}
+\item{value}{vector (converted using [as.character()]) to be wrapped.}
 
 \item{width}{the maximum width of each line in characters.
 
