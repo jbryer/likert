@@ -1,7 +1,8 @@
-pandoc: 2.17.1.1
-pkgdown: 2.0.3
+pandoc: '3.2'
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
+  anchors: anchors.html
+  likert-xtable: likert-xtable.html
   likert: likert.html
-last_built: 2022-05-04T03:41Z
-
+last_built: 2025-03-25T16:59Z

@@ -8,8 +8,7 @@ Authors@R: c(
            comment = c(ORCID = "0000-0002-2454-0402")),
     person("Kim", "Speerschneider", , "kimkspeer@gmail.com", role = "ctb")
   )
-Maintainer: Jason Bryer <jason@bryer.org>
-URL: http://jason.bryer.org/likert, http://github.com/jbryer/likert
+URL: http://jbryer.github.io/likert/, https://github.com/jbryer/likert
 BugReports: https://github.com/jbryer/likert/issues
 Description: An approach to analyzing Likert response items, with an emphasis on visualizations. 
     The stacked bar plot is the preferred method for presenting Likert results. Tabular results
