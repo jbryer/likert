@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{the likert class to print.}
 
-\item{...}{parameters passed to \code{\link{print.data.frame}}.}
+\item{...}{parameters passed to `print.data.frame`.}
 }
 \description{
 Prints results table.

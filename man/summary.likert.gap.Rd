@@ -9,7 +9,7 @@
 \arguments{
 \item{object}{the likert class to summarize.}
 
-\item{...}{parameters passed to \code{\link{summary.likert}}}
+\item{...}{parameters passed to [summary.likert()]}
 }
 \value{
 a list with two data frames with summarized data for satisfaction

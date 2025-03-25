@@ -39,25 +39,25 @@ Possible values are \code{v} (vertical, the default), \code{h}
 \item{group.order}{the order in which groups (for grouped items) or items
 (for non-grouped items) should be plotted.}
 
-\item{panel.background}{define background of the plot. See \code{\link{theme}}.}
+\item{panel.background}{define background of the plot. See [theme()].}
 
-\item{...}{other parameters passed passed to \code{\link{likert.bar.plot}} or 
-\code{\link{likert.heat.plot}}.}
+\item{...}{other parameters passed passed to [likert.bar.plot()] or 
+[likert.heat.plot()].}
 }
 \description{
 This is an implementation of the S3 plot generic function. Based upon the
-\code{type} parameter this function will call either \code{\link{likert.bar.plot}},
-\code{\link{likert.heat.plot}}, or \code{\link{likert.density.plot}}. See the
+`type` parameter this function will call either [likert.bar.plot()],
+[likert.heat.plot()], or [likert.density.plot()]. See the
 help pages for those functions for all the available parameters to customize
 the aesthetics of the figure. Although those functions can be plotted directly,
 we recommend call the generic \code{plot} function.
 }
 \seealso{
-\link{likert.bar.plot}
+likert.bar.plot
 
-\link{likert.heat.plot}
+likert.heat.plot
 
-\link{likert.density.plot}
+likert.density.plot
 
-\link{likert.histogram.plot}
+likert.histogram.plot
 }

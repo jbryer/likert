@@ -1,27 +1,26 @@
-%\VignetteIndexEntry{Examples of likert Tables}
-%\VignetteKeyword{likert xtable}
+---
+title: "Examples of likert Tables"
+author: "Jason Bryer"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Examples of likert Tables}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
 
-\documentclass[12pt]{article}
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
 
-\usepackage[margin=1.0in]{geometry}
-\usepackage[english]{babel}
-\usepackage{rotating}
-\usepackage{pdflscape}
-
-<<setup,echo=FALSE,results=hide>>=
-options(digits=3)
-options(width=80)
-options(continue="  ")
-@
-
-\begin{document}
-\begin{landscape}
-
-\setkeys{Gin}{width=\textwidth}
-
-<<>>=
+```{r}
 library(likert)
 library(ggplot2)
+library(xtable)
 data(pisaitems)
 
 ##### Item 24: Reading Attitudes
@@ -40,17 +39,9 @@ names(items24) <- c(
 	  "I like to exchange books with my friends.")
 l24 = likert(items24)
 l24g <- likert(items24, grouping=pisaitems$CNT)
-@
+```
 
-\clearpage
-
-<<results=tex>>=
+```{r, results='asis'}
 xtable(l24)
-@
 
-<<results=tex,eval=FALSE,echo=FALSE>>=
-xtable(l24g)
-@
 
-\end{landscape}
-\end{document}

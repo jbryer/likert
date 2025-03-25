@@ -1,3 +1,10 @@
+likert 2.0.1
+=========
+
+* Documentation fixes per CRAN request.
+* likert.density.plot has been deprecated.
+* Added likert_anchors dataset and vignette.
+
 likert 2.0
 =========
 

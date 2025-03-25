@@ -2,15 +2,15 @@
 % Please edit documentation in R/plot.likert.heat.r
 \name{print.likert.heat.plot}
 \alias{print.likert.heat.plot}
-\title{Print method for \code{\link{likert.heat.plot}}.}
+\title{Print method for [likert.heat.plot()].}
 \usage{
 \method{print}{likert.heat.plot}(p, ...)
 }
 \arguments{
-\item{p}{a plot from \code{\link{likert.heat.plot}}.}
+\item{p}{a plot from [likert.heat.plot().}
 
 \item{...}{other parameters passed to ggplot2.}
 }
 \description{
-Print method for \code{\link{likert.heat.plot}}.
+Print method for [likert.heat.plot()].
 }

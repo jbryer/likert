@@ -25,6 +25,12 @@ names(items29) = c("Magazines", "Comic books", "Fiction", "Non-fiction books", "
 
 # Datasets that will be available in the Shiny app
 datasets <- list(
+	math_anxiety = list(
+		data = mass[,2:15],
+		groupings = mass[,'Gender',drop=FALSE],
+		name = 'Math Anxiety Scale Survey'
+	),
+	
 	pisa_reading_attitude = list(
 		data = items24,
 		groupings = pisaitems[,c('CNT'), drop=FALSE],
@@ -35,11 +41,5 @@ datasets <- list(
 		data = items29,
 		groupings = pisaitems[,c('CNT'), drop=FALSE],
 		name = 'Reading Frequency (PISA)'
-	),
-	
-	math_anxiety = list(
-		data = mass[,2:15],
-		groupings = mass[,'Gender',drop=FALSE],
-		name = 'Math Anxiety Scale Survey'
 	)
 )

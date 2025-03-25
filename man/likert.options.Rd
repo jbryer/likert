@@ -2,7 +2,7 @@
 % Please edit documentation in R/likert.options.R
 \name{likert.options}
 \alias{likert.options}
-\title{Builds an object with options for plotting \code{\link{likert}} results.}
+\title{Builds an object with options for plotting `likert` results.}
 \usage{
 likert.options(
   low.color = "#D8B365",
@@ -39,7 +39,7 @@ likert.options(
 
 \item{neutral.color}{color for middle values (if odd number of levels).}
 
-\item{neutral.color.ramp}{second color used when calling \code{\link{colorRamp}}
+\item{neutral.color.ramp}{second color used when calling [colorRamp()].
 with \code{low.color} and \code{high.color} to define the color palettes.}
 
 \item{colors}{vector specifying the colors to use. This must be equal to 

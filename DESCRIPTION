@@ -1,8 +1,8 @@
 Package: likert
 Type: Package
 Title: Analysis and Visualization Likert Items
-Version: 2.0.0
-Date: 2022-05-03
+Version: 2.0.1
+Date: 2025-03-24
 Authors@R: c(
     person("Jason", "Bryer", , "jason@bryer.org", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-2454-0402")),
@@ -28,14 +28,15 @@ Imports:
     grid,
     plyr,
     xtable,
-    colourpicker,
-    shiny
+    shiny,
+    DT
 Suggests:
     devtools,
     knitr,
+    colourpicker,
     rmarkdown,
     testthat (>= 3.0.0),
     vdiffr
-RoxygenNote: 7.2.1
+RoxygenNote: 7.3.2
 Encoding: UTF-8
 Config/testthat/edition: 3

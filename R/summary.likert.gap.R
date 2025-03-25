@@ -9,7 +9,7 @@
 #' are determined by as.numeric which will use the values of the factors.
 #'          
 #' @param object the likert class to summarize.
-#' @param ... parameters passed to \code{\link{summary.likert}}
+#' @param ... parameters passed to [summary.likert()]
 #' @return a list with two data frames with summarized data for satisfaction
 #'         and importance results separately.
 #' @export

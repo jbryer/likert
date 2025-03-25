@@ -1,6 +1,6 @@
 #' Prints a LaTeX table of the likert items.
 #' 
-#' Crate a LaTeX or HTML table of the \code{\link{likert}} results.
+#' Create a LaTeX or HTML table of the [likert()] results.
 #' 
 #' @param x likert class object.
 #' @param caption the table caption.
@@ -9,7 +9,7 @@
 #' @param digits number of digits to use for numeric columns.
 #' @param display column formats.
 #' @param auto Logical, indicating whether to apply automatic format when no 
-#'        value is passed to align, digits, or display (see \code{\link{xtable}}
+#'        value is passed to align, digits, or display (see [xtable::xtable()]
 #'        for more information.
 #' @param include.n option to include n
 #' @param include.mean option to include mean
@@ -25,10 +25,11 @@
 #'        <= 3 are low levels and >= 4 are high levels (i.e. used for forced choice 
 #'        items or those without a neutral option). This also influences which levels
 #'        are summarized in the low and high groups.
-#' @param ordered whether the results should be ordered. See \code{\link{summary.likert}}
-#' @param ... other parameters passed to \link{xtable}.
-#' @seealso \link{xtable}, \link{print.xtable}
+#' @param ordered whether the results should be ordered. See [summary.likert()]
+#' @param ... other parameters passed to `xtable`.
+#' @seealso xtable, print.xtable
 #' @export
+#' @importFrom xtable xtable
 #' @method xtable likert
 xtable.likert <- function(x, caption = NULL, 
 						  label = NULL, 
@@ -130,14 +131,14 @@ xtable.likert <- function(x, caption = NULL,
 	return(xtab)
 }
 
-#' Prints the results of \code{\link{xtable.likert}}.
+#' Prints the results of `xtable.likert`.
 #' 
-#' Print method for \code{\link{xtable.likert}}.
+#' Print method for [xtable.likert()].
 #' 
-#' @param x results of \code{\link{xtable.likert}}.
-#' @param tabular.environment see \code{\link{print.xtable}}.
-#' @param floating see \code{\link{print.xtable}}.
-#' @param ... other parameters passed to \code{\link{print.xtable}}
+#' @param x results of [xtable.likert()].
+#' @param tabular.environment see [xtable::print.xtable()].
+#' @param floating see [print.xtable()].
+#' @param ... other parameters passed to [xtable::print.xtable()]
 #' @method print xlikert
 #' @export
 print.xlikert <- function(x, tabular.environment='longtable', floating=FALSE, ...) {

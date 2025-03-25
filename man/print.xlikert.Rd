@@ -2,19 +2,19 @@
 % Please edit documentation in R/xtable.likert.r
 \name{print.xlikert}
 \alias{print.xlikert}
-\title{Prints the results of \code{\link{xtable.likert}}.}
+\title{Prints the results of `xtable.likert`.}
 \usage{
 \method{print}{xlikert}(x, tabular.environment = "longtable", floating = FALSE, ...)
 }
 \arguments{
-\item{x}{results of \code{\link{xtable.likert}}.}
+\item{x}{results of [xtable.likert()].}
 
-\item{tabular.environment}{see \code{\link{print.xtable}}.}
+\item{tabular.environment}{see [xtable::print.xtable()].}
 
-\item{floating}{see \code{\link{print.xtable}}.}
+\item{floating}{see [print.xtable()].}
 
-\item{...}{other parameters passed to \code{\link{print.xtable}}}
+\item{...}{other parameters passed to [xtable::print.xtable()]}
 }
 \description{
-Print method for \code{\link{xtable.likert}}.
+Print method for [xtable.likert()].
 }
