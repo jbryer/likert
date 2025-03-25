@@ -7,7 +7,7 @@ utils::globalVariables(c('value','Group','variable','low','Item','high',
                          'text.color.manual.neutral', 'text.color.manual.neg',
                          'plot.percent.high', 'plot.percent.neutral',
                          'plot.percents','panel.strip.color', 'panel.arrange',
-                         'legend.position'))
+                         'legend.position','drop0trailing','zero.print','ylabel'))
 
 #' Bar Plot for Likert Items.
 #' 

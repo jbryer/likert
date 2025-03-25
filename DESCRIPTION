@@ -27,10 +27,10 @@ Imports:
     grid,
     plyr,
     xtable,
-    shiny,
-    DT
+    shiny
 Suggests:
     devtools,
+    DT,
     knitr,
     colourpicker,
     rmarkdown,

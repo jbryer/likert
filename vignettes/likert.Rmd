@@ -23,3 +23,8 @@ library(likert)
 
 
 The Likert scale was first introduced by Rensis Likert in 1932 [@Likert1932] and has become a widely used for assessment and survey designs. The primary feature of Likert items
+
+
+
+
+

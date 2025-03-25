@@ -45,4 +45,4 @@ from within R:
 
 Or run the [Shiny app](http://rstudio.com/shiny):
 
-\``shinyLikert()`
+    shinyLikert()

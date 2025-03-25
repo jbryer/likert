@@ -5,10 +5,8 @@
 \alias{likert_anchors}
 \title{Sample Likert scale response anchors.}
 \format{
-An object of class \code{list} of length 37.
-}
-\usage{
-likert_anchors
+list of character vectors corresponding to the anchors. The names of the list provide
+        a description of the anchor types.
 }
 \description{
 This is a list of sample response anchors for Likert scales. This was adapted from Vagias (2006).
@@ -18,4 +16,3 @@ Vagias, Wade M. (2006). Likert-type scale response anchors. Clemson Internationa
 Institute for Tourism & Research Development, Department of Parks, Recreation and Tourism 
 Management. Clemson University.
 }
-\keyword{datasets}

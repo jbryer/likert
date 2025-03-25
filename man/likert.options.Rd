@@ -16,6 +16,9 @@ likert.options(
   plot.percents = FALSE,
   text.size = 3,
   text.color = "black",
+  text.color.manual.pos = NULL,
+  text.color.manual.neg = NULL,
+  text.color.manual.neutral = NULL,
   centered = TRUE,
   include.center = TRUE,
   ordered = TRUE,
@@ -56,6 +59,12 @@ the number of likert levels.}
 \item{text.size}{size of text attributes.}
 
 \item{text.color}{color of text attributes.}
+
+\item{text.color.manual.pos}{individual color specification of positive text attributes.}
+
+\item{text.color.manual.neg}{individual color specification of negative text attributes.}
+
+\item{text.color.manual.neutral}{individual color specification of neutral text attributes.}
 
 \item{centered}{if true, the bar plot will be centered around zero such that
 the lower half of levels will be negative.}

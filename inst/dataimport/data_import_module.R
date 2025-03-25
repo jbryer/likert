@@ -13,7 +13,7 @@ data_import_server <- function(id, auto_load = TRUE) {
 		page <- shiny::reactiveVal(value = 1)
 		
 		shiny::observeEvent(input$data_file, {
-			ext <- tools::file_ext(input$upload$name)
+			ext <- tools::file_ext(input$data_file$name)
 			newdata <- switch(ext,
 				   csv = utils::read.csv(input$data_file$datapath),
 				   xlsx = readxl::read_excel(input$data_file$datapath),
@@ -36,10 +36,30 @@ data_import_server <- function(id, auto_load = TRUE) {
 		})
 		
 		output$page_two <- shiny::renderUI({
-			shiny::div({
-				df <- data()
-				
-			})
+			ui <- list()
+			df <- data()
+			if(!is.null(df) & is.data.frame(df)) {
+				for(i in 1:ncol(df)) {
+					ui[[length(ui) + 1]] <- shiny::fluidRow(
+						shiny::column(12,
+							shiny::checkboxInput(
+								inputId = shiny::NS(id, names(df)[i]),
+								label = names(df)[i],
+								value = TRUE
+							)
+						)
+						# shiny::column(6,
+						# 	shiny::selectInput(
+						# 		inputId = shiny::NS(id, paste0(names(df)[i], '_type')),
+						# 		label = 'Type',
+						# 		choices = col_types,
+						# 		selected = class(df[,i])
+						# 	)
+						# )
+					)
+				}
+			}
+			do.call(shiny::div, ui)
 		})
 		
 		shiny::reactive({
@@ -48,7 +68,7 @@ data_import_server <- function(id, auto_load = TRUE) {
 					shiny::modalDialog(
 						shiny::uiOutput(shiny::NS(id, 'page_one')),
 						footer = shiny::modalButton('Cancel'),
-						title = 'Data import',
+						title = 'Data import: Upload file',
 						size = 'xl',
 						easyClose = FALSE,
 						fade = TRUE
@@ -59,7 +79,7 @@ data_import_server <- function(id, auto_load = TRUE) {
 					shiny::modalDialog(
 						shiny::uiOutput(shiny::NS(id, 'page_two')),
 						footer = shiny::modalButton('Cancel'),
-						title = 'Data import',
+						title = 'Data import: Select colunns',
 						size = 'xl',
 						easyClose = FALSE,
 						fade = TRUE

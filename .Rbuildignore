@@ -18,3 +18,5 @@ tests/*
 build.R
 docs/
 ^\.github$
+README.Rmd
+mass.xlsx

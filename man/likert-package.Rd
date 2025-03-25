@@ -10,8 +10,8 @@ Likert Analysis and Visualization
 \seealso{
 Useful links:
 \itemize{
-  \item \url{http://jason.bryer.org/likert}
-  \item \url{http://github.com/jbryer/likert}
+  \item \url{http://jbryer.github.io/likert/}
+  \item \url{https://github.com/jbryer/likert}
   \item Report bugs at \url{https://github.com/jbryer/likert/issues}
 }
 
