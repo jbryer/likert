@@ -14,7 +14,6 @@
 #' @importFrom grDevices colorRamp rgb
 #' @importFrom graphics hist lines pairs par rect strwidth symbols text
 #' @importFrom stats cor cor.test density sd symnum
-#' @importFrom plyr llply
 #' @importFrom utils packageVersion
 "_PACKAGE"
 
