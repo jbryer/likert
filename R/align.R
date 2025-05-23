@@ -46,7 +46,7 @@ align.plots <- function(gl, ...) {
 	
 	gtable_gList <- function (x) {
 		names <- with(x$layout, paste(name, t, l, sep = "-"))
-		grobs <- llply(seq_along(names), function(i) {
+		grobs <- lapply(seq_along(names), function(i) {
 			editGrob(x$grobs[[i]], vp = vpPath(x$name, names[i]), 
 					 name = names[i])
 		})
@@ -61,7 +61,7 @@ align.plots <- function(gl, ...) {
 					 layout.pos.row = vp$t:vp$b, layout.pos.col = vp$l:vp$r, 
 					 clip = vp$clip)
 		}
-		children_vp <- do.call("vpList", llply(seq_along(x$grobs), 
+		children_vp <- do.call("vpList", lapply(seq_along(x$grobs), 
 											   vp))
 		vpTree(layout_vp, children_vp)
 	}
