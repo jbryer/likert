@@ -1,6 +1,7 @@
 likert 2.0.1
 =========
 
+* Fix stray percent signs when zero labels are suppressed in bar plots (#133).
 * Documentation fixes per CRAN request.
 * likert.density.plot has been deprecated.
 * Added likert_anchors dataset and vignette.

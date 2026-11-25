@@ -8,12 +8,10 @@ Slides
 useR
 likert.dev.R
 Icon
-tests
 TODO.txt
 README.md
 RJournal
 cran-comments.md
-tests/*
 .travis.yml
 build.R
 docs/
